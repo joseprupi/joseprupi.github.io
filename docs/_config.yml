@@ -21,10 +21,11 @@
 title: Josep Rubió Piqué
 email: joseprupi@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  My website.
+  This is my website.
 # baseurl: "" # the subpath of your site, e.g. /blog
 # url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  joseprupi
+#linkedin_username: josep-rubio-pique
 
 # Build settings
 theme: minima
