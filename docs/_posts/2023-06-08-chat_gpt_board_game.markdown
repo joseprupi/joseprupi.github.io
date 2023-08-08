@@ -125,9 +125,7 @@ And here are the results after 50000 games:
 
 It seems that with random moves white starting does not give a huge advantage and I found the chances of draw pretty high. This makes me think that with similarly rated players a draw would be probable. Surprisingly for me in chess the probability [seems to be even higher](https://chance.amstat.org/2020/09/chess/) (I am quite ignorant in chess).
 
-Up to this point I have not inputted anything about the game into Chat GPT yet so I have probably wasted my time to do all this as I have the feeling this will not go well.
-
-Anyways, this is the conversation ([link to the conversation](https://chat.openai.com/share/a2821a3d-7ece-4f23-b68a-6be8f4fe8ea5)):
+This is the conversation ([link to the conversation](https://chat.openai.com/share/a2821a3d-7ece-4f23-b68a-6be8f4fe8ea5)):
 
 
 > <b style='color:#AAAAEE;'>I will teach you a board game and then we will play</b>
@@ -280,6 +278,6 @@ Anyways, this is the conversation ([link to the conversation](https://chat.opena
 >
 >Now it's your turn as black. Please provide your move instructions for the black pieces.
 
-It is not been able to make the first move for white not even having an example with all the possible moves white can do with its pawns to start the game in the rules.
+It is not been able to make the first move for white, not even having an example with all the possible moves white can do with its pawns to start the game in the rules.
 
 I am not sure this is that surprising from a model that gets confused when seeing someone counting numbers. [Link](https://twitter.com/SoC_trilogy/status/1623118034960322560?lang=en)
