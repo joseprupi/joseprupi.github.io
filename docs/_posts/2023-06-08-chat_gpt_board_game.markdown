@@ -13,6 +13,7 @@ Is this a joke making fun of the common way people dismiss other ChatGPT success
 
 Although I am not sure I completely understand what HNer 2 is saying I think the idea is that LLMs can play games if they know the rules. And not just play but for chess doing so at 1400 ELO level.
 
+
 To me LLM are indeed language models that put one token after the other based on what have seen before, and that includes chess moves and having seen games in the past. Only knowing the rules of chess and playing at 1400 ELO level is like LLMs have an embedded function to play chess that somehow have learned only with the rules and a bunch of other crap. 
 
 Playing chess with Chat GPT had been the third or fourth thing I asked the model once I had access to it and my goal was to see how capable was to retrieve moves from all the data it had ingested. I tried it a couple of times and it returned me legal moves, I did not go further but only that seemed impressive to me. Later I saw that it could play at 1400 ELO level but was still inventing moves, its level surprised me, inventing moves not.
