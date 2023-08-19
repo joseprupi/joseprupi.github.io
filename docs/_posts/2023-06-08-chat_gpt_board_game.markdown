@@ -4,7 +4,7 @@ title:  "I invented a board game and played against Chat GPT"
 date:   2023-06-08 23:20:43 +0000
 categories: misc
 ---
-A few weeks ago in a HN thread about chat GPT and chess this happened: 
+A few weeks ago in a HN thread about chat GPT and chess this happened:  
 
 > HNer 1:<br><br> \> Most likely it has seen a similar sequence of moves in its training set.<br><br>
 Is this a joke making fun of the common way people dismiss other ChatGPT successes? This makes no sense with respect to chess, because every game is unique, and playing a move from a different game in a new game is nonsensical.`
