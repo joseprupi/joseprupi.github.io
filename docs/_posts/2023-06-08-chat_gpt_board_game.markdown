@@ -9,7 +9,7 @@ A few weeks ago in a HN thread about chat GPT and chess this happened:
 > HNer 1:<br><br> \> Most likely it has seen a similar sequence of moves in its training set.<br><br>
 Is this a joke making fun of the common way people dismiss other ChatGPT successes? This makes no sense with respect to chess, because every game is unique, and playing a move from a different game in a new game is nonsensical.`
 >> Me:<br><br> **If it is not memorizing, how do you think is doing it?**
->>> HNer 2:<br><br> by trying to learning the general rules that to explain the dataset and minimise its loss. That's what machine learning is about, it's not called machine memorising.
+>>> HNer 2:<br><br> by trying to learning the general rules that to explain the dataset and minimize its loss. That's what machine learning is about, it's not called machine memorizing.
 
 Although I am not sure I completely understand what HNer 2 is saying I think the idea is that LLMs can play games if they know the rules. And not just play but for chess doing so at 1400 ELO level.
 
