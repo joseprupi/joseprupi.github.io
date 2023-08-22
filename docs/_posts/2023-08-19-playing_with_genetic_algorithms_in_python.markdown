@@ -41,14 +41,13 @@ And the entire code looks like below, where the parameters **population** is the
 
 def ga(img, population, mutations):
 
+    def score(matrix1, matrix2):
+        return (matrix1 == matrix2).sum()
+
     rows = img.shape[0]
     columns = img.shape[1]
 
     mem = np.random.randint(2, size=(2 * population, rows, columns))
-
-    def score(matrix1, matrix2):
-        return (matrix1 == matrix2).sum()
-
     scores = np.zeros((2 * population))
 
     for i in range(100000000):
