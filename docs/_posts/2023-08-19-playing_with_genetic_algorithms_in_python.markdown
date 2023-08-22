@@ -7,6 +7,22 @@ categories: misc
 
 A long long time ago I was young and going to school to attend a Computer Science program. It was so long ago that the data structures course was done in C++ and Java was shown to us as the new kid on the block that was going to revolutionize everything. Python was not mentioned, ever.
 
+Something I learned in CS and that sticked in my head were Genetic Algorithms. I guess the reason was that GA were one of the first (and few) applied things I saw in CS and it seemed to me a simple, intuitive and brilliant idea. Today I was bored at home and I decided to play a little bit with it. 
+
+[GAs](https://en.wikipedia.org/wiki/Genetic_algorithm) are a search technique that is inspired in biological genetic mutations and evolution which are used to purge certain parts of the search space. This is done encoding the search space into a genetic representation and a fitness function to evaluate each of the nodes.
+
+I started implementing a useless but I think illustrative example of GAs which is generating a sequence of random bits and then search for it. I plot it as an $nxn$ matrix as it is easier for me to visualize and debug the process.
+
+First of all I generate a random array of bits:
+
+```python 
+img = np.random.randint(2, size=(15,15))
+plt.imshow(img, cmap=plt.cm.gray)  # use appropriate colormap here
+plt.show()
+```
+
+![image](/assets/random_array.png)
+
 I think it was during the second year that we had two courses called Artificial Intelligence I and Artificial Intelligence II. There we learned all kind of things, and as far as I can remember among them there were a couple of slides somewhere about something called Neurons and how they would potentially be the future of AI. Holly molly.
 
 Something else that we learned in that course and that sticked in my head were Genetic Algorithms. I guess the reason was that GA were one of the first (and few) applied things I saw in CS and it seemed to me a simple, intuitive and brilliant idea. Today I was bored at home and I decided to play a little bit with it. 
