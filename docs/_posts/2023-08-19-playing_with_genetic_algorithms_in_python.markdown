@@ -30,7 +30,57 @@ def score(matrix1, matrix2):
     return (matrix1 == matrix2).sum()
 ```
 
-The genetic part of 
+The transformations I use are:
+
+* Crossover
+* And mutation
+
+And the entire code looks like below, where **population** is the initial population and **mutations** are the percentage of mutated bits.
+
+```python 
+
+def ga():
+
+    mem = np.random.randint(2, size=(2 * population, rows, columns))
+
+    def score(matrix1, matrix2):
+        return (matrix1 == matrix2).sum()
+
+    scores = np.zeros((2 * population))
+
+    for i in range(100000000):
+
+        for k, matrix in enumerate(mem):
+            scores[k] = score(matrix, img)
+
+        max_score = np.argmax(scores)
+
+        if scores[max_score] == rows * columns:
+            print(i)
+            plt.imshow(mem[max_score], cmap=plt.cm.gray)  # use appropriate colormap here
+            plt.show()
+            break
+
+        top_n_scores = np.argpartition(scores, -population)
+
+        top = top_n_scores[-population:]
+        bottom = top_n_scores[:-population]
+
+        mid = rows//2
+
+        for j in range(population):
+            
+            r = random.randrange(len(top))  
+            idx = [r, (r+1)%len(top)]
+            parents = [top[idx[0]],top[idx[1]]]
+            
+            mem[bottom[j]][0:mid] = mem[parents[0]][0:mid]
+            mem[bottom[j]][-(mid+1):] = mem[parents[1]][-(mid+1):]
+
+            idx = np.random.choice([0,1], p=[(1-mutations), mutations],size=(rows,columns))
+            mem[bottom[j]] = abs(mem[bottom[j]] - idx)
+
+```
 
 I think it was during the second year that we had two courses called Artificial Intelligence I and Artificial Intelligence II. There we learned all kind of things, and as far as I can remember among them there were a couple of slides somewhere about something called Neurons and how they would potentially be the future of AI. Holly molly.
 
