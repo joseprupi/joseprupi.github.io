@@ -35,11 +35,14 @@ The transformations I use are:
 * Crossover
 * And mutation
 
-And the entire code looks like below, where **population** is the initial population and **mutations** are the percentage of mutated bits.
+And the entire code looks like below, where the parameters **population** is the initial population and **mutations** are the percentage of mutated bits.
 
 ```python 
 
-def ga():
+def ga(img, population, mutations):
+
+    rows = img.shape[0]
+    columns = img.shape[1]
 
     mem = np.random.randint(2, size=(2 * population, rows, columns))
 
@@ -81,6 +84,8 @@ def ga():
             mem[bottom[j]] = abs(mem[bottom[j]] - idx)
 
 ```
+
+
 
 I think it was during the second year that we had two courses called Artificial Intelligence I and Artificial Intelligence II. There we learned all kind of things, and as far as I can remember among them there were a couple of slides somewhere about something called Neurons and how they would potentially be the future of AI. Holly molly.
 
