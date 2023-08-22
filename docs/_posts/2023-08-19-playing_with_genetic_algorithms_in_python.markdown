@@ -46,6 +46,7 @@ def ga(img, population, mutations):
 
     rows = img.shape[0]
     columns = img.shape[1]
+    mid = rows//2
 
     mem = np.random.randint(2, size=(2 * population, rows, columns))
     scores = np.zeros((2 * population))
@@ -64,11 +65,8 @@ def ga(img, population, mutations):
             break
 
         top_n_scores = np.argpartition(scores, -population)
-
         top = top_n_scores[-population:]
         bottom = top_n_scores[:-population]
-
-        mid = rows//2
 
         for j in range(population):
             
