@@ -59,7 +59,7 @@ def ga(img, population, mutations):
 
         if scores[max_score] == rows * columns:
             print(i)
-            plt.imshow(mem[max_score], cmap=plt.cm.gray)  # use appropriate colormap here
+            plt.imshow(mem[max_score], cmap=plt.cm.gray)
             plt.show()
             break
 
