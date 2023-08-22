@@ -17,11 +17,20 @@ First of all I generate a random array of bits:
 
 ```python 
 img = np.random.randint(2, size=(15,15))
-plt.imshow(img, cmap=plt.cm.gray)  # use appropriate colormap here
+plt.imshow(img, cmap=plt.cm.gray)
 plt.show()
 ```
 
 ![image](/assets/random_array.png)
+
+This is a 15x15 array, so 225 bits and therefore a space of 2^225 possible combinations. Next I define the fitness function, which is how many bits of the image have the same value and in numpy it would be:
+
+```python 
+def score(matrix1, matrix2):
+    return (matrix1 == matrix2).sum()
+```
+
+The genetic part of 
 
 I think it was during the second year that we had two courses called Artificial Intelligence I and Artificial Intelligence II. There we learned all kind of things, and as far as I can remember among them there were a couple of slides somewhere about something called Neurons and how they would potentially be the future of AI. Holly molly.
 
