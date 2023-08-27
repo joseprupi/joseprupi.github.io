@@ -9,7 +9,7 @@ A long long time ago I was young and going to school to attend a Computer Scienc
 
 Something I learned in CS and that sticked in my head were Genetic Algorithms. I guess the reason was that GA were one of the first (and few) applied things I saw in CS and it seemed to me a simple, intuitive and brilliant idea. Today I was bored at home and I decided to play a little bit with it. 
 
-[GAs](https://en.wikipedia.org/wiki/Genetic_algorithm) are a search technique that is inspired in biological genetic mutations and evolution which are used to purge certain parts of the search space. This is done encoding the search space into a genetic representation and a fitness function to evaluate each of the nodes.
+[GAs](https://en.wikipedia.org/wiki/Genetic_algorithm) are a search technique that is inspired in biological evolution and genetic mutations which are used to purge certain parts of the search space. This is done encoding the search space into a genetic representation and a fitness function to evaluate each of the nodes.
 
 I started implementing a useless but I think illustrative example of GAs which is generating a sequence of random bits and then search for it. I plot it as an $nxn$ matrix as it is easier for me to visualize and debug the process.
 
@@ -92,9 +92,100 @@ def ga(array, population, mutations):
             mem[bottom[j]] = abs(mem[bottom[j]] - idx)
 
 ```
-With some trial error I ended up with an initial population of 500 and a mutation of 0.5% as the fastest way to find the array of bits, which finishes in approximately 160 iterations and 3 seconds in my computer. Even the experiment not making sense seems pretty good to me taking into account that the space is 2^225 and it can be implemented with few lines of code.
+With some manual testing and trial error I ended up with an initial population of 500 and a mutation of 0.5% as the fastest way to find the array of bits, which finishes in approximately 160 iterations and 3 seconds in my computer. Even the experiment not making sense seems pretty good to me taking into account that the space is 2^225 and it can be implemented with few lines of code.
 
 The entire implementation can be found [here](https://github.com/joseprupi/ga/blob/master/test.ipynb)
 
-Next I wanted to try something more useful, solving mastermind with 6 colors and 4 selections, and in addition the original game had to be solved wth 12 choices.
+Next I wanted to try something more useful, solving mastermind with 6 colors and 4 pegs, the original game had to be solved with 12 moves.
+
+The implementation is similar to the previous one, mostly changing the score function. To count the number of evaluated choices I memoize the score function. 
+
+My best approach is a population of 2, and mutate 1 out of 4 pegs, with an average of ~36 evaluateed choices, so three times more than what would be the 12 choices of the original game. Something interesting is that with only crossover and mutation the information regarding the pegs that are not in its position does not seem to be relevant. 
+
+```python 
+
+def ga(array, population, mutations):
+
+    score_memoization = {}
+
+    def score(board, choice):
+        
+        key = tuple(choice)
+        
+        if key in score_memoization:
+            return score_memoization[key]
+
+        tmp_board = board.copy()
+
+        in_place = 0
+        in_place_list = set()
+        same_color = 0
+
+        for i in range(len(choice)):
+            if choice[i] == board[i]:
+                in_place += 1
+                in_place_list.add(i)
+                tmp_board[i] = -1
+
+        for i,c in enumerate(choice):
+            if i not in in_place_list and c in tmp_board:
+                same_color += 1
+
+        #score = (2 * in_place) + same_color
+        score = in_place
+
+        score_memoization[key] = score
+
+        return score
+
+    mid = 4//2
+
+    mem = np.random.randint(6, size=(2 * population, 4))
+    scores = np.zeros((2 * population))
+    bottom = list(range(len(mem)))
+
+    for i in range(1000000):
+        
+        # Bottom will contain all the random individuals generated when starting the execution
+        # and the new individuals after the first iteration. Bottom means the bottom of the list
+        # sorted by score
+        for k in bottom:
+            scores[k] = score(array, mem[k])
+
+        # Check if the solution has been found
+        max_score = np.argmax(scores)
+        if scores[max_score] == 8:
+            return i, len(score_memoization)
+
+        # Select the population of individuals according to the score function
+        top_n_scores = np.argpartition(scores, population)
+        top = top_n_scores[population:]
+        bottom = top_n_scores[:population]
+
+        # Create #population new elements from the crossover and mutation
+        for j in range(population):
+
+            # Crossover -> Select parents from the top individuals
+            #
+            # I tried this with random choice and just picking a random position
+            # from the top and the next one and the result is the same but way faster
+            # It might be because of either the randomization of the initial population or maybe
+            # the implementation of argpartition? or both?
+            
+            r = random.randrange(len(top))  
+            idx = [r, (r+1)%len(top)]
+            parents = [top[idx[0]],top[idx[1]]]
+            
+            mem[bottom[j]][0:mid] = mem[parents[0]][0:mid]
+            mem[bottom[j]][-(mid):] = mem[parents[1]][-(mid):]
+
+            # Mutation -> Mutate the bits
+            #
+            # The random choice of the bits to mutate is the most costly of the implementation
+            # It seems there has to be some way to speed up this 
+            idx = np.random.choice([0,1,2,3,4,5,6], p=[(1-mutations), mutations/6,mutations/6,mutations/6,mutations/6,mutations/6,mutations/6],size=(4))
+
+            for k in range(len(idx)):
+                mem[bottom[j]][k] = (mem[bottom[j]][k] + idx[k])%6
+```
 
