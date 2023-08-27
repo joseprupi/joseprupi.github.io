@@ -102,6 +102,8 @@ The implementation is similar to the previous one, mostly changing the score fun
 
 My best approach is a population of 2, and mutate 1 out of 4 pegs, with an average of ~36 evaluateed choices, so three times more than what would be the 12 choices of the original game. Something interesting is that with only crossover and mutation the information regarding the pegs that are not in its position does not seem to be relevant. 
 
+The entire implementation can be found [here](https://github.com/joseprupi/ga/blob/master/mastermind.ipynb)
+
 ```python 
 
 def ga(array, population, mutations):
