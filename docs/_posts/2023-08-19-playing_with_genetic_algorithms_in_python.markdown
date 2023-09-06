@@ -7,13 +7,11 @@ categories: misc
 
 A long long time ago I was young and going to school to attend a Computer Science program. It was so long ago that the data structures course was done in C++ and Java was shown to us as the new kid on the block.
 
-Something I learned in CS and that sticked in my head were Genetic Algorithms. I guess the reason was that GA were one of the first (and few) applied things I saw in CS and it seemed to me a simple, intuitive and brilliant idea. Today I was bored at home and I decided to play a little bit with it. 
+Something I learned in CS that sticked in my head were Genetic Algorithms. I guess the reason was that GA were one of the first (and few) applied things I saw in CS and it seemed to me a simple, intuitive and brilliant idea. Today I was bored at home and I decided to play a little bit with it. 
 
-[GAs](https://en.wikipedia.org/wiki/Genetic_algorithm) are a search technique that is inspired in biological evolution and genetic mutations which are used to purge certain parts of the search space. This is done encoding the search space into a genetic representation and a fitness function to evaluate each of the nodes.
+[GAs](https://en.wikipedia.org/wiki/Genetic_algorithm) are a search technique that is inspired in biological evolution and genetic mutations which are used to purge certain parts of the search space. This is done encoding the nodes in the space into a genetic representation and using a fitness function to evaluate them.
 
-I started implementing a useless but I think illustrative example of GAs which is generating a sequence of random bits and then search for it. I plot it as an $nxn$ matrix as it is easier for me to visualize and debug the process.
-
-First of all I generate a random array of bits:
+I started implementing a useless but I think illustrative example of GAs which is generating a sequence of random bits and then search for it. Plotting it as an $nxn$ matrix makes it is easier to  visualize and debug the process.
 
 ```python 
 img = np.random.randint(2, size=(15,15))
@@ -23,7 +21,7 @@ plt.show()
 
 ![image](/assets/random_array.png)
 
-This is a 15x15 array, so 225 bits and therefore a space of 2^225 possible combinations. Next I define the fitness function, which is how many bits of the image have the same value and in numpy it would be:
+This is a 15x15 array, so 225 bits and therefore a space of 2^225 possible combinations. Next I define the fitness function which is nothing more than the amount of bits of the image have the same value. In Numpy it would be:
 
 ```python 
 def score(matrix1, matrix2):
@@ -49,9 +47,8 @@ def ga(array, population, mutations):
 
     for i in range(1000000):
         
-        # Bottom will contain all the random individuals generated when starting the execution
-        # and the new individuals after the first iteration. Bottom means the bottom of the list
-        # sorted by score
+        # When initialized bottom will contain a set of random individuals. Later it will be
+        # the bottom of the list of individuals sorted by score
         for k in bottom:
             scores[k] = score(mem[k], array)
 
@@ -73,10 +70,11 @@ def ga(array, population, mutations):
             
             # Crossover -> Select parents from the top individuals
             #
-            # I tried this with random choice and just picking a random position
-            # from the top and the next one and the result is the same but way faster
-            # It might be because of either the randomization of the initial population or maybe
-            # the implementation of argpartition? or both?
+            # I tried this with random.choice or just picking a random position from the list and
+            # the next one. The result is the same for both but way faster
+            # with the latter option.
+            # The reason it still works might be either because of the randomization of the initial 
+            # population or maybe the implementation of argpartition? or both?
             r = random.randrange(len(top))  
             idx = [r, (r+1)%len(top)]
             parents = [top[idx[0]],top[idx[1]]]
@@ -148,9 +146,8 @@ def ga(array, population, mutations):
 
     for i in range(1000000):
         
-        # Bottom will contain all the random individuals generated when starting the execution
-        # and the new individuals after the first iteration. Bottom means the bottom of the list
-        # sorted by score
+        # When initialized bottom will contain a set of random individuals. Later it will be
+        # the bottom of the list of individuals sorted by score
         for k in bottom:
             scores[k] = score(array, mem[k])
 
@@ -169,10 +166,11 @@ def ga(array, population, mutations):
 
             # Crossover -> Select parents from the top individuals
             #
-            # I tried this with random choice and just picking a random position
-            # from the top and the next one and the result is the same but way faster
-            # It might be because of either the randomization of the initial population or maybe
-            # the implementation of argpartition? or both?
+            # I tried this with random.choice or just picking a random position from the list and
+            # the next one. The result is the same for both but way faster
+            # with the latter option.
+            # The reason it still works might be either because of the randomization of the initial 
+            # population or maybe the implementation of argpartition? or both?
             
             r = random.randrange(len(top))  
             idx = [r, (r+1)%len(top)]
