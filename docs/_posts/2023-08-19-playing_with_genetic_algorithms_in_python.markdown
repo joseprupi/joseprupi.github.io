@@ -98,7 +98,7 @@ Next I wanted to try something more useful, solving mastermind with 6 colors and
 
 The implementation is similar to the previous one, mostly changing the score function. To count the number of evaluated choices I memoize the score function. 
 
-My best approach is a population of 2, and mutate 1 out of 4 pegs, with an average of ~36 evaluateed choices, so three times more than what would be the 12 choices of the original game. Something interesting is that with only crossover and mutation the information regarding the pegs that are not in its position does not seem to be relevant. 
+My best approach is a population of 2, and mutate 1 out of 4 pegs, with an average of ~36 evaluateed choices, so three times more than what would be the 12 choices of the original game. Something interesting is that with only crossover and mutation the information regarding the pegs with the correct color but not in the correct spot does not seem to be relevant. 
 
 The entire implementation can be found [here](https://github.com/joseprupi/ga/blob/master/mastermind.ipynb)
 
@@ -131,7 +131,10 @@ def ga(array, population, mutations):
             if i not in in_place_list and c in tmp_board:
                 same_color += 1
 
+        # In correct place and correct color
         #score = (2 * in_place) + same_color
+        
+        # Only in correct place
         score = in_place
 
         score_memoization[key] = score
