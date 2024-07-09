@@ -86,7 +86,7 @@ float cosine_similarity_simd(float *A, float *B)
 }
 ```
 
-Implementation   |   Time (ms) | 
+|Implementation   |   Time (ms) | 
 |-----------------|------------:|
 | Vectorized C++ | 0.0936    |
 | C++            | 0.5416    |
@@ -109,7 +109,7 @@ def cosine(A, B):
     return 1 - (dot / (math.sqrt(denom_a) * math.sqrt(denom_b)))
 ```
 
-Implementation   |   Time (ms) | 
+|Implementation   |   Time (ms) | 
 |-----------------|------------:|
 | Vectorized C++ | 0.0936    |
 | C++                                 | 0.5416    |
@@ -174,7 +174,7 @@ def cosine(u, v):
 
 And now re-run it to ensure everything works as expected and also see how removing those checks improves performance. 
 
-Implementation   |   Time (ms) | 
+|Implementation   |   Time (ms) | 
 |-----------------|------------:|
 | Vectorized C++ | 0.0936    |
 | C++                                 | 0.5416    |
@@ -246,7 +246,7 @@ print(" %s ms" % (accum/EXECUTIONS))
 
 ```
 
-Implementation   |   Time (ms) | 
+|Implementation   |   Time (ms) | 
 |-----------------|------------:|
 | <span style="color:red">NumPy. Contiguous array</span>   |    <span style="color:red">0.04193<span> | 
 | <span style="color:red">NumPy as Scipy. Contiguous array</span>   |    <span style="color:red">0.04264</span> | 
