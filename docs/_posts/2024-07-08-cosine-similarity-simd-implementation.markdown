@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "A not that fast implementation of Cosine Similarity with C++ and SIMD"
+title: "A not so fast implementation of Cosine Similarity in C++ and SIMD"
 date: 2024-07-08 00:00:00 -0000
 categories: misc
 ---
