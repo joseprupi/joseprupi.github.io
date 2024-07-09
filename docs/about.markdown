@@ -4,10 +4,4 @@ title: About
 permalink: /about/
 ---
 
-This is the website of Josep Rubió Piqué. From [Vallfogona de Balaguer](https://goo.gl/maps/vtHTF9Rf3bc98AheA) and currently living in Salt Lake City. Previously in Barcelona, Andorra and Birmingham (Alabama).
-
-Proud father, happy partner and [good friend](/assets/gallery/IMG_0501.jpg).
-
-Long time and mediocre rock climber and skier.
-
-Not using social networks (Hacker News excluded).
+I am Josep Rubió Piqué from [Vallfogona de Balaguer](https://goo.gl/maps/vtHTF9Rf3bc98AheA) and living in Salt Lake City with my family and [good friend](/assets/gallery/IMG_0501.jpg). Previously in Barcelona, Andorra and Birmingham (Alabama).
