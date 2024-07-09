@@ -7,9 +7,9 @@ categories: misc
 
 There’s not much to see here except me dusting off some old knowledge from my architecture class years ago to parallelize computations using SIMD, implement something in C++ and compare it with Python.
 
-Which to me meant implementing a vectorized version of the cosine similarity in C++ to see how it compares to Python,  NumPy, SciPy, and plain C++. 
+This meant implementing a vectorized version of the cosine similarity in C++ to see how it compares to Python,  NumPy, SciPy, and plain C++. 
 
-What I implemented and the average times to calculate the similarity for 2 random vectors of 640000 floats are below, which, besides SciPy, is probably far from optimal. 
+Below is my implementation along with the average times to calculate the similarity for two random vectors of 640,000 floats, which, apart from SciPy, are probably far from optimal
 
 The details and complete implementation can be found [here](https://github.com/joseprupi/cosine-similarity-comparison).
 
@@ -172,7 +172,7 @@ def cosine(u, v):
     return np.clip(dist, 0.0, 2.0)
 ```
 
-And now re-run it to ensure everything works as expected and also see how removing those checks improves performance. 
+And now, re-run it to ensure everything works as expected and also see if removing those checks improves performance.
 
 |Implementation   |   Time (ms) | 
 |-----------------|------------:|
@@ -206,7 +206,7 @@ Which not only validates that the input is a 1xn array but also makes the array 
 
 And as CPUs love working with contiguous things, having things contiguous in memory is always good to go fast, either to compute things in parallel or access things faster from cache, something the underlying Python libraries that people talk about can probably take advantage of.
 
-When looking at the results, making the vector contiguous in memory plus performing the calculations seems to be worth it in this case  as it is slightly faster than not doing so. 
+Making the vector contiguous in memory and performing the calculations seems worth it in this case, as it is slightly faster.
 
 Just to be sure this is the case, let's reload the vectors, make them contiguous and see if my NumPy and SciPy are close.
 
