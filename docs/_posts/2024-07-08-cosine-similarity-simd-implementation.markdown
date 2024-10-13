@@ -9,7 +9,7 @@ There isn’t much to see here, just me dusting off some old architecture knowle
 
 The task involved creating a vectorized version of the cosine similarity in C++ to compare its performance against Python, NumPy, SciPy, and plain C++ implementations.
 
-Below is my implementation and the average times for calculating the similarity between two random vectors of 640,000 floats. Apart from SciPy, these results are probably far from optimal.
+Below is my implementation and the average times for calculating the similarity between two random vectors of 640,000 floats.
 
 The full details and implementation can be found [here](https://github.com/joseprupi/cosine-similarity-comparison).
 
