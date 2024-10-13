@@ -257,4 +257,4 @@ The results show that making arrays contiguous does improve performance signific
 
 Why? Because they are calculated using the BLAS library available in the OS, which means that not even writing C++ SIMD code will make me have a faster implementation than the one Python is using and I will probably have to write my own assembly code with compiler-like tricks to go as fast as Python plus C++ libraries. 
 
-Honestly, Python is good enough for my purposes and tight deadlines.
+Honestly, even though it might be an unpopular opinion, Python is lightning fast for my purposes and tight deadlines.
