@@ -5,13 +5,13 @@ date: 2024-07-08 00:00:00 -0000
 categories: misc
 ---
 
-There’s not much to see here except me dusting off some old knowledge from my architecture class years ago to parallelize computations using SIMD, implement something in C++ and compare it with Python.
+There isn’t much to see here, just me dusting off some old architecture knowledge to parallelize computations using SIMD, implement it in C++, and compare the results with Python.
 
-This meant implementing a vectorized version of the cosine similarity in C++ to see how it compares to Python,  NumPy, SciPy, and plain C++. 
+The task involved creating a vectorized version of the cosine similarity in C++ to compare its performance against Python, NumPy, SciPy, and plain C++ implementations.
 
-Below is my implementation along with the average times to calculate the similarity for two random vectors of 640,000 floats, which, apart from SciPy, are probably far from optimal
+Below is my implementation and the average times for calculating the similarity between two random vectors of 640,000 floats. Apart from SciPy, these results are probably far from optimal.
 
-The details and complete implementation can be found [here](https://github.com/joseprupi/cosine-similarity-comparison).
+The full details and implementation can be found [here](https://github.com/joseprupi/cosine-similarity-comparison).
 
 ```python 
 # Python
@@ -94,9 +94,9 @@ float cosine_similarity_simd(float *A, float *B)
 | NumPy            |    0.6953 | 
 | Plain Python     |  323.389    |  
 
-Aaaand... nothing special to see, I warned you. SIMD is fast and Python is slow.
+Aaaand... as expected, SIMD is fast, and Python is comparatively slow.
 
-Well, maybe we can do better with Python and do it in a more pythonic way.
+Well, maybe we can do better so I decided to try making Python more "pythonic":
 
 ```python 
 def cosine(A, B):
@@ -118,11 +118,11 @@ def cosine(A, B):
 | <span style="color:red">Plain Python, more pythonic</span>    |  <span style="color:red">271.683</span>     |  
 | Plain Python     |  323.389    |  
 
-~20% faster than less pythonic Python but still not competing with the other options.
+A ~20% improvement, but still no match for the other implementations.
 
-Well, also Python libraries appear to be comparable to a plain C++ implementation, which isn't bad in my opinion. Yes, the vectorized C++ version is an order of magnitude faster, but unless you opt to implement a processor-specific calculation in C++, the libraries that Python uses and people talk about are decently fast for this task.
+Interestingly, Python’s libraries are comparable to plain C++ in performance, which isn't bad in my opinion. Yes, the vectorized C++ version is an order of magnitude faster, but unless you opt to implement a processor-specific calculation in C++, the Python libraries are decently optimized for tasks like this.
 
-But wait, SciPy is slightly faster than my NumPy implementation even though SciPy is built using NumPy, and there shouldn't be much fantasy in the cosine similarity implementation, so let me check it out [here](https://github.com/scipy/scipy/blob/main/scipy/spatial/distance.py#L575):
+However, SciPy is slightly faster than my NumPy implementation even though it is built using NumPy, and there shouldn't be much fantasy in the cosine similarity implementation, so let me check it out [here](https://github.com/scipy/scipy/blob/main/scipy/spatial/distance.py#L575):
 
 ```python 
 def correlation(u, v, w=None, centered=True):
@@ -157,9 +157,9 @@ def cosine(u, v, w=None):
     return correlation(u, v, w=w, centered=False)
 ```
 
- My initial thought is that the denominator is what is making it faster, I have no idea why but that is the only difference I see. My implementation is using the *norm* function from NumPy while SciPy uses two NumPy dot multiplications and the Python *sqrt* function.
+ My initial thought was that the difference in performance was due to the denominator, I have no idea why but that is the only difference I see. My implementation is using the *norm* function from NumPy while SciPy uses two NumPy dot multiplications and the Python *sqrt* function.
 
-But before keep digging into where the difference is, let's simplify the correlation function by removing unnecessary checks and generalizations for my use case which will make it more readable and likely faster:
+Before diving deeper into the difference, I simplified the correlation function by removing extra checks and generalizations that weren’t needed for my use case, making it easier to read and hopefully a bit faster:
 
 ```python 
 def cosine(u, v):
@@ -184,9 +184,7 @@ And now, re-run it to ensure everything works as expected and also see if removi
 | Plain Python, more pythonic    |  271.683     |  
 | Plain Python     |  323.389    |  
 
-And the result is ~0.7 ms, which oh crap, is slower than executing the original SciPy version and almost identical to my original NumPy implementation. 
-
-It turns out that some of the stuff I got rid off from the *correlation* function are the two lines below: 
+And the result is ~0.7 ms, which oh crap, is slower than executing the original SciPy version and almost identical to my original NumPy implementation. It turns out that I removed two important lines from the *correlation* function:
 
 ```python 
 u = _validate_vector(u)
@@ -204,9 +202,7 @@ def _validate_vector(u, dtype=None):
 ```
 Which not only validates that the input is a 1xn array but also makes the array contiguous in memory calling *np.asarray* (see *order* parameter from [NumPy documentation](https://numpy.org/doc/stable/reference/generated/numpy.asarray.html)), something that can't be guaranteed when loading a vector from disk as I am doing. 
 
-And as CPUs love working with contiguous things, having things contiguous in memory is always good to go fast, either to compute things in parallel or access things faster from cache, something the underlying Python libraries that people talk about can probably take advantage of.
-
-Making the vector contiguous in memory and performing the calculations seems worth it in this case, as it is slightly faster.
+And as CPUs love working with contiguous things, having things contiguous in memory is always good to go fast, either to compute things in parallel or access things faster from cache, something the underlying Python libraries that people talk about can probably take advantage of. And making the vector contiguous in memory and performing the calculations seems worth it in this case, as it is slightly faster.
 
 Just to be sure this is the case, let's reload the vectors, make them contiguous and see if my NumPy and SciPy are close.
 
@@ -257,12 +253,8 @@ print(" %s ms" % (accum/EXECUTIONS))
 | Plain Python, more pythonic   |  271.683     |  
 | Plain Python     |  323.389    |  
 
-The results confirm they are faster when making the arrays contiguous , but, mmmmm... not only that, they are also faster than my SIMD implementation, x2 faster.
+The results show that making arrays contiguous does improve performance significantly. Mmmmm... not only that, they are also faster than my SIMD implementation, twice as fast in fact.
 
 Why? Because they are calculated using the BLAS library available in the OS, which means that not even writing C++ SIMD code will make me have a faster implementation than the one Python is using and I will probably have to write my own assembly code with compiler-like tricks to go as fast as Python plus C++ libraries. 
 
-Or I can also use the same libraries Python is using from C++. 
-
-But nah, to me and my needs is enough to not feel guilty when not thinking: "Maybe I should not be using Python as it is slow, and if it is fast is not because of Python, that as someone told me once, is slow, but because it is using C/C++ libraries underneath".
-
-I am a lazy not-good-enough software developer and most of the time I have deadlines to accomplish.
+Honestly, Python is good enough for my purposes and tight deadlines.
