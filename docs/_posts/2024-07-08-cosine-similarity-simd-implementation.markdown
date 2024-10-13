@@ -36,7 +36,7 @@ cos_sim = distance.cosine(A,B)
 cos_sim = np.dot(A, B)/(norm(A)*norm(B)))
 ```
 
-```C++
+```cpp
 // Plain C++
 float cosine_similarity(float *A, float *B)
 {
@@ -51,7 +51,7 @@ float cosine_similarity(float *A, float *B)
 }
 ```
 
-```C++
+```cpp
 // Vectorized C++
 inline float simd_horizontal_sum(__m256 &r)
 {
