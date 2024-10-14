@@ -9,9 +9,7 @@ There isn’t much to see here, just me dusting off some old architecture knowle
 
 The task involved creating a vectorized version of the cosine similarity in C++ to compare its performance against Python, NumPy, SciPy, and plain C++ implementations.
 
-Below is my implementation and the average times for calculating the similarity between two random vectors of 640,000 floats.
-
-The full details and implementation can be found [here](https://github.com/joseprupi/cosine-similarity-comparison).
+Below is my implementation and the average times for calculating the similarity between two random vectors of 640,000 floats. The full code can be found [here](https://github.com/joseprupi/cosine-similarity-comparison).
 
 ```python 
 # Python
@@ -94,9 +92,7 @@ float cosine_similarity_simd(float *A, float *B)
 | NumPy            |    0.6953 | 
 | Plain Python     |  323.389    |  
 
-Aaaand... as expected, SIMD is fast, and Python is comparatively slow.
-
-Well, maybe we can do better so I decided to try making Python more "pythonic":
+As expected, SIMD is the fastest and plain Python is frustratingly slow. Yes, maybe we can do better with the plain Python implementation making it more "pythonic":
 
 ```python 
 def cosine(A, B):
@@ -118,7 +114,7 @@ def cosine(A, B):
 | <span style="color:red">Plain Python, more pythonic</span>    |  <span style="color:red">271.683</span>     |  
 | Plain Python     |  323.389    |  
 
-A ~20% improvement, but still no match for the other implementations.
+Which results in a ~20% improvement, but still nowhere near the performance of the other implementations, so I’ll stop here and shift my focus to Python libraries.
 
 Interestingly, Python’s libraries are comparable to plain C++ in performance, which isn't bad in my opinion. Yes, the vectorized C++ version is an order of magnitude faster, but unless you opt to implement a processor-specific calculation in C++, the Python libraries are decently optimized for tasks like this.
 
