@@ -253,6 +253,6 @@ The results show that making arrays contiguous does improve performance signific
 
 Why? Because they are calculated using the BLAS library available in the OS, which means that not even writing C++ SIMD code will make me have a faster implementation than the one Python is using and I will probably have to write my own assembly code with compiler-like tricks to go as fast as Python plus C++ libraries. 
 
-Honestly Python[^1] is lightning fast for my purposes and tight deadlines.
+Honestly Python[^1] is lightning fast for my purposes and deadlines.
 
-[^1]: Python here means: "open VS Code and start coding". Nothing to do with the specific language implementation, underlying libraries programming languages, interpreters or other satellite topics, just dive into coding as quickly as possible. If you think of Python differently, this reading might not apply to you.
+[^1]: Where Python is the experience you get when you open VS Code and start coding—no specifics about language implementations, libraries, or interpreters. It's all about diving into coding quickly. If you view Python differently, this might not be for you.
