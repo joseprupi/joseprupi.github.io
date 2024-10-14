@@ -196,11 +196,11 @@ def _validate_vector(u, dtype=None):
         return u
     raise ValueError("Input vector should be 1-D.")
 ```
-Which not only validates that the input is a 1xn array but also makes the array contiguous in memory calling *np.asarray* (see *order* parameter from [NumPy documentation](https://numpy.org/doc/stable/reference/generated/numpy.asarray.html)), something that can't be guaranteed when loading a vector from disk as I am doing. 
+Which not only validates that the input is a **1 x n** array but also makes the array contiguous in memory calling *np.asarray* (see *order* parameter from [NumPy documentation](https://numpy.org/doc/stable/reference/generated/numpy.asarray.html)), something that can't be guaranteed when loading a vector from disk as I am doing. 
 
-And as CPUs love working with contiguous things, having things contiguous in memory is always good to go fast, either to compute things in parallel or access things faster from cache, something the underlying Python libraries that people talk about can probably take advantage of. And making the vector contiguous in memory and performing the calculations seems worth it in this case, as it is slightly faster.
+As CPUs love working with contiguous things, having things contiguous in memory is always good to go fast, either to compute in parallel or access things faster from cache, something the underlying Python libraries can probably take advantage of. So the time spent making vectors contiguous in memory, along with performing the calculations, seems worth it in this case as it is slightly faster.
 
-Just to be sure this is the case, let's reload the vectors, make them contiguous and see if my NumPy and SciPy are close.
+Just to be sure this is true, let's reload the vectors, make them contiguous and see if my NumPy and SciPy are close in execution time this way.
 
 ```python 
 file_data = np.genfromtxt('../tools/vectors.csv', delimiter=',')
@@ -253,4 +253,6 @@ The results show that making arrays contiguous does improve performance signific
 
 Why? Because they are calculated using the BLAS library available in the OS, which means that not even writing C++ SIMD code will make me have a faster implementation than the one Python is using and I will probably have to write my own assembly code with compiler-like tricks to go as fast as Python plus C++ libraries. 
 
-Honestly, even though it might be an unpopular opinion, Python is lightning fast for my purposes and tight deadlines.
+Honestly Python[^1] is lightning fast for my purposes and tight deadlines.
+
+[^1]: Python here means: "open VS Code and start coding". Nothing to do with the specific language implementation, underlying libraries programming languages, interpreters or other satellite topics, just dive into coding as quickly as possible. If you think of Python differently, this reading might not apply to you.
