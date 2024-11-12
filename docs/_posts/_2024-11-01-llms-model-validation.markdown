@@ -33,3 +33,25 @@ Ok, we have something now. We understand that validating models is something reg
 >* **Assessment of Limitations and Uncertainty:** Identifying potential limitations in the model's framework and quantifying any associated uncertainties or risks.
 >
 >These elements ensure a robust validation process, enabling institutions to identify and mitigate model risks effectively, maintaining compliance with regulatory requirements.
+
+A more clear idea on what is needed.
+
+> **Me:** How should these results be presented?
+>  
+> **ChatGPT:** The results of a model validation should be presented in a clear, comprehensive validation report. This report should include the following key sections:
+>
+>*A lot of stuff here explaining each of the sections...*
+
+Ok, so validating models in banking is assessing they work properly and then write the results in a report. 
+As simple and useful this idea seems to be, as it truly is, I don't know this is a common practice out of banking, which makes me think that this might be something others could adopt in a similar fashion. Companies should want to know how appropriate the models they are using are.
+
+
+This seems simple, because it is, and useful, because it is, but as long as I know nobody else other than banking has a clear process defined to do so. Maybe that is something others should implement in a similar fashion.
+
+# A model
+
+Now I need a model to validate, and although I guess that mostly anything would work I want to chose something that could resemble a real case in finance, so I went to kaggle and searched for it, finding this challenge:
+
+> [Home Credit - Credit Risk Model Stability](https://www.kaggle.com/competitions/home-credit-credit-risk-model-stability). **Overview:**
+The goal of this competition is to predict which clients are more likely to default on their loans. The evaluation will favor solutions that are stable over time.
+
