@@ -137,6 +137,7 @@ Let's now ask for help to the LLM for some tests:
 
 The result is some code that I execute in a cell right after the last one from the Notebook I downloaded. It works straight away, and after compiling the tex file, this is the result:
 
+![image](/assets/random_array.png)
 ![image](/assets/output1.png)
 ![image](/assets/output2.png)
 ![image](/assets/output3.png)
