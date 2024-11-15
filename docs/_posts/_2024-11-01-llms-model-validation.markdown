@@ -143,3 +143,4 @@ The result is some code that I execute in a cell right after the last one from t
 ![image](/assets/output4.jpg)
 ![image](/assets/output5.jpg)
 
+I find this amazing. 
