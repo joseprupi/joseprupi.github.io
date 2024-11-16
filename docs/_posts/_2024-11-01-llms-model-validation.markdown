@@ -15,7 +15,7 @@ So, what does Chat GPT say about model validation in this context?
 >  
 > **ChatGPT:** In the U.S. banking environment, model validation refers to the rigorous process of evaluating financial models to ensure they are reliable, accurate, and compliant with regulatory standards. It involves assessing the model's performance, assumptions, limitations, and potential risks. This practice is essential for managing model risk and adhering to regulatory guidelines such as SR 11-7, which requires banks to maintain robust model risk management frameworks to prevent financial and operational issues.
 
-Ok, we have a base now. We understand that validating models is a regulated process guided by SR 11-7 so let's gather some more detail on what this should be:
+Alright, we have a base now. We understand that validating models is a regulated process guided by SR 11-7 so let's gather some more detail on what this should be:
 
 > **Me:** What should a model validation contain according to SR 11-7?
 >  
@@ -62,13 +62,13 @@ And what form and structure does a model validation take?
 
 Ok, so validating models in banking is assessing they work properly and then write the results in a report. 
 
-This seems simple, because it is, and useful, because it also is, but I don't think this is a common practice out of banking. This makes me think that companies in other industries could  benefit from adopting a similar approach. A standardized process that clearly and consistently reports reliability and proper use of the models being used.
+While this process seems straightforward, it kind of is, it’s also incredibly useful. And it might be a topic for a different writing, but I don’t believe this practice is common outside of banking. And this makes me think that other industries could benefit from adopting a similar approach: a standardized process that ensures models are reliable and used appropriately, with clear and consistent reporting.
 
-And the purpose of the process isn't simply to generate reporting, it's to create better models, and my experience is that it works. Development teams create higher quality products if there exists a process auditing their work and expecting things like justifying their decisions or document in a way that lines of business can understand.
+Importantly, the goal of this process isn’t just to produce reports, it’s to improve the quality of models. And In my experience works. Development teams tend to build better products when they know their work will be audited, requiring them to justify decisions and document their processes in a way that business stakeholders can easily understand.
 
 # A model
 
-Now let's try to reproduce how a validation of a model would look like and how LLMs could keep helping us with it. 
+Let's now try to reproduce how a validation of a model would look like and how LLMs could assist with it. 
 
 First, we need a model to validate. While almost any model could work for demonstration purposes, I wanted to choose something that resembles a real financial case. I searched on Kaggle and found this challenge:
 
@@ -78,9 +78,9 @@ First, we need a model to validate. While almost any model could work for demons
 >
 I am not sure how Kaggle works and it is sometimes confusing to me, but I found what appears to be an example notebook that implements a model for the problem, [Home Credit 2024 Starter Notebook](https://www.kaggle.com/code/jetakow/home-credit-2024-starter-notebook/notebook). After downloading the data I have executed the code and it works. 
 
-Now, the first thing I would like to do is understand how the code works, so let's see how LLMs can help us with that. As I mentioned I am not a big LLMs user but with some small research I found that Claude 3.5 Sonnet is the best model to deal with code, or at least is better than Chat GPT, and indeed with some tests I have done it is significantly better.
+Having a high level understanding of the implementation it is one of the first and fundamental steps in a model validation. LLMs might be able to help with this, and I will use Claude 3.5 Sonnet as seems to perform well with code related tasks, or at least is better than Chat GPT, which I found to be true after some tests where it proved to be significantly better.
 
-So let's see what the model has to say about the code. I have converted the notebook into a script (jupyter nbconvert --to script loans.ipynb) copy and paste the result into Claude AI prompt and ask:
+Let’s see what the model can tell us about the code. I’ve converted the Jupyter notebook into a script using the command *jupyter nbconvert --to script loans.ipynb*. Then, I copied and pasted the resulting script into Claude AI’s prompt and asked:
 
 > What is this code doing?
 > Let me break down this code - it appears to be implementing a credit risk or default prediction model with a focus on stability across time. Here are the key components:
@@ -129,13 +129,13 @@ This code appears to be part of a production system where model stability over t
 2 The feature engineering approach
 3 The model hyperparameter choices
 
-This is already surprisingly good to me. It explains the code and also gets into some of the model parametrization and how that affects its behavior. I will stop here with the code analysis, but we could definitely keep asking about it. It is even offering more detail. 
+This is already surprisingly good to me. It explains the code and also gets into some of the model parametrization and how that affects its behavior. I will stop here with the code analysis, but I feel we could definitely keep asking about it to get more details.
 
 Let's now ask for help to the LLM for some tests:
 
 > Given this code to train a credit model, could you create and give me the tests that should be performed according to SR 11-7? The tests should have visualization when possible, the scope should be as broad as possible and the results should be put inside a tex file, including the images. Could you make it in a way that all outputs (tex and images) are in the same folder?
 
-The result is some code that I execute in a cell right after the last one from the Notebook I downloaded. It works straight away, and after compiling the tex file, this is the result:
+The result from this request is some code that I execute in a cell right after the last one from the Notebook I downloaded. It works straight away, and after compiling the tex file, this is the result:
 
 ![image](/assets/output1.jpg)
 ![image](/assets/output2.jpg)
@@ -143,4 +143,22 @@ The result is some code that I execute in a cell right after the last one from t
 ![image](/assets/output4.jpg)
 ![image](/assets/output5.jpg)
 
-I find this amazing. 
+If the code and results are accurate, it's impressive. In just five minutes, I have a report that provides insights into fundamental aspects of the model.
+
+While it is true that the report lacks detailed information, such as what the feature importance scores are, it also offers valuable data like feature correlations, model performance across datasets, and temporal performance trends
+
+Now, I'm sure some might find these tests simple and barely useful, but just taking a look at some of the submitted Kaggle solutions and my experience, I can tell that the needs are completely different to the credit models in finance I have been working with. 
+
+For example, here it seems a matter of getting the maximum score in the competition, meaning that having an ensemble of complicated models with as many features as possible is the best way to go, my experience with credit models is that simplicity is highly valuable: there are compliance requirements and the users of the model that want to understand what the it is doing.
+
+And the reason I am saying this is because the plot of the correlation matrix is straight away saying that the dark islands would require further assessment. This is a valid and actually a real test I would conduct to a model like this.
+
+It is also interesting to see the PSI over time plot along with the average score trend. It seems that starting at week 60 something something is changing in the behavior of the model, and this is also something important to understand with credit models. It would depend on a lot of factors and this is a simplified example, but understanding what is going on with the model and what made its behavior change is important. 
+
+In summary, these tests are legit. It took just five minutes to "code", execute, and compile them into a PDF document, which is cool.
+
+* Features correlation, which would require more testing from a model validation analyst perspective. Simplicity is key in models so I would definitely require a justification for having all of them in the model. Adding features is usually a problem in finance as makes the model more complicated which is something specially worst in credit as users usually want to understand what the model is doing, and there are also some compliance issues involved making credit models too complicated.
+* Basic performance metrics for training and testing data.
+* Performance of the model in time. I find this to be specially interesting 
+
+I also find the PSI over time a good test.
