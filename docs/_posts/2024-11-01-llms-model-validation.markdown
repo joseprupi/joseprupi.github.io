@@ -7,6 +7,7 @@ categories: misc
 
 <style type="text/css">
 blockquote {
+    background-color: #dbd8e3;
     font-style: normal; /* Ensure text is not italic */
 }
 </style>
