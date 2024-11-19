@@ -213,7 +213,7 @@ If the code and results are accurate, it's impressive. In just five minutes, I h
 
 While it is true that the report lacks detailed information, such as what the feature importance scores are, it also offers valuable data like feature correlations, model performance across datasets, and temporal performance trends
 
-Now, I'm sure some might find these tests simple and barely useful, but just taking a look at some of the submitted Kaggle solutions and my experience, I can tell that the needs are completely different to the credit models in finance I have been working with. 
+I'm sure some might find these tests simple and barely useful, but just taking a look at some of the submitted Kaggle solutions and my experience, I can tell that the needs are completely different to the credit models in finance I have been working with. 
 
 For example, here it seems a matter of getting the maximum score in the competition, meaning that having an ensemble of complicated models with as many features as possible is the best way to go, my experience with credit models is that simplicity is highly valuable: there are compliance requirements and the users of the model that want to understand what the it is doing.
 
@@ -225,22 +225,22 @@ In summary, these tests are good. And it took five minutes to "code", execute, a
 
 ### Exploring documentation from models
 
-There are other LLMs based tools like Notebook LM from Google that can help with things like exploring the documentaton of the models.
+There are other tools based on LLMs, such as Google’s Notebook LM, which can help with tasks like exploring model documentation.
 
-My experience with model documentaiton is that is significantly larger and more complex than the one from the Kaggle credit model.
+To give some context and from my experience, model documentation is often much larger and more complex than the documentation for a Kaggle credit model. Reading, understanding, and navigating this documentation is a critical part of the validation process and when the documentation is several hundred pages long, it can become painful. After months of working on validations, you’ll likely revisit the documentation dozens of times. Even if you read it all at the start, you’ll inevitably forget some of the model specifics over time.
 
-Reading, understanding and navigating the model documentation it is a big part of the validation, and when the documentation has several hundreds of pages things get complicated. I have been working with validations for months, meaning you will revisit the documentation dozens of times, and even you have read it all at the beginning you will forget about model specifics.
+This is where tools like Google’s Notebook LM come in handy. It can handle text longer than the model’s context, allowing you to input large documents and ask questions and get relevant responses with references to where is taking the information from the input text.
 
-So we can use tools like Notebook LM from Google, able to deal with texts larger than the model context. You provide the text, Notebook LM does some magic with it (not sure what exactly is doing but I guess something like summarizing and saving references to the text during the process) and you can start asking questions about it.
-
-We can try an example with some more complex documentation. Let's use CreditMetrics from MSCI, which is a tool (not sure it is still being used) for credit risk estimations such as economic capital or unexpected losses. But we can ask the model.
+To see if this is a useful resource we can try an example with a more complex and long documentation. Let's use CreditMetrics from MSCI, which is tool used for credit risk estimations such as economic capital or unexpected losses and with public documentation.
 
 Few things before keep moving:
 * This documentation for this model is available online and in [pdf format](https://www.msci.com/documents/10199/93396227-d449-4229-9143-24a94dab122f)
 * This would be considered like a vendor model, a model that is implemented by a third party and that limits access to information like source code.
-* For answers below from Notebook LM, the responses are given with references to the input, like the image below. This is useful for validations as the origin of the information has to be clear
+* For the answers given below from Notebook LM, the responses have references to the input, like the image below. This is useful for validations as the origin of the information has to be clear
 
 ![image](/assets/notebooklm.jpeg)
+
+We can start asking some questions to the LLM about this documentation:
 
 > **What is CreditMetrics?**
 >
