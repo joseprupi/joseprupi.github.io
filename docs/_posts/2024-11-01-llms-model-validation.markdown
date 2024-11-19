@@ -255,11 +255,11 @@ Here's a breakdown of CreditMetrics' key features:
 >
 > * Portfolio Approach: CreditMetrics emphasizes a portfolio approach to credit risk assessment because:
 >
->- Credit portfolios exhibit diversification benefits due to imperfect correlations among obligors' credit quality changes.
+>  - Credit portfolios exhibit diversification benefits due to imperfect correlations among obligors' credit quality changes.
 >
->- Innovative credit instruments, such as credit derivatives, explicitly derive value from correlation estimates or credit events.
+>  - Innovative credit instruments, such as credit derivatives, explicitly derive value from correlation estimates or credit events.
 >
->● Challenges in Estimating Portfolio Credit Risk: Estimating portfolio credit risk is more challenging than estimating portfolio market risk due to:
+>* Challenges in Estimating Portfolio Credit Risk: Estimating portfolio credit risk is more challenging than estimating portfolio market risk due to:
 ○ Non-normality of Credit Returns: The distribution of credit returns is often skewed with a long downside tail due to the possibility of defaults, making it difficult to characterize the distribution using only the mean and standard deviation.
 ○ Difficulty in Modeling Correlations: Unlike equities with readily available high-frequency market data, credit quality correlations are difficult to estimate directly from historical data due to data sparsity and infrequent pricing.
 >
