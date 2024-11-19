@@ -1,0 +1,11 @@
+blockquote {
+    border-left: 4px solid #3498db; /* Customize the border color */
+    background-color: #f9f9f9; /* Light background */
+    padding: 15px 20px;
+    margin: 20px 0;
+    color: #555; /* Text color */
+}
+
+blockquote p {
+    margin: 0; /* Reset paragraph margin inside blockquote */
+}

@@ -7,7 +7,7 @@ categories: misc
 
 #### Intro
 
-Although it might seem straightforward, let's begin with what I mean by model validation in this post. Yes, it involves ensuring that models function correctly, a broad topic in itself, but this is specifically focused within the US banking environment.
+Let's begin with what I mean by model validation in this post. Yes, it involves ensuring that models function correctly, a broad topic in itself, but this is specifically focused within the US banking environment.
 
 So, what does Chat GPT say about model validation in this context?
 
@@ -62,9 +62,9 @@ And what form and structure does a model validation take?
 
 Ok, so validating models in banking is assessing they work properly and then write the results in a report. 
 
-While this process seems straightforward, it kind of is, it’s also incredibly useful. And it might be a topic for a different writing, but I don’t believe this practice is common outside of banking. And this makes me think that other industries could benefit from adopting a similar approach: a standardized process that ensures models are reliable and used appropriately, with clear and consistent reporting.
+While this process seems straightforward, it kind of is, it’s also incredibly useful. And it might be a topic for a different writing, but I don’t believe this practice is common outside of banking, which makes me think that other industries could benefit from adopting a similar approach: a standardized process that ensures models are reliable and used appropriately, with clear and consistent reporting.
 
-Importantly, the goal of this process isn’t just to produce reports, it’s to improve the quality of models. And In my experience works. Development teams tend to build better products when they know their work will be audited, requiring them to justify decisions and document their processes in a way that business stakeholders can easily understand.
+Importantly, the goal of this process isn’t just to produce reports, it’s to improve the quality of models. And In my experience, it works. Development teams tend to build better products when they know their work will be audited, requiring them to justify decisions and document their processes in a way that business stakeholders can easily understand.
 
 #### A model
 
@@ -75,12 +75,12 @@ First, we need a model to validate. While almost any model could work for demons
 > [Home Credit - Credit Risk Model Stability](https://www.kaggle.com/competitions/home-credit-credit-risk-model-stability). 
 > 
 > **Overview:** The goal of this competition is to predict which clients are more likely to default on their loans. The evaluation will favor solutions that are stable over time.
->
+
 I am not sure how Kaggle works and it is sometimes confusing to me, but I found what appears to be an example notebook that implements a model for the problem, [Home Credit 2024 Starter Notebook](https://www.kaggle.com/code/jetakow/home-credit-2024-starter-notebook/notebook). After downloading the data I have executed the code and it works. 
 
-Having a high level understanding of the implementation it is one of the first and fundamental steps in a model validation. LLMs might be able to help with this, and I will use Claude 3.5 Sonnet as seems to perform well with code related tasks, or at least is better than Chat GPT, which I found to be true after some tests where it proved to be significantly better.
-
 #### Reviewing the code
+
+Having a high level understanding of the implementation it is one of the first and fundamental steps in a model validation. LLMs might be able to help with this, and I will use Claude 3.5 Sonnet as seems to perform well with code related tasks, or at least is better than Chat GPT, which I found to be true after some tests where it proved to be significantly better.
 
 Let’s see what the model can tell us about the code. I’ve converted the Jupyter notebook into a script using the command *jupyter nbconvert --to script loans.ipynb*. Then, I copied and pasted the resulting script into Claude AI’s prompt and asked:
 
