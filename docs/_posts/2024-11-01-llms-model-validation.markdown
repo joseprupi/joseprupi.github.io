@@ -7,13 +7,16 @@ categories: misc
 
 <style type="text/css">
 blockquote {
-    background-color: #e6e5e9;
+    background-color: #f6f3ff;
     font-style: normal; /* Ensure text is not italic */
     font-style: normal; /* Remove italic */
     font-family: inherit; /* Use the same font family as normal text */
     font-size: inherit; /* Use the same font size as normal text */
     line-height: inherit; /* Use the same line height */
     color: #646363; /* Use the same text color */
+}
+blockquote strong {
+    color: black; /* Set bold text color to black */
 }
 </style>
 
@@ -23,9 +26,9 @@ Let's begin with what I mean by model validation in this post. Yes, it involves 
 
 So, what does Chat GPT say about model validation in this context?
 
-> **Me:** What does model validation mean in the US banking environment? Could you summarize it with few sentences?
+> **What does model validation mean in the US banking environment? Could you summarize it with few sentences?**
 >  
-> **ChatGPT:** In the U.S. banking environment, model validation refers to the rigorous process of evaluating financial models to ensure they are reliable, accurate, and compliant with regulatory standards. It involves assessing the model's performance, assumptions, limitations, and potential risks. This practice is essential for managing model risk and adhering to regulatory guidelines such as SR 11-7, which requires banks to maintain robust model risk management frameworks to prevent financial and operational issues.
+> In the U.S. banking environment, model validation refers to the rigorous process of evaluating financial models to ensure they are reliable, accurate, and compliant with regulatory standards. It involves assessing the model's performance, assumptions, limitations, and potential risks. This practice is essential for managing model risk and adhering to regulatory guidelines such as SR 11-7, which requires banks to maintain robust model risk management frameworks to prevent financial and operational issues.
 
 Alright, we have a base now. We understand that validating models is a regulated process guided by SR 11-7 so let's gather some more detail on what this should be:
 
