@@ -7,13 +7,13 @@ categories: misc
 
 <style type="text/css">
 blockquote {
-    background-color: #dbd8e3;
+    background-color: #e6e5e9;
     font-style: normal; /* Ensure text is not italic */
     font-style: normal; /* Remove italic */
     font-family: inherit; /* Use the same font family as normal text */
     font-size: inherit; /* Use the same font size as normal text */
     line-height: inherit; /* Use the same line height */
-    color: inherit; /* Use the same text color */
+    color: #646363; /* Use the same text color */
 }
 </style>
 
