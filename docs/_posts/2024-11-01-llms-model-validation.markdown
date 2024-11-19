@@ -15,9 +15,7 @@ blockquote {
     line-height: inherit; /* Use the same line height */
     color: #646363; /* Use the same text color */
 }
-blockquote strong {
-    color: black; /* Set bold text color to black */
-}
+
 </style>
 
 #### Intro
@@ -32,9 +30,9 @@ So, what does Chat GPT say about model validation in this context?
 
 Alright, we have a base now. We understand that validating models is a regulated process guided by SR 11-7 so let's gather some more detail on what this should be:
 
-> **Me:** What should a model validation contain according to SR 11-7?
+> **What should a model validation contain according to SR 11-7?**
 >  
-> **ChatGPT:** According to SR 11-7, a comprehensive model validation should include the following key components:
+> According to SR 11-7, a comprehensive model validation should include the following key components:
 >
 >* **Evaluation of Conceptual Soundness:**
  An in-depth assessment of the model's design, theory, and logic, including underlying assumptions and methodology. This ensures that the model is appropriate for its intended purpose.
@@ -51,7 +49,7 @@ Alright, we have a base now. We understand that validating models is a regulated
 
 And what form and structure does a model validation take?
 
-> **Me:** How should these results be presented?
+> **How should these results be presented?**
 >  
 >Model validation results, in line with SR 11-7, should be >presented in a structured, transparent, and comprehensive >report, typically covering the following sections:
 >
