@@ -9,6 +9,11 @@ categories: misc
 blockquote {
     background-color: #dbd8e3;
     font-style: normal; /* Ensure text is not italic */
+    font-style: normal; /* Remove italic */
+    font-family: inherit; /* Use the same font family as normal text */
+    font-size: inherit; /* Use the same font size as normal text */
+    line-height: inherit; /* Use the same line height */
+    color: inherit; /* Use the same text color */
 }
 </style>
 
