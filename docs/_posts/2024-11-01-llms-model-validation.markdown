@@ -5,6 +5,20 @@ date: 2024-11-01 00:00:00 -0000
 categories: misc
 ---
 
+<style type="text/css">
+blockquote {
+    border-left: 4px solid #3498db; /* Customize the border color */
+    background-color: #f9f9f9; /* Light background */
+    padding: 15px 20px;
+    margin: 20px 0;
+    color: #555; /* Text color */
+}
+
+blockquote p {
+    margin: 0; /* Reset paragraph margin inside blockquote */
+}
+</style>
+
 #### Intro
 
 Let's begin with what I mean by model validation in this post. Yes, it involves ensuring that models function correctly, a broad topic in itself, but this is specifically focused within the US banking environment.
