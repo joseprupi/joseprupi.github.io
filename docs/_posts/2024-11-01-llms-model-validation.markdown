@@ -225,18 +225,18 @@ In summary, these tests are good. And it took five minutes to "code", execute, a
 
 ### Exploring documentation from models
 
-There are other tools based on LLMs, such as Google’s Notebook LM, which can help with tasks like exploring model documentation.
+There are other tools based on LLMs such as Google’s Notebook LM which can help with tasks like exploring model documentation.
 
-To give some context and from my experience, model documentation is often much larger and more complex than the documentation for a Kaggle credit model. Reading, understanding, and navigating this documentation is a critical part of the validation process and when the documentation is several hundred pages long, it can become painful. After months of working on validations, you’ll likely revisit the documentation dozens of times. Even if you read it all at the start, you’ll inevitably forget some of the model specifics over time.
+To give some context and from my experience, model documentation is often much larger and more complex than the documentation for a Kaggle credit model. Reading, understanding, and navigating this documentation is a critical part of the validation process, and when the documentation is several hundred pages long, it can become painful. After months of working on validations, you’ll likely revisit the documentation dozens of times and even if you read it all at the start, you’ll inevitably forget some of the model specifics over time.
 
-This is where tools like Google’s Notebook LM come in handy. It can handle text longer than the model’s context, allowing you to input large documents and ask questions and get relevant responses with references to where is taking the information from the input text.
+This is where tools like Google’s Notebook LM come in handy as they can handle texts longer than the model’s context, allowing you to input large documents and ask questions and get relevant responses with references to where is taking the information from the input text.
 
-To see if this is a useful resource we can try an example with a more complex and long documentation. Let's use CreditMetrics from MSCI, which is tool used for credit risk estimations such as economic capital or unexpected losses and with public documentation.
+To see if this is a useful resource we can try an example with a more complex and long documentation. Let's use CreditMetrics from MSCI, which is tool used for credit risk estimations such as economic capital or unexpected losses and with available documentation online.
 
 Few things before keep moving:
-* This documentation for this model is available online and in [pdf format](https://www.msci.com/documents/10199/93396227-d449-4229-9143-24a94dab122f)
-* This would be considered like a vendor model, a model that is implemented by a third party and that limits access to information like source code.
-* For the answers given below from Notebook LM, the responses have references to the input, like the image below. This is useful for validations as the origin of the information has to be clear
+* This documentation for this model is available online and in [pdf format](https://www.msci.com/documents/10199/93396227-d449-4229-9143-24a94dab122f).
+* While this model would be classified as a vendor model (implemented by a third party with restricted access to certain details like source code), I will use it here as if it were developed in-house.
+* The responses below from Notebook LM include references to the input, as shown in the example image. This is particularly useful for validation purposes, ensuring that the source of information is clearly traceable.
 
 ![image](/assets/notebooklm.jpeg)
 
@@ -251,11 +251,13 @@ We can start asking some questions to the LLM about this documentation:
 >CreditMetrics' constructive approach focuses on modeling the mechanisms of value changes stemming from credit events rather than directly observing value changes, which is unlike market risk models that typically rely on readily available market data.
 Here's a breakdown of CreditMetrics' key features:
 >
->● Types of Risks Modeled: CreditMetrics primarily focuses on credit risk arising from credit events such as upgrades, downgrades, or defaults. It can also incorporate certain market risk components like market-driven volatility of credit exposures in instruments like swaps, forwards, and bonds.
+> * Types of Risks Modeled: CreditMetrics primarily focuses on credit risk arising from credit events such as upgrades, downgrades, or defaults. It can also incorporate certain market risk components like market-driven volatility of credit exposures in instruments like swaps, forwards, and bonds.
 >
->● Portfolio Approach: CreditMetrics emphasizes a portfolio approach to credit risk assessment because:
-    ○ Credit portfolios exhibit diversification benefits due to imperfect correlations among obligors' credit quality changes.
-    ○ Innovative credit instruments, such as credit derivatives, explicitly derive value from correlation estimates or credit events.
+> * Portfolio Approach: CreditMetrics emphasizes a portfolio approach to credit risk assessment because:
+>
+>- Credit portfolios exhibit diversification benefits due to imperfect correlations among obligors' credit quality changes.
+>
+>- Innovative credit instruments, such as credit derivatives, explicitly derive value from correlation estimates or credit events.
 >
 >● Challenges in Estimating Portfolio Credit Risk: Estimating portfolio credit risk is more challenging than estimating portfolio market risk due to:
 ○ Non-normality of Credit Returns: The distribution of credit returns is often skewed with a long downside tail due to the possibility of defaults, making it difficult to characterize the distribution using only the mean and standard deviation.
