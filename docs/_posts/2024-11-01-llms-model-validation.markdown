@@ -193,13 +193,13 @@ Let's ask for his opinion about it:
 
 While some of the recommendations lean more toward implementation design and might be more useful for developers, others provide good advice for validation purposes. For example, having evidence to support model parameterization is essential for a validation. Unlike Kaggle, where the primary objective is to achieve the highest score by any means, banking places a strong emphasis on justifying the decisions made in the model design.
 
-That said, with just a few minutes, I’ve gained valuable insights into this model’s implementation, and I think I could continue asking questions to gather more detailed and useful information for the validation.
+That said, with just a few minutes, I have good insights into this model’s implementation, and I think I could continue asking questions to gather more detailed and useful information for the validation.
 
 ### Validation tests
 
 Let's now ask for help to the LLM for some tests:
 
-> **Given this code to train a credit model, could you create and give me the tests that should be performed according to SR 11-7? The tests should have visualization when possible, the scope should be as broad as possible and the results should be put inside a tex file, including the images. Could you make it in a way that all outputs (tex and images) are in the same folder?**
+> **Given this code to train a credit model, could you create and give me the tests that should be performed according to SR 11-7? The tests should have visualization when possible, the scope should be as broad as possible and the results compiled into a tex file, including the images. Could you make it in a way that all outputs (tex and images) are in the same folder?**
 
 The result from this request is some code that I execute in a cell right after the last one from the Notebook I downloaded. It works straight away, and after compiling the tex file, this is the result:
 
