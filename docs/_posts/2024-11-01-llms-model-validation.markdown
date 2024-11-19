@@ -97,7 +97,8 @@ Having a high level understanding of the implementation it is one of the first a
 
 Let’s see what the model can tell us about the code. I’ve converted the Jupyter notebook into a script using the command *jupyter nbconvert --to script loans.ipynb*. Then, I copied and pasted the resulting script into Claude AI’s prompt and asked:
 
-> What is this code doing?
+> **What is this code doing?**
+> 
 > Let me break down this code - it appears to be implementing a credit risk or default prediction model with a focus on stability across time. Here are the key components:
 >
 > 1 Data Loading and Preprocessing:
@@ -150,7 +151,7 @@ This is already surprisingly good to me. It explains the code and also gets into
 
 Let's now ask for help to the LLM for some tests:
 
-> Given this code to train a credit model, could you create and give me the tests that should be performed according to SR 11-7? The tests should have visualization when possible, the scope should be as broad as possible and the results should be put inside a tex file, including the images. Could you make it in a way that all outputs (tex and images) are in the same folder?
+> **Given this code to train a credit model, could you create and give me the tests that should be performed according to SR 11-7? The tests should have visualization when possible, the scope should be as broad as possible and the results should be put inside a tex file, including the images. Could you make it in a way that all outputs (tex and images) are in the same folder?**
 
 The result from this request is some code that I execute in a cell right after the last one from the Notebook I downloaded. It works straight away, and after compiling the tex file, this is the result:
 
