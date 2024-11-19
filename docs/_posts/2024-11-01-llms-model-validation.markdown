@@ -151,7 +151,7 @@ Let’s see what the model can tell us about the code. I’ve converted the Jupy
 
 This is already surprisingly good to me. It explains the code and also gets into some of the model parametrization and how that affects its behavior. 
 
-Let's ask for his oppinion about it"
+Let's ask for his opinion about it:
 
 > **Given this code, are there errors or would you recommend enhancements to it?**
 >
@@ -190,9 +190,6 @@ Let's ask for his oppinion about it"
 > * Add model performance metrics beyond AUC
 >
 >Would you like me to elaborate on any of these points or provide specific implementation details?
-
-
-Certainly! Here's a reworded version:
 
 While some of the recommendations lean more toward implementation design and might be more useful for developers, others provide good advice for validation purposes. For example, having evidence to support model parameterization is essential for a validation. Unlike Kaggle, where the primary objective is to achieve the highest score by any means, banking places a strong emphasis on justifying the decisions made in the model design.
 
