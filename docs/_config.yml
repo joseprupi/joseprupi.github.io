@@ -31,6 +31,7 @@ github_username:  joseprupi
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-toc
 
 imagesurl: "/assets/gallery/"
 thumbsurl: "/assets/thumbs/"

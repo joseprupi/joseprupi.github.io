@@ -18,7 +18,10 @@ blockquote {
 
 </style>
 
-#### Intro
+* TOC
+{:toc}
+
+### Intro
 
 Let's begin with what I mean by model validation in this post. Yes, it involves ensuring that models function correctly, a broad topic in itself, but this is specifically focused within the US banking environment.
 
@@ -79,7 +82,7 @@ While this process seems straightforward, it kind of is, it’s also incredibly 
 
 Importantly, the goal of this process isn’t just to produce reports, it’s to improve the quality of models. And In my experience, it works. Development teams tend to build better products when they know their work will be audited, requiring them to justify decisions and document their processes in a way that business stakeholders can easily understand.
 
-#### A model
+### A model
 
 Let's now try to reproduce how a validation of a model would look like and how LLMs could assist with it. 
 
@@ -91,7 +94,7 @@ First, we need a model to validate. While almost any model could work for demons
 
 I am not sure how Kaggle works and it is sometimes confusing to me, but I found what appears to be an example notebook that implements a model for the problem, [Home Credit 2024 Starter Notebook](https://www.kaggle.com/code/jetakow/home-credit-2024-starter-notebook/notebook). After downloading the data I have executed the code and it works. 
 
-#### Reviewing the code
+### Reviewing the code
 
 Having a high level understanding of the implementation it is one of the first and fundamental steps in a model validation. LLMs might be able to help with this, and I will use Claude 3.5 Sonnet as seems to perform well with code related tasks, or at least is better than Chat GPT, which I found to be true after some tests where it proved to be significantly better.
 
@@ -147,7 +150,7 @@ This code appears to be part of a production system where model stability over t
 
 This is already surprisingly good to me. It explains the code and also gets into some of the model parametrization and how that affects its behavior. I will stop here with the code analysis, but I feel we could definitely keep asking about it to get more details.
 
-#### Validation tests
+### Validation tests
 
 Let's now ask for help to the LLM for some tests:
 
@@ -175,7 +178,7 @@ It is also interesting to see the PSI over time plot along with the average scor
 
 In summary, these tests are good. And it took five minutes to "code", execute, and compile them into a PDF document. 
 
-#### Exploring documentation from models
+### Exploring documentation from models
 
 There are other LLMs based tools like Notebook LM from Google that can help with things like exploring the documentaton of the models.
 
