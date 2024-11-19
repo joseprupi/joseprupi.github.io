@@ -7,16 +7,7 @@ categories: misc
 
 <style type="text/css">
 blockquote {
-    border-left: 4px solid #3498db; /* Customize the border color */
-    background-color: #f9f9f9; /* Light background */
-    padding: 15px 20px;
-    margin: 20px 0;
-    color: #555; /* Text color */
     font-style: normal; /* Ensure text is not italic */
-}
-
-blockquote p {
-    margin: 0; /* Reset paragraph margin inside blockquote */
 }
 </style>
 
