@@ -258,21 +258,21 @@ Here's a breakdown of CreditMetrics' key features:
 >   - Innovative credit instruments, such as credit derivatives, explicitly derive value from correlation estimates or credit events.
 >
 >* Challenges in Estimating Portfolio Credit Risk: Estimating portfolio credit risk is more challenging than estimating portfolio market risk due to:
-○ Non-normality of Credit Returns: The distribution of credit returns is often skewed with a long downside tail due to the possibility of defaults, making it difficult to characterize the distribution using only the mean and standard deviation.
-○ Difficulty in Modeling Correlations: Unlike equities with readily available high-frequency market data, credit quality correlations are difficult to estimate directly from historical data due to data sparsity and infrequent pricing.
+>   - Non-normality of Credit Returns: The distribution of credit returns is often skewed with a long downside tail due to the possibility of defaults, making it difficult to characterize the distribution using only the mean and standard deviation.
+>   - Difficulty in Modeling Correlations: Unlike equities with readily available high-frequency market data, credit quality correlations are difficult to estimate directly from historical data due to data sparsity and infrequent pricing.
 >
->● Data Requirements: Implementing CreditMetrics requires three primary types of data:
-○ Likelihoods of credit quality migration: Transition matrices provide the probabilities of an obligor migrating from one credit rating to another or defaulting over a given time horizon. These can be obtained from rating agencies or calculated from other sources like KMV's Expected Default Frequencies (EDFs).
-○ Likelihoods of joint credit quality migration: Capturing the portfolio effect requires estimating the likelihood of joint credit quality movements between obligors. This is typically achieved by either historically tabulating joint credit rating moves or proposing models to capture the correlation between obligors' creditworthiness, such as the asset value model.
-○ Valuation estimates: Data is needed to calculate the change in value for each instrument given a possible credit quality migration. This includes information such as coupon rates, maturities, recovery rates for different seniority classes, and credit spreads for various rating categories.
+>* Data Requirements: Implementing CreditMetrics requires three primary types of data:
+>   - Likelihoods of credit quality migration: Transition matrices provide the probabilities of an obligor migrating from one credit rating to another or defaulting over a given time horizon. These can be obtained from rating agencies or calculated from other sources like KMV's Expected Default Frequencies (EDFs).
+>   - Likelihoods of joint credit quality migration: Capturing the portfolio effect requires estimating the likelihood of joint credit quality movements between obligors. This is typically achieved by either historically tabulating joint credit rating moves or proposing models to capture the correlation between obligors' creditworthiness, such as the asset value model.
+>   - Valuation estimates: Data is needed to calculate the change in value for each instrument given a possible credit quality migration. This includes information such as coupon rates, maturities, recovery rates for different seniority classes, and credit spreads for various rating categories.
 >
->● Advanced Modeling Features: CreditMetrics incorporates features for more precise risk estimation:
-○ Market-Driven Exposure Uncertainty: For instruments like swaps and forwards, where credit exposure depends on market rates, market volatilities are considered to model the uncertainty in potential losses.
-○ Recovery Rate Uncertainty: Recovery rates in the event of default are inherently uncertain. CreditMetrics allows for treating recoveries as random quantities using mean and standard deviation estimates.
+>* Advanced Modeling Features: CreditMetrics incorporates features for more precise risk estimation:
+>   - Market-Driven Exposure Uncertainty: For instruments like swaps and forwards, where credit exposure depends on market rates, market volatilities are considered to model the uncertainty in potential losses.
+>   - Recovery Rate Uncertainty: Recovery rates in the event of default are inherently uncertain. CreditMetrics allows for treating recoveries as random quantities using mean and standard deviation estimates.
 >
->● Risk Measures: CreditMetrics offers two primary risk measures:
-        ○ Standard Deviation: A symmetric measure of dispersion around the average portfolio value, reflecting the variability in portfolio value due to credit quality changes.
-        ○ Percentile Level: Represents a specific point in the distribution of portfolio values, indicating the lowest value the portfolio is expected to reach with a given probability (e.g., the 1st percentile).
+>* Risk Measures: CreditMetrics offers two primary risk measures:
+>   - Standard Deviation: A symmetric measure of dispersion around the average portfolio value, reflecting the variability in portfolio value due to credit quality changes.
+>   - Percentile Level: Represents a specific point in the distribution of portfolio values, indicating the lowest value the portfolio is expected to reach with a given probability (e.g., the 1st percentile).
 >
 >CreditMetrics, by incorporating these features and methodologies, provides a robust and comprehensive framework for measuring and managing credit risk within a portfolio context. It allows institutions to make informed decisions regarding risk mitigation, limit setting, and economic capital allocation, ultimately leading to more efficient utilization of risk-taking capacity.
 
