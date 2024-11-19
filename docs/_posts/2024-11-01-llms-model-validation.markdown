@@ -254,10 +254,8 @@ Here's a breakdown of CreditMetrics' key features:
 > * Types of Risks Modeled: CreditMetrics primarily focuses on credit risk arising from credit events such as upgrades, downgrades, or defaults. It can also incorporate certain market risk components like market-driven volatility of credit exposures in instruments like swaps, forwards, and bonds.
 >
 > * Portfolio Approach: CreditMetrics emphasizes a portfolio approach to credit risk assessment because:
->
->  - Credit portfolios exhibit diversification benefits due to imperfect correlations among obligors' credit quality changes.
->
->  - Innovative credit instruments, such as credit derivatives, explicitly derive value from correlation estimates or credit events.
+>   - Credit portfolios exhibit diversification benefits due to imperfect correlations among obligors' credit quality changes.
+>   - Innovative credit instruments, such as credit derivatives, explicitly derive value from correlation estimates or credit events.
 >
 >* Challenges in Estimating Portfolio Credit Risk: Estimating portfolio credit risk is more challenging than estimating portfolio market risk due to:
 ○ Non-normality of Credit Returns: The distribution of credit returns is often skewed with a long downside tail due to the possibility of defaults, making it difficult to characterize the distribution using only the mean and standard deviation.
