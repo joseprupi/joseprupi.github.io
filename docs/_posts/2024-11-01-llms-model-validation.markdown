@@ -12,6 +12,7 @@ blockquote {
     padding: 15px 20px;
     margin: 20px 0;
     color: #555; /* Text color */
+    font-style: normal; /* Ensure text is not italic */
 }
 
 blockquote p {
