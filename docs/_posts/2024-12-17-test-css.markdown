@@ -6,6 +6,16 @@ categories: ai llm
 ---
 
 <style>
+.page-content .wrapper,
+.wrapper {
+    max-width: 1400px !important;  /* or any width you prefer */
+    margin: 0 auto;
+}
+
+/* If using a GitHub Pages theme, might also need */
+.inner {
+    max-width: 1400px !important;
+}
 /* Two-column layout styles */
 .container {
     display: flex;
