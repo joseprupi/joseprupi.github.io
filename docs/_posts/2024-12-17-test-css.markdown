@@ -68,7 +68,6 @@ So, what does Chat GPT say about model validation in this context?
 
 <div class="prompt-column">
 <div class="prompt">
-<div class="prompt-label">Prompt:</div>
 
 What does model validation mean in the US banking environment? Could you summarize it with few sentences?
 
@@ -89,7 +88,6 @@ Alright, we have a base now. We understand that validating models is a regulated
 
 <div class="prompt-column">
 <div class="prompt">
-<div class="prompt-label">Prompt:</div>
 
 What should a model validation contain according to SR 11-7?
 
