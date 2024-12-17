@@ -69,7 +69,7 @@ categories: ai llm
 
 Let's begin with what I mean by model validation in this post. Yes, it involves ensuring that models function correctly, a broad topic in itself, but this is specifically focused within the US banking environment.
 
-I will make sure ChatGPT understands what Model Validation means in banking.
+The rest of this section is just me asking ChatGPT about what a Model Validation in banking is, to both post it here for people that don't know about it and also to make sure understands how this works.
 
 <div class="container">
 <div class="text-column">
@@ -132,6 +132,23 @@ Effective presentation should ensure clarity for stakeholders, including managem
 </div>
 </div>
 
+Ok, so validating models in banking is assessing they work properly and then write the results in a report. And ChatGPT knows about it. 
+
+While this process seems straightforward, it kind of is, it’s also incredibly useful. And it might be a topic for a different writing, but I don’t believe this practice is common outside of banking, which makes me think that other industries could benefit from adopting a similar approach: a standardized process that ensures models are reliable and used appropriately, with clear and consistent reporting.
+
+Importantly, the goal of this process isn’t just to produce reports, it’s to improve the quality of models. And In my experience, it works. Development teams tend to build better products when they know their work will be audited, requiring them to justify decisions and document their processes in a way that business stakeholders can easily understand.
+
+### A model
+
+Let's now try to reproduce how a validation of a model would look like and how LLMs could assist with it. 
+
+First, we need a model to validate. While almost any model could work for demonstration purposes, I wanted to choose something that resembles a real financial case. I searched on Kaggle and found this challenge:
+
+> [Home Credit - Credit Risk Model Stability](https://www.kaggle.com/competitions/home-credit-credit-risk-model-stability). 
+> 
+> **Overview:** The goal of this competition is to predict which clients are more likely to default on their loans. The evaluation will favor solutions that are stable over time.
+
+I am not sure how Kaggle works and it is sometimes confusing to me, but I found what appears to be an example notebook that implements a model for the problem, [Home Credit 2024 Starter Notebook](https://www.kaggle.com/code/jetakow/home-credit-2024-starter-notebook/notebook). After downloading the data I have executed the code and it works. 
 
 ## Regular Content Section
 
