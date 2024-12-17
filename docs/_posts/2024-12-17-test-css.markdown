@@ -94,6 +94,14 @@ Alright, we have a base now. We understand that validating models is a regulated
 What should a model validation contain according to SR 11-7?
 
 <div class="response">
+
+Here are the main features of markdown:
+
+* Basic formatting:
+  * **Bold text** using double asterisks
+  * *Italic text* using single asterisks
+  * `Code` using backticks
+
 > According to SR 11-7, a comprehensive model validation should include the following key components:
 >
 >* **Evaluation of Conceptual Soundness:**
