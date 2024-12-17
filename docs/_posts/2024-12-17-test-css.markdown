@@ -170,6 +170,7 @@ Let’s see what the model can tell us about the code. I’ve converted the Jupy
 What is this code doing?
 <div class="response" markdown="1">
 Let me break down this code - it appears to be implementing a credit risk or default prediction model with a focus on stability across time. Here are the key components:
+
 1 Data Loading and Preprocessing:
 * Loads several CSV files containing different types of data (base tables, static data, credit bureau data, person data)
 * Uses Polars (a fast DataFrame library) for initial data processing
@@ -177,12 +178,12 @@ Let me break down this code - it appears to be implementing a credit risk or def
 
 2 Feature Engineering:
 * Creates aggregated features from person-related data:
-&nbsp;&nbsp;&nbsp;&nbsp;- Maximum occupation income
-&nbsp;&nbsp;&nbsp;&nbsp;- Whether any applicant is self-employed
-&nbsp;&nbsp;&nbsp;&nbsp;- Housing type for primary applicant
+  * Maximum occupation income
+  * Whether any applicant is self-employed
+  * Housing type for primary applicant
 * Creates credit bureau features:
-&nbsp;&nbsp;&nbsp;&nbsp;- Maximum payments overdue
-&nbsp;&nbsp;&nbsp;&nbsp;- Whether payments were overdue by more than 31 days
+  * Maximum payments overdue
+  * Whether payments were overdue by more than 31 days
 
 3 Model Training:
 * Uses LightGBM, a gradient boosting framework
@@ -194,11 +195,11 @@ Let me break down this code - it appears to be implementing a credit risk or def
  
 * Calculates AUC scores for train, validation, and test sets
 * Implements a custom stability metric called gini_stability that:
-&nbsp;&nbsp;&nbsp;&nbsp;- Tracks model performance (Gini coefficient) across different time periods (WEEK_NUM)
-&nbsp;&nbsp;&nbsp;&nbsp;- Penalizes: 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Declining performance over time (negative slope in performance)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- High variance in performance (standard deviation of residuals)
-&nbsp;&nbsp;&nbsp;&nbsp;- This suggests the model is being used in a production setting where stable predictions over time are important
+	 * Tracks model performance (Gini coefficient) across different time periods (WEEK_NUM)
+	 * Penalizes: 
+&nbsp;&nbsp;&nbsp;&nbsp;	 * Declining performance over time (negative slope in performance)
+&nbsp;&nbsp;&nbsp;&nbsp;	 * High variance in performance (standard deviation of residuals)
+	 * This suggests the model is being used in a production setting where stable predictions over time are important
 
 5 The hyperparameters used suggest a relatively conservative model:
 * Max depth of 3
@@ -218,3 +219,5 @@ Would you like me to explain any particular aspect in more detail? For example, 
 </div>
 </div>
 </div>
+
+It explains the code and also gets into some of the model parametrization and how that affects its behavior. Not surprising, but still shows this is truly useful for a Model Validation.
