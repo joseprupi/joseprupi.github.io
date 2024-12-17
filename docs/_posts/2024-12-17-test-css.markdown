@@ -227,12 +227,16 @@ Given this code, are there errors or would you recommend enhancements to it?
 <div class="response" markdown="1">
 Here are the key issues and recommended enhancements:
 1. Type Conversion Issues:
+``` Python
 for df in [X_train, X_valid, X_test]:
     df = convert_strings(df)
+```
 This reassignment doesn't modify the original dataframes. Should be:
+``` Python
 X_train = convert_strings(X_train)
 X_valid = convert_strings(X_valid)
 X_test = convert_strings(X_test)
+```
 
 2.Missing Error Handling:
 * Add error handling for file loading
