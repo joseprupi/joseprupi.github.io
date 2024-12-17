@@ -6,6 +6,7 @@ categories: ai llm
 ---
 
 <style>
+/* Layout styles */
 .container {
     display: flex;
     gap: 2rem;
@@ -23,19 +24,23 @@ categories: ai llm
     border-radius: 8px;
 }
 
-.prompt {
+/* Prompt section styles */
+.prompt-section {
     font-family: monospace;
     margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 4px;
 }
 
-.prompt-text {
-    white-space: pre-wrap;  /* Only preserve whitespace for the actual prompt */
-}
-
-.response {
+/* Response section styles */
+.response-section {
     margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid #ddd;
+    padding: 1rem;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
 @media (max-width: 768px) {
