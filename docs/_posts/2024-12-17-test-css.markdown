@@ -300,17 +300,8 @@ The result from this request is some code that I execute in a cell right after t
 </div>
 </div>
 </div>
-</div>
 
-The result from this request is some code that I execute in a cell right after the last one from the Notebook I downloaded. It works straight away, and after compiling the tex file, this is the result:
-
-![image](/assets/output1.jpg)
-![image](/assets/output2.jpg)
-![image](/assets/output3.jpg)
-![image](/assets/output4.jpg)
-![image](/assets/output5.jpg)
-
-If the code and results are accurate, it's impressive. In just five minutes, I have a report that provides insights into fundamental aspects of the model.
+If the code and results are accurate, this is **fing impressive** for Model Validation. In just five minutes, I have a report that provides insights into fundamental aspects of the model.
 
 While it is true that the report lacks detailed information, such as what the feature importance scores are, it also offers valuable data like feature correlations, model performance across datasets, and temporal performance trends
 
