@@ -52,31 +52,30 @@ categories: ai llm
 }
 </style>
 
-# Understanding LLM Responses
+* TOC
+{:toc}
 
-This is a regular single-column introduction that spans the full width. Here we can explain what we're going to explore in this post.
+### Intro
+
+Let's begin with what I mean by model validation in this post. Yes, it involves ensuring that models function correctly, a broad topic in itself, but this is specifically focused within the US banking environment.
 
 ## First Experiment
 
 <div class="container">
 <div class="text-column">
 
-When we ask an LLM about creative tasks, we often see interesting patterns in its responses. Let's analyze how it approaches story generation.
-
-The response shows several key characteristics:
-1. Structure follows the prompt closely
-2. Creative elements are well-integrated
-3. Maintains consistency throughout
+So, what does Chat GPT say about model validation in this context?
 
 </div>
 <div class="prompt-column">
 <div class="prompt">
 <div class="prompt-label">Prompt:</div>
 
-Write a short story about a robot learning to paint.
+**What does model validation mean in the US banking environment? Could you summarize it with few sentences?**
 
 <div class="response">
-The robot held the brush awkwardly in its metallic fingers, servo motors whirring as it tried to replicate the gentle strokes it had observed in countless videos...
+In the U.S. banking environment, model validation refers to the rigorous process of evaluating financial models to ensure they are reliable, accurate, and compliant with regulatory standards. It involves assessing the model's performance, assumptions, limitations, and potential risks. This practice is essential for managing model risk and adhering to regulatory guidelines such as SR 11-7, which requires banks to maintain robust model risk management frameworks to prevent financial and operational issues.
+
 </div>
 </div>
 </div>
