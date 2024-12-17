@@ -7,10 +7,14 @@ categories: misc
 
 <style>
 /* Two-column layout styles */
+/* Two-column layout styles */
 .container {
     display: flex;
     gap: 1rem;
     margin: 1rem 0;
+    background-color: #f8fafc;  /* Light bluish background */
+    padding: 1rem;
+    border-radius: 8px;
 }
 
 .text-column {
