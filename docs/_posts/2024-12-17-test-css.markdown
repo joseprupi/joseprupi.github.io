@@ -113,11 +113,11 @@ These elements ensure a robust validation process, enabling institutions to iden
 </div>
 </div>
 </div>
+
 <div class="container">
 <div class="text-column"> 
 And what form and structure does a model validation take?
 </div>
-
 <div class="prompt-column">
 <div class="prompt">
 How should these results be presented?
@@ -156,36 +156,65 @@ First, we need a model to validate. While almost any model could work for demons
 
 I am not sure how Kaggle works and it is sometimes confusing to me, but I found what appears to be an example notebook that implements a model for the problem, [Home Credit 2024 Starter Notebook](https://www.kaggle.com/code/jetakow/home-credit-2024-starter-notebook/notebook). After downloading the data I have executed the code and it works. 
 
-## Regular Content Section
+### Reviewing the code
 
-Back to single-column content. Here we can discuss general concepts without needing the two-column layout.
+Having a high level understanding of the implementation it is one of the first and fundamental steps in a model validation. LLMs might be able to help with this, and I will use Claude 3.5 Sonnet as seems to perform well with code related tasks, or at least is better than Chat GPT (which I found to be true after some tests where it proved to be significantly better).
 
-## Another Experiment
 
 <div class="container">
-<div class="text-column">
-
-For our second test, we gave the LLM a more technical prompt. Notice how it structures the technical information and maintains clarity while explaining complex concepts.
-
-The key observations from this response:
-- Precise technical terminology
-- Clear step-by-step explanation
-- Practical examples included
-
+<div class="text-column"> 
+Let’s see what the model can tell us about the code. I’ve converted the Jupyter notebook into a script, copied and pasted the resulting script into Claude AI’s prompt, and asked:
 </div>
 <div class="prompt-column">
 <div class="prompt">
-<div class="prompt-label">Prompt:</div>
+What is this code doing?
+<div class="response" markdown="1">
+Let me break down this code - it appears to be implementing a credit risk or default prediction model with a focus on stability across time. Here are the key components:
+1 Data Loading and Preprocessing:
+* Loads several CSV files containing different types of data (base tables, static data, credit bureau data, person data)
+* Uses Polars (a fast DataFrame library) for initial data processing
+* The data appears to be related to loan applications, with different tables containing various attributes about applicants
 
-Explain how neural networks process image data.
+2 Feature Engineering:
+* Creates aggregated features from person-related data:
+&nbsp;&nbsp;&nbsp;&nbsp;- Maximum occupation income
+&nbsp;&nbsp;&nbsp;&nbsp;- Whether any applicant is self-employed
+&nbsp;&nbsp;&nbsp;&nbsp;- Housing type for primary applicant
+* Creates credit bureau features:
+&nbsp;&nbsp;&nbsp;&nbsp;- Maximum payments overdue
+&nbsp;&nbsp;&nbsp;&nbsp;- Whether payments were overdue by more than 31 days
 
-<div class="response">
-Neural networks process images by first converting them into numerical matrices, where each pixel is represented as a set of RGB values...
+3 Model Training:
+* Uses LightGBM, a gradient boosting framework
+* Splits data into train (60%), validation (20%), and test (20%) sets
+* Trains a binary classification model with AUC (Area Under Curve) as the metric
+* Uses early stopping to prevent overfitting
+
+4 Model Evaluation:
+ 
+* Calculates AUC scores for train, validation, and test sets
+* Implements a custom stability metric called gini_stability that:
+&nbsp;&nbsp;&nbsp;&nbsp;- Tracks model performance (Gini coefficient) across different time periods (WEEK_NUM)
+&nbsp;&nbsp;&nbsp;&nbsp;- Penalizes: 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Declining performance over time (negative slope in performance)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- High variance in performance (standard deviation of residuals)
+&nbsp;&nbsp;&nbsp;&nbsp;- This suggests the model is being used in a production setting where stable predictions over time are important
+
+5 The hyperparameters used suggest a relatively conservative model:
+* Max depth of 3
+* Learning rate of 0.05
+* Feature and bagging fractions < 1 for regularization
+
+This code appears to be part of a production system where model stability over time is as important as raw predictive performance. The stability metric is particularly interesting as it penalizes both declining performance over time and high variance in performance, which are important considerations for deployed models.
+
+Would you like me to explain any particular aspect in more detail? For example, I could dive deeper into:
+
+1 The stability metric calculation
+
+2 The feature engineering approach
+
+3 The model hyperparameter choices
 </div>
 </div>
 </div>
 </div>
-
-## Conclusions
-
-This final section uses the full width again to summarize our findings and draw conclusions about LLM behavior.
