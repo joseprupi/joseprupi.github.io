@@ -17,14 +17,20 @@ categories: misc
     max-width: 800px !important;
 }
 
+/* Override for wide sections */
+.wrapper-wide {
+    max-width: 1400px !important;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
 /* Two-column layout styles */
 .container {
     display: flex;
     gap: 1rem;
     margin: 1rem 0;
-    max-width: 1400px !important;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .text-column {
@@ -92,6 +98,7 @@ categories: misc
 
 Let's begin with what I mean by model validation in this post. Yes, it involves ensuring that models function correctly, a broad topic in itself, but this is specifically focused within the US banking environment. The rest of this section is just me asking ChatGPT about what a Model Validation in banking is, to both post it here for people that don't know about it and also to make sure understands how this works.
 
+<div class="wrapper-wide">
 <div class="container">
 <div class="text-column">
 So, what does Chat GPT say about model validation in this context?
@@ -105,6 +112,8 @@ In the U.S. banking environment, model validation refers to the rigorous process
 </div>
 </div>
 </div>
+</div>
+
 <div class="container">
 <div class="text-column">
 Alright, we have a base now. We understand that validating models is a regulated process guided by SR 11-7 so let's gather some more detail on what this should be:
