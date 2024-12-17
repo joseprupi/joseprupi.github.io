@@ -75,7 +75,6 @@ The rest of this section is just me asking ChatGPT about what a Model Validation
 <div class="text-column">
 So, what does Chat GPT say about model validation in this context?
 </div>
-
 <div class="prompt-column">
 <div class="prompt">
 What does model validation mean in the US banking environment? Could you summarize it with few sentences?
@@ -85,12 +84,10 @@ In the U.S. banking environment, model validation refers to the rigorous process
 </div>
 </div>
 </div>
-
 <div class="container">
 <div class="text-column">
 Alright, we have a base now. We understand that validating models is a regulated process guided by SR 11-7 so let's gather some more detail on what this should be:
 </div>
-
 <div class="prompt-column">
 <div class="prompt">
 What should a model validation contain according to SR 11-7?
@@ -106,7 +103,6 @@ These elements ensure a robust validation process, enabling institutions to iden
 </div>
 </div>
 </div>
-
 <div class="container">
 <div class="text-column">
 And what form and structure does a model validation take?
@@ -115,7 +111,7 @@ And what form and structure does a model validation take?
 <div class="prompt-column">
 <div class="prompt">
 How should these results be presented?
-<div class="response">
+<div class="response" markdown="1">
 Model validation results, in line with SR 11-7, should be presented in a structured, transparent, and comprehensive report, typically covering the following sections:
 * **Executive Summary**: A concise overview of the validation's key findings, model strengths and weaknesses, and an overall assessment of the model’s risk level and validation outcome (e.g., approved, approved with conditions, or not approved).
 * **Scope and Objectives**: A clear outline of the validation’s purpose, including the model’s intended use, its assumptions, and limitations. It should specify the validation scope, such as whether it's a full-scope or targeted validation.
