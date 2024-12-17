@@ -1,20 +1,20 @@
 ---
 layout: post
-title: "Understanding LLM Responses: A Deep Dive"
-date: 2024-12-17
-categories: ai llm
+title: "Using LLMs for Model Validation"
+date: 2024-11-01 00:00:00 -0000
+categories: misc
 ---
 
 <style>
-/* Make the page wider */
+/* Base wrapper styles (original width) */
 .page-content .wrapper,
 .wrapper {
-    max-width: 1400px !important;
+    max-width: 800px !important;
     margin: 0 auto;
 }
 
 .inner {
-    max-width: 1400px !important;
+    max-width: 800px !important;
 }
 
 /* Two-column layout styles */
@@ -22,6 +22,9 @@ categories: ai llm
     display: flex;
     gap: 1rem;
     margin: 1rem 0;
+    max-width: 1400px !important;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .text-column {
@@ -68,6 +71,11 @@ categories: ai llm
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
+    }
+    
+    /* Reset container width on mobile to prevent horizontal scroll */
+    .container {
+        max-width: 100% !important;
     }
 }
 </style>
@@ -375,3 +383,7 @@ CreditMetrics, by incorporating these features and methodologies, provides a rob
 </div>
 </div>
 </div>
+
+We now have a good summary of this model documentation of 200 pages (although I would say this is not exactly what I would call a model documentation as it mostly focuses on the theory and not the implementation details).
+
+It is already giving good insights for a validation like the different approaches, challenges when estimating credit risk or data requirements. We can maybe dig deeper in some topics such as the challenges the response is proposing.
