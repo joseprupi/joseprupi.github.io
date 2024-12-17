@@ -1,0 +1,117 @@
+---
+layout: post
+title: "Understanding LLM Responses: A Deep Dive"
+date: 2024-12-17
+categories: ai llm
+---
+
+<style>
+/* Two-column layout styles */
+.container {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.text-column {
+    flex: 1;
+}
+
+.prompt-column {
+    flex: 1;
+    background: #f5f5f5;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.prompt {
+    font-family: monospace;
+    margin-bottom: 1rem;
+    white-space: pre-wrap;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+}
+
+/* Optional: Style improvements for the prompts */
+.prompt-label {
+    color: #666;
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.response {
+    border-top: 1px solid #ddd;
+    margin-top: 1rem;
+    padding-top: 1rem;
+}
+</style>
+
+# Understanding LLM Responses
+
+This is a regular single-column introduction that spans the full width. Here we can explain what we're going to explore in this post.
+
+## First Experiment
+
+<div class="container">
+<div class="text-column">
+
+When we ask an LLM about creative tasks, we often see interesting patterns in its responses. Let's analyze how it approaches story generation.
+
+The response shows several key characteristics:
+1. Structure follows the prompt closely
+2. Creative elements are well-integrated
+3. Maintains consistency throughout
+
+</div>
+<div class="prompt-column">
+<div class="prompt">
+<div class="prompt-label">Prompt:</div>
+
+Write a short story about a robot learning to paint.
+
+<div class="response">
+The robot held the brush awkwardly in its metallic fingers, servo motors whirring as it tried to replicate the gentle strokes it had observed in countless videos...
+</div>
+</div>
+</div>
+</div>
+
+## Regular Content Section
+
+Back to single-column content. Here we can discuss general concepts without needing the two-column layout.
+
+## Another Experiment
+
+<div class="container">
+<div class="text-column">
+
+For our second test, we gave the LLM a more technical prompt. Notice how it structures the technical information and maintains clarity while explaining complex concepts.
+
+The key observations from this response:
+- Precise technical terminology
+- Clear step-by-step explanation
+- Practical examples included
+
+</div>
+<div class="prompt-column">
+<div class="prompt">
+<div class="prompt-label">Prompt:</div>
+
+Explain how neural networks process image data.
+
+<div class="response">
+Neural networks process images by first converting them into numerical matrices, where each pixel is represented as a set of RGB values...
+</div>
+</div>
+</div>
+</div>
+
+## Conclusions
+
+This final section uses the full width again to summarize our findings and draw conclusions about LLM behavior.
