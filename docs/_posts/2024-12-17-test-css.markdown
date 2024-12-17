@@ -7,6 +7,7 @@ categories: misc
 
 <style>
 /* Base wrapper styles (original width) */
+/* Base wrapper styles (original width) */
 .page-content .wrapper,
 .wrapper {
     max-width: 800px !important;
@@ -25,6 +26,9 @@ categories: misc
     margin-right: auto !important;
     padding-left: 30px;
     padding-right: 30px;
+    position: relative;  /* Added */
+    left: 50%;          /* Added */
+    transform: translateX(-50%);  /* Added */
 }
 
 /* Two-column layout styles */
@@ -33,16 +37,17 @@ categories: misc
     gap: 1rem;
     margin: 1rem 0;
     width: 100%;
+    max-width: 1400px !important;  /* Added */
 }
 
 .text-column {
-    flex: 1 1 50%; /* Changed to explicit 50% basis */
-    min-width: 0; /* Prevents flex items from overflowing */
+    flex: 1 1 50%;
+    min-width: 0;
 }
 
 .prompt-column {
-    flex: 1 1 50%; /* Changed to explicit 50% basis */
-    min-width: 0; /* Prevents flex items from overflowing */
+    flex: 1 1 50%;
+    min-width: 0;
     background: #f5f5f5;
     padding: 0.5rem;
     border-radius: 8px;
