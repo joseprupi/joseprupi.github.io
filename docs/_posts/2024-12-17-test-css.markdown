@@ -12,7 +12,7 @@ categories: misc
     display: flex;
     gap: 1rem;
     margin: 1rem 0;
-    background-color: #f8fafc;  /* Light bluish background */
+    background-color: #BBD7F0;  /* Light bluish background */
     padding: 1rem;
     border-radius: 8px;
 }
