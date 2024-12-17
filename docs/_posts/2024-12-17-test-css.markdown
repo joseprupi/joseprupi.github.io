@@ -95,15 +95,14 @@ What should a model validation contain according to SR 11-7?
 
 <div class="response" markdown="1">
 
-Here are the main features of markdown:
+<!-- Here are the main features of markdown:
 
 * Basic formatting:
   * **Bold text** using double asterisks
   * *Italic text* using single asterisks
-  * `Code` using backticks
+  * `Code` using backticks -->
 
 According to SR 11-7, a comprehensive model validation should include the following key components:
-
 * **Evaluation of Conceptual Soundness:** An in-depth assessment of the model's design, theory, and logic, including underlying assumptions and methodology. This ensures that the model is appropriate for its intended purpose.
 * **Ongoing Monitoring:** Regular checks to confirm that the model's performance aligns with expectations over time. This includes tracking key performance metrics and reviewing outcomes to identify any significant deviations.
 * **Outcomes Analysis:** A quantitative comparison of the model's predictions against actual outcomes. This step helps assess the accuracy and reliability of the model in real-world conditions.
