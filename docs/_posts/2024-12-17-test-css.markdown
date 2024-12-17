@@ -6,7 +6,6 @@ categories: ai llm
 ---
 
 <style>
-/* Two-column layout styles */
 .container {
     display: flex;
     gap: 2rem;
@@ -27,28 +26,22 @@ categories: ai llm
 .prompt {
     font-family: monospace;
     margin-bottom: 1rem;
-    white-space: pre-wrap;
 }
 
-/* Responsive layout */
+.prompt-text {
+    white-space: pre-wrap;  /* Only preserve whitespace for the actual prompt */
+}
+
+.response {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ddd;
+}
+
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
     }
-}
-
-/* Optional: Style improvements for the prompts */
-.prompt-label {
-    color: #666;
-    font-size: 0.9em;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-}
-
-.response {
-    border-top: 1px solid #ddd;
-    margin-top: 1rem;
-    padding-top: 1rem;
 }
 </style>
 
