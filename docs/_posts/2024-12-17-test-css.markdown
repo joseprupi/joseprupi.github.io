@@ -279,7 +279,7 @@ Let's ask the LLM for help.
 <div class="prompt-column">
 <div class="prompt">
 Given this code to train a credit model, could you create and give me the tests that should be performed according to SR 11-7? The tests should have visualization when possible, the scope should be as broad as possible and the results compiled into a tex file, including the images. Could you make it in a way that all outputs (tex and images) are in the same folder?
-<div class="response">
+<div class="response" markdown="1">
 Lots of Python code.
 </div>
 </div>
@@ -331,3 +331,47 @@ Few things before keep moving:
 * The responses below from Notebook LM include references to the input, as shown in the example image. This is particularly useful for validation purposes, ensuring that the source of information is clearly traceable.
 
 ![image](/assets/notebooklm.jpeg)
+
+<div class="container">
+<div class="text-column">
+We can start asking some questions to the LLM about this documentation:
+</div>
+<div class="prompt-column">
+<div class="prompt">
+What is CreditMetrics?
+<div class="response" markdown="1">
+CreditMetrics: A Comprehensive Framework for Measuring Portfolio Credit Risk
+
+CreditMetrics is a tool for assessing portfolio risk that arises from changes in the value of debt due to changes in the credit quality of obligors. This approach considers changes in value caused by potential defaults, upgrades, and downgrades in credit quality. CreditMetrics focuses on calculating the volatility of value (Value at Risk or VaR), not just the expected losses, within the context of a portfolio. It accounts for the correlation of credit quality movements across obligors, enabling the direct calculation of diversification benefits or potential over-concentrations across the portfolio.
+
+CreditMetrics' constructive approach focuses on modeling the mechanisms of value changes stemming from credit events rather than directly observing value changes, which is unlike market risk models that typically rely on readily available market data.
+Here's a breakdown of CreditMetrics' key features:
+
+* Types of Risks Modeled: CreditMetrics primarily focuses on credit risk arising from credit events such as upgrades, downgrades, or defaults. It can also incorporate certain market risk components like market-driven volatility of credit exposures in instruments like swaps, forwards, and bonds.
+
+* Portfolio Approach: CreditMetrics emphasizes a portfolio approach to credit risk assessment because:
+  - Credit portfolios exhibit diversification benefits due to imperfect correlations among obligors' credit quality changes.
+  - Innovative credit instruments, such as credit derivatives, explicitly derive value from correlation estimates or credit events.
+
+* Challenges in Estimating Portfolio Credit Risk: Estimating portfolio credit risk is more challenging than estimating portfolio market risk due to:
+   - Non-normality of Credit Returns: The distribution of credit returns is often skewed with a long downside tail due to the possibility of defaults, making it difficult to characterize the distribution using only the mean and standard deviation.
+   - Difficulty in Modeling Correlations: Unlike equities with readily available high-frequency market data, credit quality correlations are difficult to estimate directly from historical data due to data sparsity and infrequent pricing.
+
+* Data Requirements: Implementing CreditMetrics requires three primary types of data:
+   - Likelihoods of credit quality migration: Transition matrices provide the probabilities of an obligor migrating from one credit rating to another or defaulting over a given time horizon. These can be obtained from rating agencies or calculated from other sources like KMV's Expected Default Frequencies (EDFs).
+   - Likelihoods of joint credit quality migration: Capturing the portfolio effect requires estimating the likelihood of joint credit quality movements between obligors. This is typically achieved by either historically tabulating joint credit rating moves or proposing models to capture the correlation between obligors' creditworthiness, such as the asset value model.
+   - Valuation estimates: Data is needed to calculate the change in value for each instrument given a possible credit quality migration. This includes information such as coupon rates, maturities, recovery rates for different seniority classes, and credit spreads for various rating categories.
+
+* Advanced Modeling Features: CreditMetrics incorporates features for more precise risk estimation:
+   - Market-Driven Exposure Uncertainty: For instruments like swaps and forwards, where credit exposure depends on market rates, market volatilities are considered to model the uncertainty in potential losses.
+   - Recovery Rate Uncertainty: Recovery rates in the event of default are inherently uncertain. CreditMetrics allows for treating recoveries as random quantities using mean and standard deviation estimates.
+
+* Risk Measures: CreditMetrics offers two primary risk measures:
+   - Standard Deviation: A symmetric measure of dispersion around the average portfolio value, reflecting the variability in portfolio value due to credit quality changes.
+   - Percentile Level: Represents a specific point in the distribution of portfolio values, indicating the lowest value the portfolio is expected to reach with a given probability (e.g., the 1st percentile).
+
+CreditMetrics, by incorporating these features and methodologies, provides a robust and comprehensive framework for measuring and managing credit risk within a portfolio context. It allows institutions to make informed decisions regarding risk mitigation, limit setting, and economic capital allocation, ultimately leading to more efficient utilization of risk-taking capacity.
+</div>
+</div>
+</div>
+</div>
