@@ -24,6 +24,7 @@ categories: misc
     margin-right: auto;
     padding-left: 30px;
     padding-right: 30px;
+    width: 100%;  /* Added this */
 }
 
 /* Two-column layout styles */
@@ -31,8 +32,10 @@ categories: misc
     display: flex;
     gap: 1rem;
     margin: 1rem 0;
+    width: 100%;  /* Added this */
 }
 
+/* These remain the same */
 .text-column {
     flex: 1;
 }
