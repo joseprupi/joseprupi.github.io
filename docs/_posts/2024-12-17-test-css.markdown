@@ -291,7 +291,6 @@ Lots of Python code.
 The result from this request is some code that I execute in a cell right after the last one from the Notebook I downloaded. It works straight away, and after compiling the tex file, this is the result:
 </div>
 <div class="prompt-column">
-<div class="prompt">
 <div class="response" markdown="1">
 ![image](/assets/output1.jpg)
 ![image](/assets/output2.jpg)
