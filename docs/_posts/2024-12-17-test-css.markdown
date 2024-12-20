@@ -85,13 +85,6 @@ p {
     At the end there is an app, front to back, for Model Validation if you want to see that.
 </div>
 
-* TOC
-{:toc}
-
-### Intro
-
-Let's begin with what I mean by model validation in this post. Yes, it involves ensuring that models function correctly, a broad topic in itself, but this is specifically focused within the US banking environment. The rest of this section is just me asking ChatGPT about what a Model Validation in banking is, to both post it here for people that don't know about it and also to make sure understands how this works.
-
 <div class="container">
     <div class="prompt">
         What should a model validation contain according to SR 11-7?
@@ -106,6 +99,13 @@ Let's begin with what I mean by model validation in this post. Yes, it involves 
         </div>
     </div>
 </div>
+
+* TOC
+{:toc}
+
+### Intro
+
+Let's begin with what I mean by model validation in this post. Yes, it involves ensuring that models function correctly, a broad topic in itself, but this is specifically focused within the US banking environment. The rest of this section is just me asking ChatGPT about what a Model Validation in banking is, to both post it here for people that don't know about it and also to make sure understands how this works.
 
 <div class="container">
 <div class="text-column">
