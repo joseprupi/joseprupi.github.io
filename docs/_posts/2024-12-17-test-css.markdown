@@ -9,6 +9,7 @@ categories: misc
 /* Two-column layout styles */
 /* Two-column layout styles */
 /* Base post styles */
+/* Base post styles */
 .post {
     max-width: 100%;
     margin: 0 auto;
@@ -25,78 +26,62 @@ categories: misc
 
 /* Container styling */
 .container {
-    margin: 1rem 0;
+    margin: 0.5rem 0;
     background-color: #f8f9fa;
-    padding: 1.5rem;
+    padding: 1rem;
     border-radius: 8px;
     border-left: 4px solid #BBD7F0;
 }
 
 /* Text column styling */
 .text-column {
-    margin-bottom: 1rem;
-    font-size: 1.1em;
+    margin-bottom: 0.5rem;
+    font-size: 1em;
     color: #2c3e50;
 }
 
 /* Prompt section styling */
 .prompt-column {
     background: #ffffff;
-    padding: 1rem;
+    padding: 0.75rem;
     border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .prompt {
     font-family: monospace;
     background-color: #f5f7fa;
-    padding: 1rem;
+    padding: 0.75rem;
     border-radius: 4px;
     border: 1px solid #e2e8f0;
-    margin-bottom: 1rem;
-    white-space: pre-wrap;
+    margin-bottom: 0.5rem;
 }
 
 /* Response section styling */
 .response {
-    border-top: 2px solid #edf2f7;
-    margin-top: 1rem;
-    padding-top: 1rem;
+    border-top: 1px solid #edf2f7;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
 }
 
-/* Prompt label styling */
-.prompt-label {
-    color: #4a5568;
-    font-size: 0.9em;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-/* List styling in responses */
+/* Make lists more compact */
 .response ul {
-    margin: 0.5rem 0;
-    padding-left: 1.5rem;
+    margin: 0.2rem 0;
+    padding-left: 1.2rem;
     list-style-type: disc;
 }
 
 .response ul li {
-    margin-bottom: 0.5rem;
-    line-height: 1.5;
+    margin-bottom: 0.2rem;
+    line-height: 1.3;
 }
 
-/* Spacing between containers */
-.container + .container {
-    margin-top: 2rem;
+/* Reduce paragraph spacing */
+.response p {
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
 }
 
 /* Markdown content styling */
-.response p {
-    margin-bottom: 1rem;
-    line-height: 1.6;
-}
-
 .response strong {
     font-weight: 600;
 }
@@ -111,8 +96,8 @@ categories: misc
 
 /* Header styling */
 h1, h2, h3, h4, h5, h6 {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
     color: #2c3e50;
 }
 
@@ -125,19 +110,20 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.9em;
 }
 
+/* Spacing between containers */
+.container + .container {
+    margin-top: 1rem;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .container {
-        padding: 1rem;
-        margin: 0.5rem 0;
+        padding: 0.75rem;
+        margin: 0.25rem 0;
     }
     
     .prompt-column {
-        padding: 0.75rem;
-    }
-    
-    .text-column {
-        font-size: 1em;
+        padding: 0.5rem;
     }
 }
 </style>
