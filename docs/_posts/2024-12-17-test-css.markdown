@@ -6,7 +6,7 @@ categories: misc
 ---
 
 <style>
-/* Single-column layout styles */
+/* Base styles */
 .container {
     margin: 1rem 0;
     background-color: #BBD7F0;  /* Light bluish background */
@@ -14,12 +14,20 @@ categories: misc
     border-radius: 8px;
 }
 
+/* Summary box styles */
+div[style*="border: 1px solid #ccc"] {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Prompt and response styles */
 .prompt {
     font-family: monospace;
     margin-bottom: 0.5rem;
 }
 
-/* Style improvements for prompts */
 .prompt-label {
     color: #666;
     font-size: 0.9em;
@@ -33,7 +41,7 @@ categories: misc
     padding-top: 0.5rem;
 }
 
-/* Control list spacing in responses */
+/* List styling in responses */
 .response ul {
     margin-top: 0.3rem;
     margin-bottom: 0.3rem;
@@ -41,6 +49,34 @@ categories: misc
 
 .response ul li {
     margin-bottom: 0.3rem;
+}
+
+/* Table of contents styling */
+.toc {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 5px;
+}
+
+/* Markdown content styling */
+[markdown="1"] {
+    line-height: 1.6;
+}
+
+/* General text styling */
+p {
+    margin: 1rem 0;
+    line-height: 1.6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        margin: 0.5rem 0;
+        padding: 0.75rem;
+    }
 }
 </style>
 
