@@ -164,13 +164,14 @@ These elements ensure a robust validation process, enabling institutions to iden
 </div>
 </div>
 
-
-And what form and structure does a model validation report take?
-<div class="llm-container">
-    <div class="prompt">
+<div class="container">
+<div class="text-column"> 
+And what form and structure does a model validation take?
+</div>
+<div class="prompt-column">
+<div class="prompt">
 How should these results be presented?
-    </div>
-    <div class="response" markdown="1">
+<div class="response" markdown="1">
 Model validation results, in line with SR 11-7, should be presented in a structured, transparent, and comprehensive report, typically covering the following sections:
 * **Executive Summary**: A concise overview of the validation's key findings, model strengths and weaknesses, and an overall assessment of the model’s risk level and validation outcome (e.g., approved, approved with conditions, or not approved).
 * **Scope and Objectives**: A clear outline of the validation’s purpose, including the model’s intended use, its assumptions, and limitations. It should specify the validation scope, such as whether it's a full-scope or targeted validation.
@@ -184,7 +185,8 @@ Model validation results, in line with SR 11-7, should be presented in a structu
 Effective presentation should ensure clarity for stakeholders, including management and regulators, with visual aids like charts and tables where helpful.
 </div>
 </div>
-
+</div>
+</div>
 
 Ok, so validating models in banking is assessing they work properly and then write the results in a report. And ChatGPT knows about it. 
 
