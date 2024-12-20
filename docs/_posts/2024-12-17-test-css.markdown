@@ -93,10 +93,10 @@ p {
 Let's begin with what I mean by model validation in this post. Yes, it involves ensuring that models function correctly, a broad topic in itself, but this is specifically focused within the US banking environment. The rest of this section is just me asking ChatGPT about what a Model Validation in banking is, to both post it here for people that don't know about it and also to make sure understands how this works.
 
 <div class="container">
-    <div class="prompt">
+    <div class="prompt" markdown="1">
         What does model validation mean in the US banking environment? Could you summarize it with few sentences?
     </div>
-    <div class="response">
+    <div class="response" markdown="1">
         In the U.S. banking environment, model validation refers to the rigorous process of evaluating financial models to ensure they are reliable, accurate, and compliant with regulatory standards. It involves assessing the model's performance, assumptions, limitations, and potential risks. This practice is essential for managing model risk and adhering to regulatory guidelines such as SR 11-7, which requires banks to maintain robust model risk management frameworks to prevent financial and operational issues.
     </div>
 </div>
