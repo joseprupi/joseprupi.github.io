@@ -147,14 +147,13 @@ In the U.S. banking environment, model validation refers to the rigorous process
 </div>
 </div>
 
-<div class="container">
-<div class="text-column">
+
 Alright, we have a base now. We understand that validating models is a regulated process guided by SR 11-7 so let's gather some more detail on what this should be:
-</div>
-<div class="prompt-column">
-<div class="prompt">
+<div class="llm-container">
+    <div class="prompt">
 What should a model validation contain according to SR 11-7?
-<div class="response" markdown="1">
+    </div>
+    <div class="response">
 According to SR 11-7, a comprehensive model validation should include the following key components:
 * **Evaluation of Conceptual Soundness:** An in-depth assessment of the model's design, theory, and logic, including underlying assumptions and methodology. This ensures that the model is appropriate for its intended purpose.
 * **Ongoing Monitoring:** Regular checks to confirm that the model's performance aligns with expectations over time. This includes tracking key performance metrics and reviewing outcomes to identify any significant deviations.
@@ -162,8 +161,6 @@ According to SR 11-7, a comprehensive model validation should include the follow
 * **Benchmarking and Back-Testing:** Comparing the model's results with alternative models and validating performance through back-testing with historical data.
 * **Assessment of Limitations and Uncertainty:** Identifying potential limitations in the model's framework and quantifying any associated uncertainties or risks.
 These elements ensure a robust validation process, enabling institutions to identify and mitigate model risks effectively, maintaining compliance with regulatory requirements.
-</div>
-</div>
 </div>
 </div>
 
