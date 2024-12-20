@@ -153,7 +153,7 @@ Alright, we have a base now. We understand that validating models is a regulated
     <div class="prompt">
 What should a model validation contain according to SR 11-7?
     </div>
-    <div class="response">
+    <div class="response" markdown="1">
 According to SR 11-7, a comprehensive model validation should include the following key components:
 * **Evaluation of Conceptual Soundness:** An in-depth assessment of the model's design, theory, and logic, including underlying assumptions and methodology. This ensures that the model is appropriate for its intended purpose.
 * **Ongoing Monitoring:** Regular checks to confirm that the model's performance aligns with expectations over time. This includes tracking key performance metrics and reviewing outcomes to identify any significant deviations.
