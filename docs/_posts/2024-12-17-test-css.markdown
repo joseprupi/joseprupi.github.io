@@ -8,59 +8,136 @@ categories: misc
 <style>
 /* Two-column layout styles */
 /* Two-column layout styles */
+/* Base post styles */
+.post {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* TL;DR box styling */
+.tldr-box {
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Container styling */
 .container {
-    display: flex;
-    gap: 1rem;
     margin: 1rem 0;
-    background-color: #BBD7F0;  /* Light bluish background */
-    padding: 1rem;
+    background-color: #f8f9fa;
+    padding: 1.5rem;
     border-radius: 8px;
+    border-left: 4px solid #BBD7F0;
 }
 
+/* Text column styling */
 .text-column {
-    flex: 1;
+    margin-bottom: 1rem;
+    font-size: 1.1em;
+    color: #2c3e50;
 }
 
+/* Prompt section styling */
 .prompt-column {
-    flex: 1;
-    background: #f5f5f5;
-    padding: 0.5rem;
-    border-radius: 8px;
+    background: #ffffff;
+    padding: 1rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .prompt {
     font-family: monospace;
-    margin-bottom: 0.5rem;
+    background-color: #f5f7fa;
+    padding: 1rem;
+    border-radius: 4px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 1rem;
+    white-space: pre-wrap;
 }
 
-/* Style improvements for prompts */
+/* Response section styling */
+.response {
+    border-top: 2px solid #edf2f7;
+    margin-top: 1rem;
+    padding-top: 1rem;
+}
+
+/* Prompt label styling */
 .prompt-label {
-    color: #666;
+    color: #4a5568;
     font-size: 0.9em;
     font-weight: bold;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
-.response {
-    border-top: 1px solid #ddd;
-    margin-top: 0.5rem;
-    padding-top: 0.5rem;
-}
-
-/* Control list spacing in responses */
+/* List styling in responses */
 .response ul {
-    margin-top: 0.3rem;
-    margin-bottom: 0.3rem;
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+    list-style-type: disc;
 }
 
 .response ul li {
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
 }
 
-/* Responsive layout */
+/* Spacing between containers */
+.container + .container {
+    margin-top: 2rem;
+}
+
+/* Markdown content styling */
+.response p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.response strong {
+    font-weight: 600;
+}
+
+/* Table of contents styling */
+.toc {
+    background: #f8f9fa;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 4px;
+}
+
+/* Header styling */
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+/* Code blocks in responses */
+.response code {
+    background-color: #f5f7fa;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: 0.9em;
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
     .container {
-        flex-direction: column;
+        padding: 1rem;
+        margin: 0.5rem 0;
+    }
+    
+    .prompt-column {
+        padding: 0.75rem;
+    }
+    
+    .text-column {
+        font-size: 1em;
     }
 }
 </style>
@@ -68,6 +145,21 @@ categories: misc
 <div style="border: 1px solid #ccc; background-color: #f9f9f9; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
   <strong>TL;DR:</strong> This post is mostly me following the steps of a Model Validation in Banking assisted by LLMs. The result is impressive to me in terms of quality and the time saving this could represent.
     At the end there is an app, front to back, for Model Validation if you want to see that.
+</div>
+
+<div class="container">
+    <div class="text-column">
+        So, what does Chat GPT say about model validation in this context?
+    </div>
+    <div class="prompt-column">
+        <div class="prompt-label">Prompt:</div>
+        <div class="prompt">
+            What does model validation mean in the US banking environment? Could you summarize it with few sentences?
+        </div>
+        <div class="response">
+            In the U.S. banking environment, model validation refers to the rigorous process of evaluating financial models to ensure they are reliable, accurate, and compliant with regulatory standards...
+        </div>
+    </div>
 </div>
 
 * TOC
