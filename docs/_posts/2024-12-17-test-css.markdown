@@ -260,13 +260,14 @@ This code appears to be part of a production system where model stability over t
 
 This is already surprisingly good to me from a Validation point of view. It explains the code and also gets into some of the model parametrization and how that affects its behavior. And insights about the performance over time.
 
-
+<div class="container">
+<div class="text-column"> 
 Let's ask for his opinion about the code:
-<div class="llm-container">
-    <div class="prompt">
+</div>
+<div class="prompt-column">
+<div class="prompt">
 Given this code, are there errors or would you recommend enhancements to it?
-    </div>
-    <div class="response" markdown="1">
+<div class="response" markdown="1">
 Here are the key issues and recommended enhancements:
 1. Type Conversion Issues:
 ``` Python
@@ -305,7 +306,8 @@ X_test = convert_strings(X_test)
 * Add model performance metrics beyond AUC
 </div>
 </div>
-
+</div>
+</div>
 
 While some of the recommendations lean more toward implementation design and might be more useful for developers, others provide good advice for validation purposes. For example, having evidence to support model parameterization is essential for a validation. Unlike Kaggle, where the primary objective is to achieve the highest score by any means, banking places a strong emphasis on justifying the decisions made in the model design.
 
