@@ -12,6 +12,7 @@ categories: misc
 /* Base post styles */
 /* Base post styles */
 /* Base post styles */
+/* Base post styles */
 .post {
     max-width: 100%;
     margin: 0 auto;
@@ -29,6 +30,7 @@ categories: misc
 /* LLM conversation container */
 .llm-container {
     margin: 1rem 0;
+    font-family: monospace;
     background-color: #f8f9fa;
     padding: 1.2rem;
     border-radius: 8px;
@@ -37,11 +39,6 @@ categories: misc
 
 /* Prompt styling */
 .prompt {
-    font-family: monospace;
-    background-color: #f5f7fa;
-    padding: 1rem;
-    border-radius: 4px;
-    border: 1px solid #e2e8f0;
     margin-bottom: 0.8rem;
 }
 
@@ -102,8 +99,6 @@ h6 { font-size: 0.67em; }
     background-color: #f5f7fa;
     padding: 0.2em 0.4em;
     border-radius: 3px;
-    font-family: monospace;
-    font-size: 0.9em;
 }
 
 /* Spacing between containers */
@@ -116,15 +111,6 @@ h6 { font-size: 0.67em; }
     .llm-container {
         padding: 1rem;
         margin: 0.8rem 0;
-    }
-    
-    .prompt {
-        padding: 0.8rem;
-    }
-    
-    h1, h2, h3, h4, h5, h6 {
-        margin-top: 1.5rem;
-        margin-bottom: 0.8rem;
     }
 }
 </style>
