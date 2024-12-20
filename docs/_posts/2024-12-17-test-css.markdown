@@ -124,7 +124,7 @@ h6 { font-size: 0.67em; }
     <div class="prompt">
         What does model validation mean in the US banking environment? Could you summarize it with few sentences?
     </div>
-    <div class="response">
+    <div class="response" markdown="1">
         In the U.S. banking environment, model validation refers to the rigorous process of evaluating financial models to ensure they are reliable, accurate, and compliant with regulatory standards...
     </div>
 </div>
@@ -164,14 +164,13 @@ These elements ensure a robust validation process, enabling institutions to iden
 </div>
 </div>
 
-<div class="container">
-<div class="text-column"> 
-And what form and structure does a model validation take?
-</div>
-<div class="prompt-column">
-<div class="prompt">
+
+And what form and structure does a model validation report take?
+<div class="llm-container">
+    <div class="prompt">
 How should these results be presented?
-<div class="response" markdown="1">
+    </div>
+    <div class="response" markdown="1">
 Model validation results, in line with SR 11-7, should be presented in a structured, transparent, and comprehensive report, typically covering the following sections:
 * **Executive Summary**: A concise overview of the validation's key findings, model strengths and weaknesses, and an overall assessment of the model’s risk level and validation outcome (e.g., approved, approved with conditions, or not approved).
 * **Scope and Objectives**: A clear outline of the validation’s purpose, including the model’s intended use, its assumptions, and limitations. It should specify the validation scope, such as whether it's a full-scope or targeted validation.
@@ -185,8 +184,7 @@ Model validation results, in line with SR 11-7, should be presented in a structu
 Effective presentation should ensure clarity for stakeholders, including management and regulators, with visual aids like charts and tables where helpful.
 </div>
 </div>
-</div>
-</div>
+
 
 Ok, so validating models in banking is assessing they work properly and then write the results in a report. And ChatGPT knows about it. 
 
@@ -211,14 +209,13 @@ I am not sure how Kaggle works and it is sometimes confusing to me, but I found 
 Having a high level understanding of the implementation it is one of the first and fundamental steps in a model validation. LLMs might be able to help with this, and I will use Claude 3.5 Sonnet as seems to perform well with code related tasks, or at least is better than Chat GPT (which I found to be true after some tests where it proved to be significantly better).
 
 
-<div class="container">
-<div class="text-column"> 
+
 Let’s see what the model can tell us about the code. I’ve converted the Jupyter notebook into a script, copied and pasted the resulting script into Claude AI’s prompt, and asked:
-</div>
-<div class="prompt-column">
-<div class="prompt">
+<div class="llm-container">
+    <div class="prompt">
 What is this code doing?
-<div class="response" markdown="1">
+    </div>
+    <div class="response" markdown="1">
 Let me break down this code - it appears to be implementing a credit risk or default prediction model with a focus on stability across time. Here are the key components:
 
 1 Data Loading and Preprocessing:
@@ -259,19 +256,17 @@ Let me break down this code - it appears to be implementing a credit risk or def
 This code appears to be part of a production system where model stability over time is as important as raw predictive performance. The stability metric is particularly interesting as it penalizes both declining performance over time and high variance in performance, which are important considerations for deployed models.
 </div>
 </div>
-</div>
-</div>
+
 
 This is already surprisingly good to me from a Validation point of view. It explains the code and also gets into some of the model parametrization and how that affects its behavior. And insights about the performance over time.
 
-<div class="container">
-<div class="text-column"> 
+
 Let's ask for his opinion about the code:
-</div>
-<div class="prompt-column">
-<div class="prompt">
+<div class="llm-container">
+    <div class="prompt">
 Given this code, are there errors or would you recommend enhancements to it?
-<div class="response" markdown="1">
+    </div>
+    <div class="response" markdown="1">
 Here are the key issues and recommended enhancements:
 1. Type Conversion Issues:
 ``` Python
@@ -310,8 +305,7 @@ X_test = convert_strings(X_test)
 * Add model performance metrics beyond AUC
 </div>
 </div>
-</div>
-</div>
+
 
 While some of the recommendations lean more toward implementation design and might be more useful for developers, others provide good advice for validation purposes. For example, having evidence to support model parameterization is essential for a validation. Unlike Kaggle, where the primary objective is to achieve the highest score by any means, banking places a strong emphasis on justifying the decisions made in the model design.
 
