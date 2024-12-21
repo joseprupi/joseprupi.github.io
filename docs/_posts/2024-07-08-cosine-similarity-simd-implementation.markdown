@@ -5,6 +5,8 @@ date: 2024-07-08 00:00:00 -0000
 categories: misc
 ---
 
+*Edit: This post made it to the front page of Hacker News! You can find the discussion [here](https://news.ycombinator.com/item?id=41842339).*
+
 There isn’t much to see here, just me dusting off some old architecture knowledge to parallelize computations using SIMD, implement it in C++, and compare the results with Python.
 
 The task involved creating a vectorized version of the cosine similarity in C++ to compare its performance against Python, NumPy, SciPy, and plain C++ implementations.

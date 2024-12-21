@@ -5,6 +5,8 @@ date: 2023-08-19 00:00:00 -0000
 categories: misc
 ---
 
+*Edit: This post made it to the front page of Hacker News! You can find the discussion [here](https://news.ycombinator.com/item?id=37407802).*
+
 A long long time ago I was young and going to school to attend a Computer Science program. It was so long ago that the data structures course was done in C++ and Java was shown to us as the new kid on the block.
 
 Something I learned in CS that sticked in my head were Genetic Algorithms. I guess the reason was that GA were one of the first (and few) applied things I saw in CS and it seemed to me a simple, intuitive and brilliant idea. Today I was bored at home and I decided to play a little bit with it. 
