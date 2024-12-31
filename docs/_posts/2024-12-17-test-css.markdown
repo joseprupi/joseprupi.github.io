@@ -137,10 +137,11 @@ h6 { font-size: 0.67em; }
 Before we dive in, let’s see what an **LLM** (in this case, ChatGPT) has to say about **model validation** in **US banking**.
 
 
-Let's begin with what I mean by model validation in this post. Yes, it involves ensuring that models function correctly, a broad topic in itself, but this is specifically focused within the US banking environment. The rest of this section is just me asking ChatGPT about what a Model Validation in banking is, to both post it here for people that don't know about it and also to make sure understands how this works.
+Let's begin with what I mean by model validation in this post. Yes, it involves ensuring that models function correctly, a broad topic in itself, but this is specifically focused within the US banking environment, where Model validation involves ensuring that financial models are functioning correctly and adhering to regulatory standards such as SR 11-7.
 
 
-So, what does Chat GPT say about model validation in this context?
+Before we dive in, let’s see what ChatGPT has to say about model validation in this context.
+
 <div class="llm-container">
     <div class="prompt">
 What does model validation mean in the US banking environment? Could you summarize it with few sentences?
