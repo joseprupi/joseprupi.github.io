@@ -253,10 +253,10 @@ This code appears to be part of a production system where model stability over t
 </div>
 </div>
 
-This is already surprisingly good to me from a Validation point of view. It explains the code and also gets into some of the model parametrization and how that affects its behavior. And insights about the performance over time.
+It explains the code, touches on model parametrization, and highlights existing time-based performance tests. All are crucial details in a banking Model Validation.
 
+Next, I asked for enhancements:
 
-Let's ask for his opinion about the code:
 <div class="llm-container">
     <div class="prompt">
 Given this code, are there errors or would you recommend enhancements to it?
@@ -300,6 +300,9 @@ X_test = convert_strings(X_test)
 * Add model performance metrics beyond AUC
 </div>
 </div>
+
+**Some** suggestions were more **software-engineering**-focused, but they **also** included important validation aspects like parameter justification and data checks. 
+
 
 While some of the recommendations lean more toward implementation design and might be more useful for developers, others provide good advice for validation purposes. For example, having evidence to support model parameterization is essential for a validation. Unlike Kaggle, where the primary objective is to achieve the highest score by any means, banking places a strong emphasis on justifying the decisions made in the model design.
 
