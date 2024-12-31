@@ -355,13 +355,15 @@ Few things before keep moving:
 
 ![image](/assets/notebooklm.jpeg)
 
-<div class="container">
-<div class="text-column">
+
+
+
 We can start asking some questions to the LLM about this documentation:
-</div>
-<div class="prompt-column">
-<div class="prompt">
+
+<div class="llm-container">
+    <div class="prompt">
 What is CreditMetrics?
+</div>
 <div class="response" markdown="1">
 CreditMetrics: A Comprehensive Framework for Measuring Portfolio Credit Risk
 
@@ -394,8 +396,6 @@ Here's a breakdown of CreditMetrics' key features:
    - Percentile Level: Represents a specific point in the distribution of portfolio values, indicating the lowest value the portfolio is expected to reach with a given probability (e.g., the 1st percentile).
 
 CreditMetrics, by incorporating these features and methodologies, provides a robust and comprehensive framework for measuring and managing credit risk within a portfolio context. It allows institutions to make informed decisions regarding risk mitigation, limit setting, and economic capital allocation, ultimately leading to more efficient utilization of risk-taking capacity.
-</div>
-</div>
 </div>
 </div>
 
