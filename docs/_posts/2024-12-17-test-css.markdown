@@ -264,13 +264,15 @@ Here are the key issues and recommended enhancements:
 1. Type Conversion Issues:
 ``` Python
 for df in [X_train, X_valid, X_test]:
-    df = convert_strings(df)
+        df = convert_strings(df)
 ```
 This reassignment doesn't modify the original dataframes. Should be:
 ``` Python
+
 X_train = convert_strings(X_train)
 X_valid = convert_strings(X_valid)
 X_test = convert_strings(X_test)
+
 ```
 
 2.Missing Error Handling:
@@ -305,19 +307,17 @@ While some of the recommendations lean more toward implementation design and mig
 
 That said, with just a few minutes, I have good insights into this model’s implementation, and I think I could continue asking questions to gather more detailed and useful information for the validation. Now we can start implementing tests.
 
-<div class="container">
-<div class="text-column">
+
 Let's ask the LLM for help.
-</div>
-<div class="prompt-column">
-<div class="prompt">
+<div class="llm-container">
+    <div class="prompt">
 Given this code to train a credit model, could you create and give me the tests that should be performed according to SR 11-7? The tests should have visualization when possible, the scope should be as broad as possible and the results compiled into a tex file, including the images. Could you make it in a way that all outputs (tex and images) are in the same folder?
+</div>
 <div class="response" markdown="1">
 Lots of Python code.
 </div>
 </div>
-</div>
-</div>
+
 
 <div class="container">
 <div class="text-column">
