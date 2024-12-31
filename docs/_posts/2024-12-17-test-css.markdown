@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Using LLMs for Model Validation"
+title: "How LLMs Vastly Simplify and Improve Model Validation in Banking"
 date: 2024-11-01 00:00:00 -0000
 categories: misc
 ---
@@ -125,7 +125,17 @@ h6 { font-size: 0.67em; }
 * TOC
 {:toc}
 
-### Intro
+### Introduction: Model Validation in banking and why it matters
+
+**Model validation** in the US banking environment involves ensuring that financial models are ~~function~~ **functioning** correctly and **adhering to** regulatory standards such as **SR 11-7**. ~~Yes, it involves ensuring that models function correctly, a broad topic in itself, but this is specifically focused within the US banking environment. The rest of this section is just me asking ChatGPT about what a Model Validation in banking is, to both post it here for people that don't know about it and also to make sure understands how this works.~~
+
+**In this post, I’ll** walk through:
+- How **ChatGPT (or other LLMs)** can explain the concept of **Model Validation** in banking  
+- How **LLMs** can **assist** with code reviews and validation tests  
+- An example of how LLMs can handle large model documentation, saving time and reducing errors  
+
+Before we dive in, let’s see what an **LLM** (in this case, ChatGPT) has to say about **model validation** in **US banking**.
+
 
 Let's begin with what I mean by model validation in this post. Yes, it involves ensuring that models function correctly, a broad topic in itself, but this is specifically focused within the US banking environment. The rest of this section is just me asking ChatGPT about what a Model Validation in banking is, to both post it here for people that don't know about it and also to make sure understands how this works.
 
@@ -185,7 +195,7 @@ While this process seems straightforward, it kind of is, it’s also incredibly 
 
 Importantly, the goal of this process isn’t just to produce reports, it’s to improve the quality of models. And In my experience, it works. Development teams tend to build better products when they know their work will be audited, requiring them to justify decisions and document their processes in a way that business stakeholders can easily understand.
 
-### A model
+### Choosing a Sample Model to Validate
 
 Let's now try to reproduce how a validation of a model would look like and how LLMs could assist with it. 
 
@@ -197,7 +207,7 @@ First, we need a model to validate. While almost any model could work for demons
 
 I am not sure how Kaggle works and it is sometimes confusing to me, but I found what appears to be an example notebook that implements a model for the problem, [Home Credit 2024 Starter Notebook](https://www.kaggle.com/code/jetakow/home-credit-2024-starter-notebook/notebook). After downloading the data I have executed the code and it works. 
 
-### Reviewing the code
+### Reviewing the Code with an LLM
 
 Having a high level understanding of the implementation it is one of the first and fundamental steps in a model validation. LLMs might be able to help with this, and I will use Claude 3.5 Sonnet as seems to perform well with code related tasks, or at least is better than Chat GPT (which I found to be true after some tests where it proved to be significantly better).
 
@@ -301,7 +311,7 @@ X_test = convert_strings(X_test)
 
 While some of the recommendations lean more toward implementation design and might be more useful for developers, others provide good advice for validation purposes. For example, having evidence to support model parameterization is essential for a validation. Unlike Kaggle, where the primary objective is to achieve the highest score by any means, banking places a strong emphasis on justifying the decisions made in the model design.
 
-### Validation tests
+### Conducting Validation Tests (SR 11-7) with LLMs
 
 That said, with just a few minutes, I have good insights into this model’s implementation, and I think I could continue asking questions to gather more detailed and useful information for the validation. Now we can start implementing tests.
 
@@ -338,7 +348,7 @@ It is also interesting to see the PSI over time plot along with the average scor
 
 In summary, these tests are good. And it took five minutes to "code", execute, and compile them into a PDF document. And I am sure that following up the conversation and playing with the prompts would lead to even better results.
 
-### Exploring documentation from models
+### Leveraging LLMs to Explore Model Documentation
 
 There are other tools based on LLMs such as Google’s Notebook LM which can help with tasks like exploring model documentation.
 
