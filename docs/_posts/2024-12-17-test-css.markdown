@@ -186,7 +186,7 @@ Effective presentation should ensure clarity for stakeholders, including managem
 </div>
 </div>
 
-In short, validating models in banking requires assessing whether they work properly and creating detailed, regulator-friendly reports. While the process may appear straightforward—and in many ways it is—it remains extremely valuable and is not commonly adopted outside of banking. I believe other industries could benefit from a similar, standardized approach to ensure models are reliable, used appropriately, and accompanied by clear, consistent reporting.
+In short, validating models in banking requires assessing whether they work properly and creating detailed, regulator-friendly reports. And while the process may seem simple and even obvious —and in many ways it is— it also is extremely valuable and not commonly adopted outside of banking. I believe other industries could benefit from a similar, standardized approach to ensure models are reliable and used appropriately through clear, consistent reporting.
 
 Importantly, the goal of this process isn’t just to produce reports, but to improve the quality of models. From my experience, it works. Development teams build better products when they know their work will be audited, requiring them to justify decisions and document their processes in ways that business stakeholders can easily understand.
 
