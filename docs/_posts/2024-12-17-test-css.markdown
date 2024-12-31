@@ -208,6 +208,7 @@ Let’s see what the model can tell us about the code. I’ve converted the Jupy
 <div class="llm-container">
     <div class="prompt">
 What is this code doing?
+</div>
 <div class="response" markdown="1">
 Let me break down this code - it appears to be implementing a credit risk or default prediction model with a focus on stability across time. Here are the key components:
 
