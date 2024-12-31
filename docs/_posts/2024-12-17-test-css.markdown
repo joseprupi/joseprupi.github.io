@@ -155,6 +155,7 @@ In the U.S. banking environment, model validation refers to the rigorous process
 </div>
 </div>
 
+### Key Components of SR 11-7
 
 Alright, we have a base now. We understand that validating models is a regulated process guided by SR 11-7 so let's gather some more detail on what this should be:
 <div class="llm-container">
@@ -194,11 +195,9 @@ Effective presentation should ensure clarity for stakeholders, including managem
 </div>
 </div>
 
-Ok, so validating models in banking is assessing they work properly and then write the results in a report. And ChatGPT knows about it. 
+In short, validating models in banking requires assessing whether they work properly and creating detailed, regulator-friendly reports. While the process may appear straightforward—and in many ways it is—it remains extremely valuable and is not commonly adopted outside of banking. I believe other industries could benefit from a similar, standardized approach to ensure models are reliable, used appropriately, and accompanied by clear, consistent reporting.
 
-While this process seems straightforward, it kind of is, it’s also incredibly useful. And it might be a topic for a different writing, but I don’t believe this practice is common outside of banking, which makes me think that other industries could benefit from adopting a similar approach: a standardized process that ensures models are reliable and used appropriately, with clear and consistent reporting.
-
-Importantly, the goal of this process isn’t just to produce reports, it’s to improve the quality of models. And In my experience, it works. Development teams tend to build better products when they know their work will be audited, requiring them to justify decisions and document their processes in a way that business stakeholders can easily understand.
+Importantly, the goal of this process isn’t just to produce reports, but to improve the quality of models. From my experience, it works. Development teams build better products when they know their work will be audited, requiring them to justify decisions and document their processes in ways that business stakeholders can easily understand.
 
 ### Choosing a Sample Model to Validate
 
