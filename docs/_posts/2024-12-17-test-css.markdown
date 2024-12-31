@@ -403,13 +403,11 @@ We now have a good summary of this model documentation of 200 pages (although I 
 
 It is already giving good insights for a validation like the different approaches, challenges when estimating credit risk or data requirements. We can maybe dig deeper in some topics such as the challenges the response is proposing.
 
-<div class="container">
-<div class="text-column"> 
 Let's ask for some more detail about the model.
-</div>
-<div class="prompt-column">
-<div class="prompt">
+<div class="llm-container">
+    <div class="prompt">
 How does the model address the non-normality of credit returns for better results?
+</div>
 <div class="response" markdown="1">
 The sources highlight that credit returns deviate significantly from a normal distribution, primarily due to the possibility of defaults, which creates a long downside tail. This characteristic makes relying solely on standard deviation, a measure designed for symmetrical distributions, inadequate for accurately assessing credit risk.
 CreditMetrics tackles this challenge by constructing a model that does not rely on the assumption of normally distributed returns. Instead, it estimates the full distribution of potential value changes through the following steps:
@@ -429,8 +427,7 @@ CreditMetrics tackles this challenge by constructing a model that does not rely 
 Instead of relying on the normality assumption, CreditMetrics constructs a distribution of possible outcomes based on a model that captures the complexities of credit risk. This approach enables a more accurate and comprehensive assessment of the potential for losses due to credit events, leading to better risk management decisions.
 </div>
 </div>
-</div>
-</div>
+
 
 <div class="container">
 <div class="text-column"> 
