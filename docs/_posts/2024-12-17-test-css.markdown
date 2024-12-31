@@ -192,23 +192,20 @@ Importantly, the goal of this process isn’t just to produce reports, but to im
 
 ### Choosing a Sample Model to Validate
 
-Let's now try to reproduce how a validation of a model would look like and how LLMs could assist with it. 
+To illustrate, I’ll try to show how to validate a model and demonstrate how LLMs can help with an example.
 
-First, we need a model to validate. While almost any model could work for demonstration purposes, I wanted to choose something that resembles a real financial case. I searched on Kaggle and found this challenge:
+So for his demonstration, I needed a model that resembles a real financial case. And I found this Kaggle challenge:
 
 > [Home Credit - Credit Risk Model Stability](https://www.kaggle.com/competitions/home-credit-credit-risk-model-stability). 
 > 
 > **Overview:** The goal of this competition is to predict which clients are more likely to default on their loans. The evaluation will favor solutions that are stable over time.
 
-I am not sure how Kaggle works and it is sometimes confusing to me, but I found what appears to be an example notebook that implements a model for the problem, [Home Credit 2024 Starter Notebook](https://www.kaggle.com/code/jetakow/home-credit-2024-starter-notebook/notebook). After downloading the data I have executed the code and it works. 
+I also discovered a working example notebook of what seems to be an example for the challenge: [Home Credit 2024 Starter Notebook](https://www.kaggle.com/code/jetakow/home-credit-2024-starter-notebook/notebook).
 
 ### Reviewing the Code with an LLM
 
-Having a high level understanding of the implementation it is one of the first and fundamental steps in a model validation. LLMs might be able to help with this, and I will use Claude 3.5 Sonnet as seems to perform well with code related tasks, or at least is better than Chat GPT (which I found to be true after some tests where it proved to be significantly better).
+One initial step in model validation is a high-level code review, and LLMs can help with this. Below is an example of what Claude said when I asked it to summarize the code after pasting it into the interface:
 
-
-
-Let’s see what the model can tell us about the code. I’ve converted the Jupyter notebook into a script, copied and pasted the resulting script into Claude AI’s prompt, and asked:
 
 <div class="llm-container">
     <div class="prompt">
