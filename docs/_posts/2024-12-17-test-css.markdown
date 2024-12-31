@@ -429,13 +429,13 @@ Instead of relying on the normality assumption, CreditMetrics constructs a distr
 </div>
 
 
-<div class="container">
-<div class="text-column"> 
+
 And some even more specific questions I know the model should take into account somehow.
-</div>
-<div class="prompt-column">
-<div class="prompt">
+
+<div class="llm-container">
+    <div class="prompt">
 How does it model the correlation of a portfolio that could have thousands of obligors?
+</div>
 <div class="response" markdown="1">
 Modeling Correlation in Large Portfolios: CreditMetrics' Approach
 
@@ -457,7 +457,5 @@ Here's how CreditMetrics models correlation using the asset value model:
 5. Generating Joint Rating Scenarios: Once asset correlations are estimated, CreditMetrics uses these correlations, along with individual obligor transition probabilities, to generate scenarios of joint credit rating migrations. These scenarios reflect the likelihood of different combinations of credit events, capturing the possibility of multiple obligors experiencing upgrades, downgrades, or defaults simultaneously.
 
 By integrating the asset value model into its framework, CreditMetrics provides a robust and efficient way to model correlation in large credit portfolios. It leverages readily available data sources like equity returns and industry indices, allowing for the estimation of a vast number of pairwise correlations without resorting to computationally expensive calculations. This approach enables a more accurate assessment of portfolio diversification benefits and facilitates better risk management decisions.
-</div>
-</div>
 </div>
 </div>
