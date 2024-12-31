@@ -127,15 +127,15 @@ h6 { font-size: 0.67em; }
 
 ### Introduction: Model Validation in banking and why it matters
 
-Let's begin with what I mean by model validation in this post. Yes, it involves ensuring that models function correctly, a broad topic in itself, but this is specifically focused within the US banking environment, where Model validation involves ensuring that financial models are functioning correctly and adhering to regulatory standards such as SR 11-7.
+Let’s begin by clarifying what model validation means in this post. Yes, it involves ensuring that models function correctly, a broad topic in itself, but here we’ll focus on the US banking environment, where model validation also requires adhering to regulatory standards such as SR 11-7.
 
 In this post you'll find:
-- What Model Validation in Banking is
+- What Model Validation in banking entails
 - How LLMs (OpenAI’s ChatGPT, Claude’s Sonnet, and Google’s Notebook LM) can assist in various aspects of model validation
 - How these tools can help streamline code reviews, validation tests, and the handling of large model documentation
-- A front-to-back application that automatically generates model validation tests
+- An LLM-based, front-to-back application (yes, another LLM wrapper) to generate tests and Validation Reports only using natural language
 
-Before we start let’s see what ChatGPT has to say about model validation in this context.
+Before we start, let’s see what ChatGPT has to say about model validation in this context.
 
 <div class="llm-container">
     <div class="prompt">
