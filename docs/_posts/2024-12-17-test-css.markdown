@@ -157,13 +157,13 @@ These elements ensure a robust validation process, enabling institutions to iden
 </div>
 </div>
 
-<div class="container">
-<div class="text-column"> 
+
 And what form and structure does a model validation take?
-</div>
-<div class="prompt-column">
-<div class="prompt">
+
+<div class="llm-container">
+    <div class="prompt">
 How should these results be presented?
+    </div>
 <div class="response" markdown="1">
 Model validation results, in line with SR 11-7, should be presented in a structured, transparent, and comprehensive report, typically covering the following sections:
 * **Executive Summary**: A concise overview of the validation's key findings, model strengths and weaknesses, and an overall assessment of the model’s risk level and validation outcome (e.g., approved, approved with conditions, or not approved).
