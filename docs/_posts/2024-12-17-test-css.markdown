@@ -120,14 +120,7 @@ h6 { font-size: 0.67em; }
     At the end there is an app, front to back, for Model Validation if you want to see that.
 </div>
 
-<div class="llm-container">
-    <div class="prompt">
-        What does model validation mean in the US banking environment? Could you summarize it with few sentences?
-    </div>
-    <div class="response" markdown="1">
-        In the U.S. banking environment, model validation refers to the rigorous process of evaluating financial models to ensure they are reliable, accurate, and compliant with regulatory standards...
-    </div>
-</div>
+
 
 * TOC
 {:toc}
