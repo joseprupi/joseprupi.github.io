@@ -268,11 +268,9 @@ for df in [X_train, X_valid, X_test]:
 ```
 This reassignment doesn't modify the original dataframes. Should be:
 ``` Python
-
 X_train = convert_strings(X_train)
 X_valid = convert_strings(X_valid)
 X_test = convert_strings(X_test)
-
 ```
 
 2.Missing Error Handling:
@@ -318,6 +316,13 @@ Lots of Python code.
 </div>
 </div>
 
+The result from this request is some code that I execute in a cell right after the last one from the Notebook I downloaded. It works straight away, and after compiling the tex file, this is the result:
+
+![image](/assets/output1.jpg)
+![image](/assets/output2.jpg)
+![image](/assets/output3.jpg)
+![image](/assets/output4.jpg)
+![image](/assets/output5.jpg)
 
 <div class="container">
 <div class="text-column">
