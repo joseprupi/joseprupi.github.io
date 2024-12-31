@@ -139,8 +139,12 @@ Before we dive in, let’s see what an **LLM** (in this case, ChatGPT) has to sa
 
 Let's begin with what I mean by model validation in this post. Yes, it involves ensuring that models function correctly, a broad topic in itself, but this is specifically focused within the US banking environment, where Model validation involves ensuring that financial models are functioning correctly and adhering to regulatory standards such as SR 11-7.
 
+In this post, I’ll walk through:
+- How LLMs (OpenAI’s ChatGPT, Claude’s Sonnet, and Google’s Notebook LM) can assist in various aspects of model validation
+- How these tools can help streamline code reviews, validation tests, and the handling of large model documentation
+- A front-to-back application that automatically generates model validation tests
 
-Before we dive in, let’s see what ChatGPT has to say about model validation in this context.
+And before we dive in, let’s see what ChatGPT has to say about model validation in this context.
 
 <div class="llm-container">
     <div class="prompt">
