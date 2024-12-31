@@ -178,8 +178,6 @@ Model validation results, in line with SR 11-7, should be presented in a structu
 Effective presentation should ensure clarity for stakeholders, including management and regulators, with visual aids like charts and tables where helpful.
 </div>
 </div>
-</div>
-</div>
 
 Ok, so validating models in banking is assessing they work properly and then write the results in a report. And ChatGPT knows about it. 
 
@@ -204,12 +202,11 @@ I am not sure how Kaggle works and it is sometimes confusing to me, but I found 
 Having a high level understanding of the implementation it is one of the first and fundamental steps in a model validation. LLMs might be able to help with this, and I will use Claude 3.5 Sonnet as seems to perform well with code related tasks, or at least is better than Chat GPT (which I found to be true after some tests where it proved to be significantly better).
 
 
-<div class="container">
-<div class="text-column"> 
+
 Let’s see what the model can tell us about the code. I’ve converted the Jupyter notebook into a script, copied and pasted the resulting script into Claude AI’s prompt, and asked:
-</div>
-<div class="prompt-column">
-<div class="prompt">
+
+<div class="llm-container">
+    <div class="prompt">
 What is this code doing?
 <div class="response" markdown="1">
 Let me break down this code - it appears to be implementing a credit risk or default prediction model with a focus on stability across time. Here are the key components:
@@ -252,17 +249,13 @@ Let me break down this code - it appears to be implementing a credit risk or def
 This code appears to be part of a production system where model stability over time is as important as raw predictive performance. The stability metric is particularly interesting as it penalizes both declining performance over time and high variance in performance, which are important considerations for deployed models.
 </div>
 </div>
-</div>
-</div>
 
 This is already surprisingly good to me from a Validation point of view. It explains the code and also gets into some of the model parametrization and how that affects its behavior. And insights about the performance over time.
 
-<div class="container">
-<div class="text-column"> 
+
 Let's ask for his opinion about the code:
-</div>
-<div class="prompt-column">
-<div class="prompt">
+<div class="llm-container">
+    <div class="prompt">
 Given this code, are there errors or would you recommend enhancements to it?
 <div class="response" markdown="1">
 Here are the key issues and recommended enhancements:
@@ -301,8 +294,6 @@ X_test = convert_strings(X_test)
 * Add confidence intervals for predictions
 * Include feature importance plots
 * Add model performance metrics beyond AUC
-</div>
-</div>
 </div>
 </div>
 
