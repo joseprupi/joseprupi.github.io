@@ -258,6 +258,7 @@ Let's ask for his opinion about the code:
 <div class="llm-container">
     <div class="prompt">
 Given this code, are there errors or would you recommend enhancements to it?
+</div>
 <div class="response" markdown="1">
 Here are the key issues and recommended enhancements:
 1. Type Conversion Issues:
