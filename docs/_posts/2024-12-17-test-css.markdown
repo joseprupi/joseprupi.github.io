@@ -127,24 +127,15 @@ h6 { font-size: 0.67em; }
 
 ### Introduction: Model Validation in banking and why it matters
 
-**Model validation** in the US banking environment involves ensuring that financial models are ~~function~~ **functioning** correctly and **adhering to** regulatory standards such as **SR 11-7**. ~~Yes, it involves ensuring that models function correctly, a broad topic in itself, but this is specifically focused within the US banking environment. The rest of this section is just me asking ChatGPT about what a Model Validation in banking is, to both post it here for people that don't know about it and also to make sure understands how this works.~~
-
-**In this post, I’ll** walk through:
-- How **ChatGPT (or other LLMs)** can explain the concept of **Model Validation** in banking  
-- How **LLMs** can **assist** with code reviews and validation tests  
-- An example of how LLMs can handle large model documentation, saving time and reducing errors  
-
-Before we dive in, let’s see what an **LLM** (in this case, ChatGPT) has to say about **model validation** in **US banking**.
-
-
 Let's begin with what I mean by model validation in this post. Yes, it involves ensuring that models function correctly, a broad topic in itself, but this is specifically focused within the US banking environment, where Model validation involves ensuring that financial models are functioning correctly and adhering to regulatory standards such as SR 11-7.
 
-In this post, I’ll walk through:
+In this post you'll find:
+- What Model Validation in Banking is
 - How LLMs (OpenAI’s ChatGPT, Claude’s Sonnet, and Google’s Notebook LM) can assist in various aspects of model validation
 - How these tools can help streamline code reviews, validation tests, and the handling of large model documentation
 - A front-to-back application that automatically generates model validation tests
 
-And before we dive in, let’s see what ChatGPT has to say about model validation in this context.
+Before we start let’s see what ChatGPT has to say about model validation in this context.
 
 <div class="llm-container">
     <div class="prompt">
