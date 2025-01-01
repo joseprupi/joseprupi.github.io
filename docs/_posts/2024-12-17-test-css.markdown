@@ -115,6 +115,8 @@ h6 { font-size: 0.67em; }
 }
 </style>
 
+*The views and opinions expressed in this post are solely my own and do not necessarily reflect those of my employer. This content is for general informational purposes only and does not constitute professional advice.*
+
 <div style="border: 1px solid #ccc; background-color: #f9f9f9; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
   <strong>TL;DR:</strong> This post is mostly me following the steps of a Model Validation in Banking assisted by LLMs. The result is impressive to me in terms of quality and the time saving this could represent.
     At the end there is an app, front to back, for Model Validation if you want to see that.
@@ -339,7 +341,7 @@ If the code and results are accurate, these outputs are quite impressive from a 
 
 While the report lacks deeper details such as what the feature importance scores are, it still offers valuable data like feature correlations, model performance across datasets, and temporal performance trends. 
 
-Some might consider these tests too simple, but the requirements are entirely different for credit models in finance from many of the Kaggle solutions I’ve seen. Often, Kaggle emphasizes maximizing a competition score—e.g., building large ensembles of complicated models with vast feature sets. In contrast, credit modeling highly values simplicity and interpretability, largely due to regulatory demands and the need for business stakeholders to understand how models work.
+Some might consider these tests too simple, but the requirements for credit models in finance are entirely different from most of the Kaggle challenges I’ve seen. Kaggle emphasizes maximizing a competition score, e.g., building large ensembles of complicated models most of the times using as many features as possible. In contrast, credit modeling highly values simplicity and interpretability, largely due to regulatory demands and the need for business stakeholders to understand how models work.
 
 For instance, seeing a correlation matrix reveal “dark islands” indicates an area needing further examination, exactly the kind of test that would be conducted in a real world validation setting. Likewise, the PSI-over-time plot, along with average score trends, suggests a potential behavior shift around week 60. Understanding what might have changed in the model or the data environment during that period is crucial.
 
