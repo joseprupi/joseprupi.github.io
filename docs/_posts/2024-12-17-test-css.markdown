@@ -118,8 +118,7 @@ h6 { font-size: 0.67em; }
 *The views and opinions expressed in this post are solely my own and do not necessarily reflect those of my employer. This content is for general informational purposes only and does not constitute professional advice.*
 
 <div style="border: 1px solid #ccc; background-color: #f9f9f9; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
-  <strong>TL;DR:</strong> This post is mostly me following the steps of a Model Validation in Banking assisted by LLMs. The result is impressive to me in terms of quality and the time saving this could represent.
-    At the end there is an app, front to back, for Model Validation if you want to see that.
+  <strong>TL;DR:</strong> This post walks through the steps of a banking Model Validation assisted by LLMs. I found the results both time saving and high quality, so I created a front-to-back Model Validation app (yes, another LLM wrapper :( ), which you can explore if you’d rather skip right to it.
 </div>
 
 
@@ -128,6 +127,8 @@ h6 { font-size: 0.67em; }
 {:toc}
 
 ### Introduction: Model Validation in banking and why it matters
+
+This post is mostly me following the steps of a Model Validation in Banking assisted by LLMs. The result is impressive to me in terms of quality and the time saving this could represent. At the end there is an app, front to back, for Model Validation if you want to see that.
 
 Let’s begin by clarifying what model validation means in this post. Yes, it involves ensuring that models function correctly, a broad topic in itself, but here we’ll focus on the US banking environment, where model validation also requires adhering to regulatory standards such as SR 11-7.
 
