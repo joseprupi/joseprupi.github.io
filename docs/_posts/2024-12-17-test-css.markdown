@@ -335,25 +335,13 @@ And after compiling the .tex file it produced, here are the results in pdf forma
 ![image](/assets/output4.jpg)
 ![image](/assets/output5.jpg)
 
-If the code and results are accurate, this is impressive from Model Validation view point. In just five minutes, I have a report that provides insights into fundamental aspects of the model.
-
-While it is true that the report lacks detailed information, such as what the feature importance scores are, it also offers valuable data like feature correlations, model performance across datasets, and temporal performance trends.
-
-I'm sure some might find these tests simple and barely useful, but just taking a look at some of the submitted Kaggle solutions and my experience, I can tell that the needs are completely different to the credit models in finance I have been working with. 
-
-For example, here it seems a matter of getting the maximum score in the competition, meaning that having an ensemble of complicated models with as many features as possible is the best way to go, my experience with credit models is that simplicity is highly valuable: there are compliance requirements and the users of the model that want to understand what the it is doing.
-
-And the reason I am saying this is because the plot of the correlation matrix is straight away saying that the dark islands would require further assessment. This is a valid and actually a real test I would conduct to a model like this.
-
-It is also interesting to see the PSI over time plot along with the average score trend. It seems that starting at week 60 something something is changing in the behavior of the model, and this is also something important to understand with credit models. It would depend on a lot of factors and this is a simplified example, but understanding what is going on with the model and what made its behavior change is important. 
-
-In summary, these tests are good. And it took five minutes to "code", execute, and compile them into a PDF document. And I am sure that following up the conversation and playing with the prompts would lead to even better results.
-
 If the code and results are accurate, these outputs are quite impressive from a Model Validation standpoint. In just five minutes, I’ve generated a report that provides insights into fundamental aspects of the model.
 
-While the report lacks deeper details—such as a full breakdown of feature importances—it still offers valuable data like feature correlations, model performance across datasets, and temporal performance trends. Some might consider these tests too simple, but from my experience with credit models in finance, the requirements are entirely different from many of the Kaggle solutions I’ve seen. Often, Kaggle emphasizes maximizing a competition score—e.g., building large ensembles of complicated models with vast feature sets. In contrast, credit modeling places a premium on simplicity and interpretability, largely due to regulatory demands and the need for business stakeholders to understand a model’s workings.
+While the report lacks deeper details such as what the feature importance scores are, it still offers valuable data like feature correlations, model performance across datasets, and temporal performance trends. 
 
-For instance, seeing a correlation matrix reveal “dark islands” indicates an area needing further examination—exactly the kind of test I would conduct in a real-world validation setting. Likewise, the PSI-over-time plot, along with average score trends, suggests a potential behavior shift around week 60. Understanding what might have changed in the model or the data environment during that period is crucial.
+Some might consider these tests too simple, but the requirements are entirely different for credit models in finance from many of the Kaggle solutions I’ve seen. Often, Kaggle emphasizes maximizing a competition score—e.g., building large ensembles of complicated models with vast feature sets. In contrast, credit modeling highly values simplicity and interpretability, largely due to regulatory demands and the need for business stakeholders to understand how models work.
+
+For instance, seeing a correlation matrix reveal “dark islands” indicates an area needing further examination, exactly the kind of test that would be conducted in a real world validation setting. Likewise, the PSI-over-time plot, along with average score trends, suggests a potential behavior shift around week 60. Understanding what might have changed in the model or the data environment during that period is crucial.
 
 Overall, these tests are quite useful given how quickly they were produced. It took only minutes to write, execute, and compile them into a PDF document. I’m sure continuing the conversation and refining prompts could yield even more robust results.
 
