@@ -116,18 +116,17 @@ h6 { font-size: 0.67em; }
 
   /* Styles for collapsible sections */
 details {
-    margin-bottom: 1em;
-    padding: 0.5em;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+    margin: 0;  /* Remove margin */
+    padding: 0; /* Remove padding */
+    border: none; /* Remove border */
+    background: none; /* Remove background */
 }
 
 summary {
     font-weight: bold;
     cursor: pointer;
-    padding: 0.5em;
-    user-select: none;
+    list-style: none; /* Removes default marker */
+    margin-bottom: 0.8rem; /* Match your existing spacing */
 }
 
 /* Remove default marker */
@@ -145,12 +144,11 @@ details[open] summary::after {
     content: " ▲";
 }
 
-/* Style the response content */
+/* Response content should have no extra styling from details */
 details .response {
-    padding: 1em;
-    margin-top: 0.5em;
-    background-color: #fff;
-    border-radius: 3px;
+    padding: 0;
+    margin: 0;
+    background: none;
 }
 
 
@@ -186,7 +184,7 @@ Before we start, let’s see what ChatGPT has to say about model validation in t
     
     <details>
         <summary>Show Response</summary>
-        <div class="response">
+        <div class="response" markdown="1">
             In the U.S. banking environment, model validation refers to the rigorous process of evaluating financial models to ensure they are reliable, accurate, and compliant with regulatory standards. It involves assessing the model's performance, assumptions, limitations, and potential risks. This practice is essential for managing model risk and adhering to regulatory guidelines such as SR 11-7, which requires banks to maintain robust model risk management frameworks to prevent financial and operational issues.
         </div>
     </details>
