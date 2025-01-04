@@ -114,32 +114,47 @@ h6 { font-size: 0.67em; }
     }
 }
 
-  details {
-      margin-bottom: 1em;
-      padding: 0.5em;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      background-color: #f9f9f9;
-  }
+  /* Styles for collapsible sections */
+details {
+    margin-bottom: 1em;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
 
-  summary {
-      font-weight: bold;
-      cursor: pointer;
-      list-style: none;
-  }
+summary {
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none;
+}
 
-  summary::marker {
-      display: none;
-  }
+summary::marker {
+    display: none;
+}
 
-  details[open] summary::after {
-      content: " ▲";
-  }
+details[open] summary::after {
+    content: " ▲";
+}
 
-  details summary::after {
-      content: " ▼";
-      float: right;
-  }
+details summary::after {
+    content: " ▼";
+    float: right;
+}
+
+/* Ensure code blocks inside details are properly styled */
+details pre {
+    margin: 0; /* Remove default margins */
+}
+
+details code {
+    display: block; /* Ensure block display for proper formatting */
+    padding: 1em; /* Add padding for better readability */
+    background-color: #f5f7fa;
+    border-radius: 5px;
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
+}
+
 
 </style>
 
