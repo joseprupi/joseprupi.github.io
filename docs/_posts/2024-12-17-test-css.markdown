@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How LLMs Vastly Simplify and Improve Model Validation in Banking"
+title: "How LLMs Simplify and Improve Model Validation in Banking"
 date: 2024-11-01 00:00:00 -0000
 categories: misc
 ---
@@ -118,10 +118,8 @@ h6 { font-size: 0.67em; }
 *The views and opinions expressed in this post are solely my own and do not necessarily reflect those of my employer. This content is for general informational purposes only and does not constitute professional advice.*
 
 <div style="border: 1px solid #ccc; background-color: #f9f9f9; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
-  <strong>TL;DR:</strong> This post walks through the steps of a banking Model Validation assisted by LLMs. I found the results both time saving and high quality, so I created a front-to-back Model Validation app (yes, another LLM wrapper :( ), which you can explore if you’d rather skip right to it.
+  <strong>TL;DR:</strong> This post walks through the steps of a banking Model Validation assisted by LLMs. There's already tons of LLM-related material and the results might seem obvious to some readers but I wanted to show how they can be leveraged specifically for model validation. I found the results both time saving and high quality, so I created an app (yes, another LLM wrapper :( ) to make things easier. Feel free to skip directly to it.
 </div>
-
-
 
 * TOC
 {:toc}
@@ -191,7 +189,7 @@ Effective presentation should ensure clarity for stakeholders, including managem
 
 In short, validating models in banking requires assessing whether they work properly and creating detailed, regulator-friendly reports. And while the process may seem simple and even obvious —and in many ways it is— it also is extremely valuable and not commonly adopted outside of banking. I believe other industries could benefit from a similar, standardized approach to ensure models are reliable and used appropriately through clear, consistent reporting.
 
-Importantly, the goal of this process isn’t just to produce reports, but to improve the quality of models. From my experience, it works. Development teams build better products when they know their work will be audited, requiring them to justify decisions and document their processes in ways that business stakeholders can easily understand.
+Importantly, the goal of this process isn’t just to produce reports, but to improve the quality of models. And from my experience, it works. Development teams build better products when they know their work will be audited, requiring them to justify decisions and document their processes in ways that business stakeholders can easily understand.
 
 ### Choosing a Sample Model to Validate
 
@@ -322,7 +320,7 @@ Lots of Python code.
 </div>
 </div>
 
-The result from this request is some code that I execute in a cell right after the last one from the Notebook I have downloaded, and which works straight away.
+The result from this request is some code that I execute in a cell right after the last one from the Notebook I have downloaded, and it works straight away generating tex content that also compiles into pdf without errors.
 
 The LLM generated Python code for:  
 - Feature correlation checks  
@@ -342,7 +340,7 @@ If the code and results are accurate, these outputs are quite impressive from a 
 
 While the report lacks deeper details such as what the feature importance scores are, it still offers valuable data like feature correlations, model performance across datasets, and temporal performance trends. 
 
-Some might consider these tests too simple, but the requirements for credit models in finance are entirely different from most of the Kaggle challenges I’ve seen. Kaggle emphasizes maximizing a competition score, e.g., building large ensembles of complicated models most of the times using as many features as possible. In contrast, credit modeling highly values simplicity and interpretability, largely due to regulatory demands and the need for business stakeholders to understand how models work.
+Some might consider these tests too simple, but the requirements for credit models in finance are entirely different from most of the Kaggle challenges I’ve seen. Kaggle emphasizes maximizing a competition score, e.g., building large ensembles of complicated models most of the times using as many features as possible. In contrast, credit modeling highly values simplicity and interpretability, largely due to regulatory demands and the need for business stakeholders to understand how models work. So these tests are truly valid.
 
 For instance, seeing a correlation matrix reveal “dark islands” indicates an area needing further examination, exactly the kind of test that would be conducted in a real world validation setting. Likewise, the PSI-over-time plot, along with average score trends, suggests a potential behavior shift around week 60. Understanding what might have changed in the model or the data environment during that period is crucial.
 
