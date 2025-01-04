@@ -113,6 +113,34 @@ h6 { font-size: 0.67em; }
         margin: 0.8rem 0;
     }
 }
+
+  details {
+      margin-bottom: 1em;
+      padding: 0.5em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+  }
+
+  summary {
+      font-weight: bold;
+      cursor: pointer;
+      list-style: none;
+  }
+
+  summary::marker {
+      display: none;
+  }
+
+  details[open] summary::after {
+      content: " ▲";
+  }
+
+  details summary::after {
+      content: " ▼";
+      float: right;
+  }
+
 </style>
 
 *The views and opinions expressed in this post are solely my own and do not necessarily reflect those of my employer. This content is for general informational purposes only and does not constitute professional advice.*
