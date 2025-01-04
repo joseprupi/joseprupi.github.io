@@ -526,6 +526,9 @@ To use this framework, you would:
 
 I will post the code the LLM gave me. I have not executed it mostly because I don't have access to the Monte Carlo details, but with my previous tests and how it looks, seems to be a good starting point.
 
+<details>
+  <summary>Click to expand the Python code</summary>
+
 ```python
 import numpy as np
 import pandas as pd
@@ -819,3 +822,6 @@ def example_usage():
 if __name__ == "__main__":
     example_usage()
 ```
+
+</details>
+  
