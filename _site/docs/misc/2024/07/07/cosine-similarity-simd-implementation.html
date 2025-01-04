@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>A not so fast implementation of cosine similarity in C++ and SIMD | Josep Rubió Piqué</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="A not so fast implementation of cosine similarity in C++ and SIMD" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Edit: This post made it to the front page of Hacker News! You can find the discussion here." />
+<meta property="og:description" content="Edit: This post made it to the front page of Hacker News! You can find the discussion here." />
+<link rel="canonical" href="http://localhost:4000/docs/misc/2024/07/07/cosine-similarity-simd-implementation.html" />
+<meta property="og:url" content="http://localhost:4000/docs/misc/2024/07/07/cosine-similarity-simd-implementation.html" />
+<meta property="og:site_name" content="Josep Rubió Piqué" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-07-07T18:00:00-06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="A not so fast implementation of cosine similarity in C++ and SIMD" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-07-07T18:00:00-06:00","datePublished":"2024-07-07T18:00:00-06:00","description":"Edit: This post made it to the front page of Hacker News! You can find the discussion here.","headline":"A not so fast implementation of cosine similarity in C++ and SIMD","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/docs/misc/2024/07/07/cosine-similarity-simd-implementation.html"},"url":"http://localhost:4000/docs/misc/2024/07/07/cosine-similarity-simd-implementation.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Josep Rubió Piqué" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Josep Rubió Piqué</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/photos/">Photos</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">A not so fast implementation of cosine similarity in C++ and SIMD</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2024-07-07T18:00:00-06:00" itemprop="datePublished">Jul 7, 2024
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><em>Edit: This post made it to the front page of Hacker News! You can find the discussion <a href="https://news.ycombinator.com/item?id=41842339">here</a>.</em></p>
+
+<p>There isn’t much to see here, just me dusting off some old architecture knowledge to parallelize computations using SIMD, implement it in C++, and compare the results with Python.</p>
+
+<p>The task involved creating a vectorized version of the cosine similarity in C++ to compare its performance against Python, NumPy, SciPy, and plain C++ implementations.</p>
+
+<p>Below is my implementation and the average times for calculating the similarity between two random vectors of 640,000 floats. The full code can be found <a href="https://github.com/joseprupi/cosine-similarity-comparison">here</a>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Python
+</span><span class="k">def</span> <span class="nf">cosine</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
+    <span class="n">dot</span> <span class="o">=</span> <span class="n">denom_a</span> <span class="o">=</span> <span class="n">denom_b</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
+        <span class="n">dot</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">denom_a</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">denom_b</span> <span class="o">+=</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">dot</span> <span class="o">/</span> <span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">denom_a</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">denom_b</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Scipy
+</span><span class="n">cos_sim</span> <span class="o">=</span> <span class="n">distance</span><span class="p">.</span><span class="n">cosine</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Numpy
+</span><span class="n">cos_sim</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">*</span><span class="n">norm</span><span class="p">(</span><span class="n">B</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Plain C++</span>
+<span class="kt">float</span> <span class="nf">cosine_similarity</span><span class="p">(</span><span class="kt">float</span> <span class="o">*</span><span class="n">A</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">B</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">float</span> <span class="n">dot</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">denom_a</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">denom_b</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">SIZE</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">dot</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="n">denom_a</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="n">denom_b</span> <span class="o">+=</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">dot</span> <span class="o">/</span> <span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="n">denom_a</span><span class="p">)</span> <span class="o">*</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">denom_b</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Vectorized C++</span>
+<span class="kr">inline</span> <span class="kt">float</span> <span class="nf">simd_horizontal_sum</span><span class="p">(</span><span class="n">__m256</span> <span class="o">&amp;</span><span class="n">r</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">__m128</span> <span class="n">r4</span> <span class="o">=</span> <span class="n">_mm_add_ps</span><span class="p">(</span><span class="n">_mm256_castps256_ps128</span><span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="n">_mm256_extractf128_ps</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+    <span class="n">__m128</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">_mm_add_ps</span><span class="p">(</span><span class="n">r4</span><span class="p">,</span> <span class="n">_mm_movehl_ps</span><span class="p">(</span><span class="n">r4</span><span class="p">,</span> <span class="n">r4</span><span class="p">));</span>
+    <span class="n">__m128</span> <span class="n">r1</span> <span class="o">=</span> <span class="n">_mm_add_ss</span><span class="p">(</span><span class="n">r2</span><span class="p">,</span> <span class="n">_mm_movehdup_ps</span><span class="p">(</span><span class="n">r2</span><span class="p">));</span>
+    <span class="k">return</span> <span class="n">_mm_cvtss_f32</span><span class="p">(</span><span class="n">r1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">float</span> <span class="n">cosine_similarity_simd</span><span class="p">(</span><span class="kt">float</span> <span class="o">*</span><span class="n">A</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">B</span><span class="p">)</span>
+<span class="p">{</span>
+
+    <span class="n">__m256</span> <span class="n">sum_dot</span> <span class="o">=</span> <span class="n">_mm256_setzero_ps</span><span class="p">();</span>
+    <span class="n">__m256</span> <span class="n">sum_A</span> <span class="o">=</span> <span class="n">_mm256_setzero_ps</span><span class="p">();</span>
+    <span class="n">__m256</span> <span class="n">sum_B</span> <span class="o">=</span> <span class="n">_mm256_setzero_ps</span><span class="p">();</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">SIZE</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">8</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">__m256</span> <span class="n">buf1</span> <span class="o">=</span> <span class="n">_mm256_loadu_ps</span><span class="p">(</span><span class="n">A</span> <span class="o">+</span> <span class="n">i</span><span class="p">);</span>
+        <span class="n">__m256</span> <span class="n">buf2</span> <span class="o">=</span> <span class="n">_mm256_loadu_ps</span><span class="p">(</span><span class="n">B</span> <span class="o">+</span> <span class="n">i</span><span class="p">);</span>
+
+        <span class="n">sum_dot</span> <span class="o">=</span> <span class="n">_mm256_fmadd_ps</span><span class="p">(</span><span class="n">buf1</span><span class="p">,</span> <span class="n">buf2</span><span class="p">,</span> <span class="n">sum_dot</span><span class="p">);</span>
+        <span class="n">sum_A</span> <span class="o">=</span> <span class="n">_mm256_fmadd_ps</span><span class="p">(</span><span class="n">buf1</span><span class="p">,</span> <span class="n">buf1</span><span class="p">,</span> <span class="n">sum_A</span><span class="p">);</span>
+        <span class="n">sum_B</span> <span class="o">=</span> <span class="n">_mm256_fmadd_ps</span><span class="p">(</span><span class="n">buf2</span><span class="p">,</span> <span class="n">buf2</span><span class="p">,</span> <span class="n">sum_B</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kt">float</span> <span class="n">float_dot</span> <span class="o">=</span> <span class="n">simd_horizontal_sum</span><span class="p">(</span><span class="n">sum_dot</span><span class="p">);</span>
+    <span class="kt">float</span> <span class="n">float_A_norm</span> <span class="o">=</span> <span class="n">simd_horizontal_sum</span><span class="p">(</span><span class="n">sum_A</span><span class="p">);</span>
+    <span class="kt">float</span> <span class="n">float_B_norm</span> <span class="o">=</span> <span class="n">simd_horizontal_sum</span><span class="p">(</span><span class="n">sum_B</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">float_dot</span> <span class="o">/</span> <span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="n">float_A_norm</span><span class="p">)</span> <span class="o">*</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">float_B_norm</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Implementation</th>
+      <th style="text-align: right">Time (ms)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Vectorized C++</td>
+      <td style="text-align: right">0.0936</td>
+    </tr>
+    <tr>
+      <td>C++</td>
+      <td style="text-align: right">0.5416</td>
+    </tr>
+    <tr>
+      <td>SciPy</td>
+      <td style="text-align: right">0.5494</td>
+    </tr>
+    <tr>
+      <td>NumPy</td>
+      <td style="text-align: right">0.6953</td>
+    </tr>
+    <tr>
+      <td>Plain Python</td>
+      <td style="text-align: right">323.389</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>As expected, SIMD is the fastest and plain Python is frustratingly slow. Yes, maybe we can do better with the plain Python implementation making it more “pythonic”:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">cosine</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
+    <span class="n">dot</span> <span class="o">=</span> <span class="n">denom_a</span> <span class="o">=</span> <span class="n">denom_b</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="n">dot</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">a</span><span class="o">*</span><span class="n">b</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)])</span>
+    <span class="n">denom_a</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">A</span><span class="p">])</span>
+    <span class="n">denom_b</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">B</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">dot</span> <span class="o">/</span> <span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">denom_a</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">denom_b</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Implementation</th>
+      <th style="text-align: right">Time (ms)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Vectorized C++</td>
+      <td style="text-align: right">0.0936</td>
+    </tr>
+    <tr>
+      <td>C++</td>
+      <td style="text-align: right">0.5416</td>
+    </tr>
+    <tr>
+      <td>SciPy</td>
+      <td style="text-align: right">0.5494</td>
+    </tr>
+    <tr>
+      <td>NumPy</td>
+      <td style="text-align: right">0.6953</td>
+    </tr>
+    <tr>
+      <td><span style="color:red">Plain Python, more pythonic</span></td>
+      <td style="text-align: right"><span style="color:red">271.683</span></td>
+    </tr>
+    <tr>
+      <td>Plain Python</td>
+      <td style="text-align: right">323.389</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Which results in a ~20% improvement, but still nowhere near the performance of the other implementations, so I’ll stop here and shift my focus to Python libraries.</p>
+
+<p>Interestingly, Python’s libraries are comparable to plain C++ in performance, which isn’t bad in my opinion. Yes, the vectorized C++ version is an order of magnitude faster, but unless you opt to implement a processor-specific calculation in C++, the Python libraries are decently optimized for tasks like this.</p>
+
+<p>However, SciPy is slightly faster than my NumPy implementation even though it is built using NumPy, and there shouldn’t be much fantasy in the cosine similarity implementation, so let me check it out <a href="https://github.com/scipy/scipy/blob/main/scipy/spatial/distance.py#L575">here</a>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">correlation</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">centered</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    
+    <span class="n">u</span> <span class="o">=</span> <span class="n">_validate_vector</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">_validate_vector</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">w</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">_validate_weights</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">w</span> <span class="o">/</span> <span class="n">w</span><span class="p">.</span><span class="nb">sum</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">centered</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">w</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">umu</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+            <span class="n">vmu</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">umu</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+            <span class="n">vmu</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">u</span> <span class="o">-</span> <span class="n">umu</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">v</span> <span class="o">-</span> <span class="n">vmu</span>
+    <span class="k">if</span> <span class="n">w</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">vw</span> <span class="o">=</span> <span class="n">v</span> <span class="o">*</span> <span class="n">w</span>
+        <span class="n">uw</span> <span class="o">=</span> <span class="n">u</span> <span class="o">*</span> <span class="n">w</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">vw</span><span class="p">,</span> <span class="n">uw</span> <span class="o">=</span> <span class="n">v</span><span class="p">,</span> <span class="n">u</span>
+    <span class="n">uv</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">vw</span><span class="p">)</span>
+    <span class="n">uu</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">uw</span><span class="p">)</span>
+    <span class="n">vv</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">vw</span><span class="p">)</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">uv</span> <span class="o">/</span> <span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">uu</span> <span class="o">*</span> <span class="n">vv</span><span class="p">)</span>
+    <span class="c1"># Clip the result to avoid rounding error
+</span>    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">clip</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">cosine</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">correlation</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">w</span><span class="p">,</span> <span class="n">centered</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>My initial thought was that the difference in performance was due to the denominator, I have no idea why but that is the only difference I see. My implementation is using the <em>norm</em> function from NumPy while SciPy uses two NumPy dot multiplications and the Python <em>sqrt</em> function.</p>
+
+<p>Before diving deeper into the difference, I simplified the correlation function by removing extra checks and generalizations that weren’t needed for my use case, making it easier to read and hopefully a bit faster:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">cosine</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    
+    <span class="n">uv</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+    <span class="n">uu</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
+    <span class="n">vv</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">uv</span> <span class="o">/</span> <span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">uu</span> <span class="o">*</span> <span class="n">vv</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">clip</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>And now, re-run it to ensure everything works as expected and also see if removing those checks improves performance.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Implementation</th>
+      <th style="text-align: right">Time (ms)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Vectorized C++</td>
+      <td style="text-align: right">0.0936</td>
+    </tr>
+    <tr>
+      <td>C++</td>
+      <td style="text-align: right">0.5416</td>
+    </tr>
+    <tr>
+      <td>SciPy</td>
+      <td style="text-align: right">0.5494</td>
+    </tr>
+    <tr>
+      <td><span style="color:red">NumPy as Scipy</span></td>
+      <td style="text-align: right"><span style="color:red">0.6714</span></td>
+    </tr>
+    <tr>
+      <td>NumPy</td>
+      <td style="text-align: right">0.6953</td>
+    </tr>
+    <tr>
+      <td>Plain Python, more pythonic</td>
+      <td style="text-align: right">271.683</td>
+    </tr>
+    <tr>
+      <td>Plain Python</td>
+      <td style="text-align: right">323.389</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>And the result is ~0.7 ms, which oh crap, is slower than executing the original SciPy version and almost identical to my original NumPy implementation. It turns out that I removed two important lines from the <em>correlation</em> function:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">u</span> <span class="o">=</span> <span class="n">_validate_vector</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">_validate_vector</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The name seems pretty explicit, validate the vectors, something I don’t need as I know what I am using at runtime, but <em>_validate_vector</em> is implemented as:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">_validate_vector</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s">'c'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">u</span><span class="p">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">u</span>
+    <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">"Input vector should be 1-D."</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Which not only validates that the input is a <strong>1 x n</strong> array but also makes the array contiguous in memory calling <em>np.asarray</em> (see <em>order</em> parameter from <a href="https://numpy.org/doc/stable/reference/generated/numpy.asarray.html">NumPy documentation</a>), something that can’t be guaranteed when loading a vector from disk as I am doing.</p>
+
+<p>As CPUs love working with contiguous things, having things contiguous in memory is always good to go fast, either to compute in parallel or access things faster from cache, something the underlying Python libraries can probably take advantage of. So the time spent making vectors contiguous in memory, along with performing the calculations, seems worth it in this case as it is slightly faster.</p>
+
+<p>Just to be sure this is true, let’s reload the vectors, make them contiguous and see if my NumPy and SciPy are close in execution time this way.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">file_data</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="s">'../tools/vectors.csv'</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">','</span><span class="p">)</span>
+<span class="n">A</span><span class="p">,</span><span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">file_data</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">).</span><span class="n">astype</span><span class="p">(</span><span class="s">'f'</span><span class="p">)</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s">'float'</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s">'c'</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s">'float'</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s">'c'</span><span class="p">)</span>
+
+<span class="n">accum</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">EXECUTIONS</span><span class="p">):</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">cos_sim</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">*</span><span class="n">norm</span><span class="p">(</span><span class="n">B</span><span class="p">))</span>
+    <span class="n">accum</span> <span class="o">+=</span>  <span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">" %s ms"</span> <span class="o">%</span> <span class="p">(</span><span class="n">accum</span><span class="o">/</span><span class="n">EXECUTIONS</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">cosine</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    
+    <span class="n">uv</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+    <span class="n">uu</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
+    <span class="n">vv</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">uv</span> <span class="o">/</span> <span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">uu</span> <span class="o">*</span> <span class="n">vv</span><span class="p">)</span>
+    <span class="c1"># Clip the result to avoid rounding error
+</span>    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">clip</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+
+<span class="n">accum</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">EXECUTIONS</span><span class="p">):</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">cos_sim</span> <span class="o">=</span> <span class="n">cosine</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+    <span class="n">accum</span> <span class="o">+=</span> <span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">" %s ms"</span> <span class="o">%</span> <span class="p">(</span><span class="n">accum</span><span class="o">/</span><span class="n">EXECUTIONS</span><span class="p">))</span>
+
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Implementation</th>
+      <th style="text-align: right">Time (ms)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span style="color:red">NumPy. Contiguous array</span></td>
+      <td style="text-align: right"><span style="color:red">0.04193<span></span></span></td>
+    </tr>
+    <tr>
+      <td><span style="color:red">NumPy as Scipy. Contiguous array</span></td>
+      <td style="text-align: right"><span style="color:red">0.04264</span></td>
+    </tr>
+    <tr>
+      <td>Vectorized C++</td>
+      <td style="text-align: right">0.0936</td>
+    </tr>
+    <tr>
+      <td>SciPy</td>
+      <td style="text-align: right">0.549369</td>
+    </tr>
+    <tr>
+      <td>NumPy</td>
+      <td style="text-align: right">0.695258</td>
+    </tr>
+    <tr>
+      <td>C++</td>
+      <td style="text-align: right">2.3839</td>
+    </tr>
+    <tr>
+      <td>Plain Python, more pythonic</td>
+      <td style="text-align: right">271.683</td>
+    </tr>
+    <tr>
+      <td>Plain Python</td>
+      <td style="text-align: right">323.389</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The results show that making arrays contiguous does improve performance significantly. Mmmmm… not only that, they are also faster than my SIMD implementation, twice as fast in fact.</p>
+
+<p>Why? Because they are calculated using the BLAS library available in the OS, which means that not even writing C++ SIMD code will make me have a faster implementation than the one Python is using and I will probably have to write my own assembly code with compiler-like tricks to go as fast as Python plus C++ libraries.</p>
+
+<p>Honestly Python<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> is lightning fast for my purposes and deadlines.</p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>Where Python is the experience you get when you open VS Code and start coding—no specifics about language implementations, libraries, or interpreters. It’s all about diving into coding quickly. If you view Python differently, this might not be for you. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+  </div><a class="u-url" href="/docs/misc/2024/07/07/cosine-similarity-simd-implementation.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Josep Rubió Piqué</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Josep Rubió Piqué</li><li><a class="u-email" href="mailto:joseprupi@gmail.com">joseprupi@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/joseprupi"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">joseprupi</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>This is my website.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

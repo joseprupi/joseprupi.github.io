@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>How LLMs Simplify and Improve Model Validation in Banking | Josep Rubió Piqué</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="How LLMs Simplify and Improve Model Validation in Banking" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This is my website." />
+<meta property="og:description" content="This is my website." />
+<link rel="canonical" href="http://localhost:4000/docs/misc/2024/10/31/test-css.html" />
+<meta property="og:url" content="http://localhost:4000/docs/misc/2024/10/31/test-css.html" />
+<meta property="og:site_name" content="Josep Rubió Piqué" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-10-31T18:00:00-06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="How LLMs Simplify and Improve Model Validation in Banking" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-10-31T18:00:00-06:00","datePublished":"2024-10-31T18:00:00-06:00","description":"This is my website.","headline":"How LLMs Simplify and Improve Model Validation in Banking","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/docs/misc/2024/10/31/test-css.html"},"url":"http://localhost:4000/docs/misc/2024/10/31/test-css.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Josep Rubió Piqué" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Josep Rubió Piqué</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/photos/">Photos</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">How LLMs Simplify and Improve Model Validation in Banking</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2024-10-31T18:00:00-06:00" itemprop="datePublished">Oct 31, 2024
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <style>
+/* Two-column layout styles */
+/* Two-column layout styles */
+/* Base post styles */
+/* Base post styles */
+/* Base post styles */
+/* Base post styles */
+/* Base post styles */
+.post {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* TL;DR box styling */
+.tldr-box {
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* LLM conversation container */
+.llm-container {
+    margin: 1rem 0;
+    font-family: monospace;
+    background-color: #f8f9fa;
+    padding: 1.2rem;
+    border-radius: 8px;
+    border-left: 4px solid #BBD7F0;
+}
+
+/* Prompt styling */
+.prompt {
+    margin-bottom: 0.8rem;
+}
+
+/* Response section styling */
+.response {
+    border-top: 1px solid #edf2f7;
+    margin-top: 0.8rem;
+    padding-top: 0.8rem;
+}
+
+/* Lists styling */
+.response ul {
+    margin: 0.4rem 0;
+    padding-left: 1.5rem;
+    list-style-type: disc;
+}
+
+.response ul li {
+    margin-bottom: 0.3rem;
+    line-height: 1.4;
+}
+
+/* Paragraph styling */
+.response p {
+    margin-bottom: 0.8rem;
+    line-height: 1.5;
+}
+
+/* Markdown content styling */
+.response strong {
+    font-weight: 600;
+}
+
+/* Table of contents styling */
+.toc {
+    background: #f8f9fa;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 4px;
+}
+
+/* Header styling */
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 1.8rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.17em; }
+h4 { font-size: 1em; }
+h5 { font-size: 0.83em; }
+h6 { font-size: 0.67em; }
+
+/* Code blocks in responses */
+.response code {
+    background-color: #f5f7fa;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+}
+
+/* Spacing between containers */
+.llm-container + .llm-container {
+    margin-top: 1.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .llm-container {
+        padding: 1rem;
+        margin: 0.8rem 0;
+    }
+}
+
+  /* Styles for collapsible sections */
+details {
+    margin: 0;  /* Remove margin */
+    padding: 0; /* Remove padding */
+    border: none; /* Remove border */
+    background: none; /* Remove background */
+}
+
+summary {
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none; /* Removes default marker */
+    margin-bottom: 0.8rem; /* Match your existing spacing */
+}
+
+/* Remove default marker */
+summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Custom arrow indicators */
+summary::after {
+    content: " ▼";
+    float: right;
+}
+
+details[open] summary::after {
+    content: " ▲";
+}
+
+/* Response content should have no extra styling from details */
+details .response {
+    padding: 0;
+    margin: 0;
+    background: none;
+}
+
+
+</style>
+
+<p><em>The views and opinions expressed in this post are solely my own and do not necessarily reflect those of my employer. This content is for general informational purposes only and does not constitute professional advice.</em></p>
+
+<div style="border: 1px solid #ccc; background-color: #f9f9f9; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
+  <strong>TL;DR:</strong> This post walks through the steps of a banking Model Validation assisted by LLMs. There's already tons of LLM-related material and the results might seem obvious to some readers but I wanted to show how they can be leveraged specifically for model validation. I found the results both time saving and high quality, so I created an app (yes, another LLM wrapper :( ) to make things easier. Feel free to skip directly to it.
+</div>
+
+<ul id="markdown-toc">
+  <li><a href="#model-validation-in-banking" id="markdown-toc-model-validation-in-banking">Model Validation in banking</a></li>
+</ul>
+
+<h3 id="model-validation-in-banking">Model Validation in banking</h3>
+
+<p>This post is mostly me following the steps of a Model Validation in Banking assisted by LLMs. The result is impressive to me in terms of quality and the time saving this could represent. At the end there is an app, front to back, for Model Validation if you want to see that.</p>
+
+<p>Let’s begin by clarifying what model validation means in this post. Yes, it involves ensuring that models function correctly, a broad topic in itself, but here we’ll focus on the US banking environment, where model validation also requires adhering to regulatory standards such as SR 11-7.</p>
+
+<p>In this post you’ll find:</p>
+<ul>
+  <li>What Model Validation in banking entails</li>
+  <li>How LLMs (OpenAI’s ChatGPT, Claude’s Sonnet, and Google’s Notebook LM) can assist in various aspects of model validation</li>
+  <li>How these tools can help streamline code reviews, validation tests, and the handling of large model documentation</li>
+  <li>An LLM-based, front-to-back application (yes, another LLM wrapper) to generate tests and Validation Reports only using natural language</li>
+</ul>
+
+<p>Before we start, let’s see what ChatGPT has to say about model validation in this context.</p>
+
+<div class="llm-container">
+    <div class="prompt">
+        What does model validation mean in the US banking environment? Could you summarize it with few sentences?
+    </div>
+    <details>
+        <summary>Response</summary>
+        <div class="response">
+      <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        In the U.S. banking environment, model validation refers to the rigorous process of evaluating financial models to ensure they are reliable, accurate, and compliant with regulatory standards. It involves assessing the model's performance, assumptions, limitations, and potential risks. This practice is essential for managing model risk and adhering to regulatory guidelines such as SR 11-7, which requires banks to maintain robust model risk management frameworks to prevent financial and operational issues.
+    &lt;/div&gt;
+&lt;/details&gt;
+</code></pre></div>      </div>
+    </div>
+
+### Key Components of SR 11-7
+
+Alright, we have a base now. We understand that validating models is a regulated process guided by SR 11-7 so let's gather some more detail on what this should be:
+<div class="llm-container">
+    <div class="prompt">
+What should a model validation contain according to SR 11-7?
+    </div>
+    <div class="response">
+        <p>According to SR 11-7, a comprehensive model validation should include the following key components:</p>
+        <ul>
+          <li><strong>Evaluation of Conceptual Soundness:</strong> An in-depth assessment of the model’s design, theory, and logic, including underlying assumptions and methodology. This ensures that the model is appropriate for its intended purpose.</li>
+          <li><strong>Ongoing Monitoring:</strong> Regular checks to confirm that the model’s performance aligns with expectations over time. This includes tracking key performance metrics and reviewing outcomes to identify any significant deviations.</li>
+          <li><strong>Outcomes Analysis:</strong> A quantitative comparison of the model’s predictions against actual outcomes. This step helps assess the accuracy and reliability of the model in real-world conditions.</li>
+          <li><strong>Benchmarking and Back-Testing:</strong> Comparing the model’s results with alternative models and validating performance through back-testing with historical data.</li>
+          <li><strong>Assessment of Limitations and Uncertainty:</strong> Identifying potential limitations in the model’s framework and quantifying any associated uncertainties or risks.
+These elements ensure a robust validation process, enabling institutions to identify and mitigate model risks effectively, maintaining compliance with regulatory requirements.</li>
+        </ul>
+      </div>
+</div>
+
+
+And what form and structure does a model validation take?
+
+<div class="llm-container">
+    <div class="prompt">
+How should these results be presented?
+    </div>
+<div class="response">
+        <p>Model validation results, in line with SR 11-7, should be presented in a structured, transparent, and comprehensive report, typically covering the following sections:</p>
+        <ul>
+          <li><strong>Executive Summary</strong>: A concise overview of the validation’s key findings, model strengths and weaknesses, and an overall assessment of the model’s risk level and validation outcome (e.g., approved, approved with conditions, or not approved).</li>
+          <li><strong>Scope and Objectives</strong>: A clear outline of the validation’s purpose, including the model’s intended use, its assumptions, and limitations. It should specify the validation scope, such as whether it’s a full-scope or targeted validation.</li>
+          <li><strong>Methodology and Approach</strong>: A description of the validation process, including the methods, tools, and benchmarks used. This part should clarify how the validation aligns with regulatory requirements and internal policies.</li>
+          <li><strong>Evaluation of Conceptual Soundness</strong>: Findings on the model’s design, methodology, assumptions, and overall soundness. This section often includes a detailed review of data sources, model components, and theoretical foundations.</li>
+          <li><strong>Ongoing Monitoring and Performance Review</strong>: Insights into the model’s stability, accuracy, and predictive power over time, along with performance metrics and any monitoring results that highlight trends or areas of concern.</li>
+          <li><strong>Outcomes Analysis and Back-Testing Results</strong>: Results of outcome analysis, including back-testing findings that compare predicted versus actual results. This section should provide quantitative and qualitative analyses, highlighting any discrepancies and their implications.</li>
+          <li><strong>Issues and Recommendations</strong>: Identification of any issues, weaknesses, or limitations, along with prioritized recommendations for improvements. This can include both short-term remediation actions and longer-term improvements to address identified risks.</li>
+          <li><strong>Conclusion and Sign-Off</strong>: A summary of key points and the final opinion on the model’s viability, along with sign-offs from validation team members and relevant stakeholders.</li>
+          <li><strong>Supporting Documentation</strong>: Additional materials such as data sources, code, validation testing details, and other relevant documents to ensure transparency and reproducibility.
+Effective presentation should ensure clarity for stakeholders, including management and regulators, with visual aids like charts and tables where helpful.</li>
+        </ul>
+      </div>
+</div>
+
+In short, validating models in banking requires assessing whether they work properly and creating detailed, regulator-friendly reports. And while the process may seem simple and even obvious —and in many ways it is— it also is extremely valuable and not commonly adopted outside of banking. I believe other industries could benefit from a similar, standardized approach to ensure models are reliable and used appropriately through clear, consistent reporting.
+
+Importantly, the goal of this process isn’t just to produce reports, but to improve the quality of models. And from my experience, it works. Development teams build better products when they know their work will be audited, requiring them to justify decisions and document their processes in ways that business stakeholders can easily understand.
+
+### Choosing a Sample Model to Validate
+
+To illustrate, I’ll try to show how to validate a model and demonstrate how LLMs can help with an example.
+
+So for his demonstration, I needed a model that resembles a real financial case. And I found this Kaggle challenge:
+
+&gt; [Home Credit - Credit Risk Model Stability](https://www.kaggle.com/competitions/home-credit-credit-risk-model-stability). 
+&gt; 
+&gt; **Overview:** The goal of this competition is to predict which clients are more likely to default on their loans. The evaluation will favor solutions that are stable over time.
+
+I also discovered a working example notebook of what seems to be an example for the challenge: [Home Credit 2024 Starter Notebook](https://www.kaggle.com/code/jetakow/home-credit-2024-starter-notebook/notebook).
+
+### Reviewing the Code with an LLM
+
+One initial step in model validation is a high-level code review, and LLMs can help with this. Below is an example of what Claude said when I asked it to summarize the code after pasting it into the interface:
+
+
+<div class="llm-container">
+    <div class="prompt">
+What is this code doing?
+</div>
+<div class="response">
+        <p>Let me break down this code - it appears to be implementing a credit risk or default prediction model with a focus on stability across time. Here are the key components:</p>
+
+        <p>1 Data Loading and Preprocessing:</p>
+        <ul>
+          <li>Loads several CSV files containing different types of data (base tables, static data, credit bureau data, person data)</li>
+          <li>Uses Polars (a fast DataFrame library) for initial data processing</li>
+          <li>The data appears to be related to loan applications, with different tables containing various attributes about applicants</li>
+        </ul>
+
+        <p>2 Feature Engineering:</p>
+        <ul>
+          <li>Creates aggregated features from person-related data:
+            <ul>
+              <li>Maximum occupation income</li>
+              <li>Whether any applicant is self-employed</li>
+              <li>Housing type for primary applicant</li>
+            </ul>
+          </li>
+          <li>Creates credit bureau features:
+            <ul>
+              <li>Maximum payments overdue</li>
+              <li>Whether payments were overdue by more than 31 days</li>
+            </ul>
+          </li>
+        </ul>
+
+        <p>3 Model Training:</p>
+        <ul>
+          <li>Uses LightGBM, a gradient boosting framework</li>
+          <li>Splits data into train (60%), validation (20%), and test (20%) sets</li>
+          <li>Trains a binary classification model with AUC (Area Under Curve) as the metric</li>
+          <li>Uses early stopping to prevent overfitting</li>
+        </ul>
+
+        <p>4 Model Evaluation:</p>
+
+        <ul>
+          <li>Calculates AUC scores for train, validation, and test sets</li>
+          <li>Implements a custom stability metric called gini_stability that:
+            <ul>
+              <li>Tracks model performance (Gini coefficient) across different time periods (WEEK_NUM)</li>
+              <li>Penalizes:
+                <ul>
+                  <li>Declining performance over time (negative slope in performance)</li>
+                  <li>High variance in performance (standard deviation of residuals)</li>
+                </ul>
+              </li>
+              <li>This suggests the model is being used in a production setting where stable predictions over time are important</li>
+            </ul>
+          </li>
+        </ul>
+
+        <p>5 The hyperparameters used suggest a relatively conservative model:</p>
+        <ul>
+          <li>Max depth of 3</li>
+          <li>Learning rate of 0.05</li>
+          <li>Feature and bagging fractions &lt; 1 for regularization</li>
+        </ul>
+
+        <p>This code appears to be part of a production system where model stability over time is as important as raw predictive performance. The stability metric is particularly interesting as it penalizes both declining performance over time and high variance in performance, which are important considerations for deployed models.</p>
+      </div>
+</div>
+
+It explains the code, touches on model parametrization, and highlights existing time-based performance tests. All are crucial details in a banking Model Validation.
+
+Next, I asked for enhancements:
+
+<div class="llm-container">
+    <div class="prompt">
+Given this code, are there errors or would you recommend enhancements to it?
+</div>
+<div class="response">
+        <p>Here are the key issues and recommended enhancements:</p>
+        <ol>
+          <li>Type Conversion Issues:
+            <pre><code class="language-Python">for df in [X_train, X_valid, X_test]:
+     df = convert_strings(df)
+</code></pre>
+            <p>This reassignment doesn’t modify the original dataframes. Should be:</p>
+            <pre><code class="language-Python">X_train = convert_strings(X_train)
+X_valid = convert_strings(X_valid)
+X_test = convert_strings(X_test)
+</code></pre>
+          </li>
+        </ol>
+
+        <p>2.Missing Error Handling:</p>
+        <ul>
+          <li>Add error handling for file loading</li>
+          <li>Validate data before model training</li>
+          <li>Check for missing values</li>
+        </ul>
+
+        <p>3.Performance Improvements:</p>
+
+        <ul>
+          <li>Consider using pl.LazyFrame for memory efficiency</li>
+          <li>Move categorical conversion to set_table_dtypes function</li>
+          <li>Use parallel processing for data aggregation</li>
+        </ul>
+
+        <p>4.Model Enhancements:</p>
+
+        <ul>
+          <li>Add feature importance analysis</li>
+          <li>Implement cross-validation</li>
+          <li>Consider hyperparameter tuning</li>
+          <li>Add model serialization</li>
+        </ul>
+
+        <p>5.Output Enhancement:</p>
+
+        <ul>
+          <li>Add confidence intervals for predictions</li>
+          <li>Include feature importance plots</li>
+          <li>Add model performance metrics beyond AUC</li>
+        </ul>
+      </div>
+</div>
+
+While some suggestions are more software-engineering focused, they also included important validation aspects. 
+
+For example, having evidence to support model parameterization is essential for a validation. Unlike Kaggle, where the primary objective is to achieve the highest score by any means, banking places a strong emphasis on justifying the decisions made in the model design.
+
+### Conducting Validation Tests (SR 11-7) with LLMs
+
+With this approach and just a few minutes, I have good insights into this model’s implementation. I think we can now start implementing tests.
+
+Let's ask the LLM for help.
+<div class="llm-container">
+    <div class="prompt">
+Given this code to train a credit model, could you create and give me the tests that should be performed according to SR 11-7? The tests should have visualization when possible, the scope should be as broad as possible and the results compiled into a tex file, including the images. Could you make it in a way that all outputs (tex and images) are in the same folder?
+</div>
+<div class="response">
+        <p>Lots of Python code.</p>
+      </div>
+</div>
+
+The result from this request is some code that I execute in a cell right after the last one from the Notebook I have downloaded, and it works straight away generating tex content that also compiles into pdf without errors.
+
+The LLM generated Python code for:  
+- Feature correlation checks  
+- Performance metrics over training, validation, and testing sets  
+- Population Stability Index (PSI) over time  
+- Basic conceptual soundness and outcomes analysis  
+
+And after compiling the .tex file it produced, here are the results in pdf format:
+
+![image](/assets/output1.jpg)
+![image](/assets/output2.jpg)
+![image](/assets/output3.jpg)
+![image](/assets/output4.jpg)
+![image](/assets/output5.jpg)
+
+If the code and results are accurate, these outputs are quite impressive from a Model Validation standpoint. In just five minutes, I’ve generated a report that provides insights into fundamental aspects of the model.
+
+While the report lacks deeper details such as what the feature importance scores are, it still offers valuable data like feature correlations, model performance across datasets, and temporal performance trends. 
+
+Some might see these tests as too simple, but the requirements for credit models in finance are highly specific. In other fields and industries, the focus is on boosting a performance metric—often by building complex ensembles that use every possible feature. In contrast, credit modeling strongly emphasizes simplicity and interpretability, largely due to regulatory obligations and the need for business stakeholders to clearly understand how the model works. So these tests are truly valid.
+
+For instance, seeing a correlation matrix reveal “dark islands” indicates an area needing further examination, exactly the kind of test that would be conducted in a real world validation setting. Likewise, the PSI-over-time plot, along with average score trends, suggests a potential behavior shift around week 60. Understanding what might have changed in the model or the data environment during that period is crucial.
+
+Overall, these tests are quite useful given how quickly they were produced. It took only minutes to write, execute, and compile them into a PDF document. I’m sure continuing the conversation and refining prompts could yield even more robust results.
+
+### Leveraging LLMs to Explore Model Documentation
+
+There are other tools based on LLMs such as Google’s Notebook LM which can help with tasks like exploring model documentation.
+
+To give some context and from my experience, model documentation is often much larger and more complex than the documentation for a Kaggle credit model. Reading, understanding, and navigating this documentation is a critical part of the validation process, and when the documentation is several hundred pages long, it can become painful. After months of working on validations, you’ll likely revisit the documentation dozens of times and even if you read it all at the start, you’ll inevitably forget some of the model specifics over time.
+
+This is where tools like Google’s Notebook LM come in handy as they can handle texts longer than the model’s context, allowing you to input large documents and ask questions and get relevant responses with references to where is taking the information from the input text.
+
+To see if this is a useful resource we can try an example with a more complex and long documentation. Let's use CreditMetrics from MSCI, which is tool used for credit risk estimations such as economic capital or unexpected losses and with available documentation online.
+
+Few things before keep moving:
+* This documentation for this model is available online and in [pdf format](https://www.msci.com/documents/10199/93396227-d449-4229-9143-24a94dab122f).
+* While this model would be classified as a vendor model (implemented by a third party with restricted access to certain details like source code), I will use it here as if it were developed in-house.
+* The responses below from Notebook LM include references to the input, as shown in the example image. This is particularly useful for validation purposes, ensuring that the source of information is clearly traceable.
+
+![image](/assets/notebooklm.jpeg)
+
+
+
+
+We can start asking some questions to the LLM about this documentation:
+
+<div class="llm-container">
+    <div class="prompt">
+What is CreditMetrics?
+</div>
+<div class="response">
+        <p>CreditMetrics: A Comprehensive Framework for Measuring Portfolio Credit Risk</p>
+
+        <p>CreditMetrics is a tool for assessing portfolio risk that arises from changes in the value of debt due to changes in the credit quality of obligors. This approach considers changes in value caused by potential defaults, upgrades, and downgrades in credit quality. CreditMetrics focuses on calculating the volatility of value (Value at Risk or VaR), not just the expected losses, within the context of a portfolio. It accounts for the correlation of credit quality movements across obligors, enabling the direct calculation of diversification benefits or potential over-concentrations across the portfolio.</p>
+
+        <p>CreditMetrics’ constructive approach focuses on modeling the mechanisms of value changes stemming from credit events rather than directly observing value changes, which is unlike market risk models that typically rely on readily available market data.
+Here’s a breakdown of CreditMetrics’ key features:</p>
+
+        <ul>
+          <li>
+            <p>Types of Risks Modeled: CreditMetrics primarily focuses on credit risk arising from credit events such as upgrades, downgrades, or defaults. It can also incorporate certain market risk components like market-driven volatility of credit exposures in instruments like swaps, forwards, and bonds.</p>
+          </li>
+          <li>Portfolio Approach: CreditMetrics emphasizes a portfolio approach to credit risk assessment because:
+            <ul>
+              <li>Credit portfolios exhibit diversification benefits due to imperfect correlations among obligors’ credit quality changes.</li>
+              <li>Innovative credit instruments, such as credit derivatives, explicitly derive value from correlation estimates or credit events.</li>
+            </ul>
+          </li>
+          <li>Challenges in Estimating Portfolio Credit Risk: Estimating portfolio credit risk is more challenging than estimating portfolio market risk due to:
+            <ul>
+              <li>Non-normality of Credit Returns: The distribution of credit returns is often skewed with a long downside tail due to the possibility of defaults, making it difficult to characterize the distribution using only the mean and standard deviation.</li>
+              <li>Difficulty in Modeling Correlations: Unlike equities with readily available high-frequency market data, credit quality correlations are difficult to estimate directly from historical data due to data sparsity and infrequent pricing.</li>
+            </ul>
+          </li>
+          <li>Data Requirements: Implementing CreditMetrics requires three primary types of data:
+            <ul>
+              <li>Likelihoods of credit quality migration: Transition matrices provide the probabilities of an obligor migrating from one credit rating to another or defaulting over a given time horizon. These can be obtained from rating agencies or calculated from other sources like KMV’s Expected Default Frequencies (EDFs).</li>
+              <li>Likelihoods of joint credit quality migration: Capturing the portfolio effect requires estimating the likelihood of joint credit quality movements between obligors. This is typically achieved by either historically tabulating joint credit rating moves or proposing models to capture the correlation between obligors’ creditworthiness, such as the asset value model.</li>
+              <li>Valuation estimates: Data is needed to calculate the change in value for each instrument given a possible credit quality migration. This includes information such as coupon rates, maturities, recovery rates for different seniority classes, and credit spreads for various rating categories.</li>
+            </ul>
+          </li>
+          <li>Advanced Modeling Features: CreditMetrics incorporates features for more precise risk estimation:
+            <ul>
+              <li>Market-Driven Exposure Uncertainty: For instruments like swaps and forwards, where credit exposure depends on market rates, market volatilities are considered to model the uncertainty in potential losses.</li>
+              <li>Recovery Rate Uncertainty: Recovery rates in the event of default are inherently uncertain. CreditMetrics allows for treating recoveries as random quantities using mean and standard deviation estimates.</li>
+            </ul>
+          </li>
+          <li>Risk Measures: CreditMetrics offers two primary risk measures:
+            <ul>
+              <li>Standard Deviation: A symmetric measure of dispersion around the average portfolio value, reflecting the variability in portfolio value due to credit quality changes.</li>
+              <li>Percentile Level: Represents a specific point in the distribution of portfolio values, indicating the lowest value the portfolio is expected to reach with a given probability (e.g., the 1st percentile).</li>
+            </ul>
+          </li>
+        </ul>
+
+        <p>CreditMetrics, by incorporating these features and methodologies, provides a robust and comprehensive framework for measuring and managing credit risk within a portfolio context. It allows institutions to make informed decisions regarding risk mitigation, limit setting, and economic capital allocation, ultimately leading to more efficient utilization of risk-taking capacity.</p>
+      </div>
+</div>
+
+We now have a good summary of this model documentation of 200 pages (although I would say this is not exactly what I would call a model documentation as it mostly focuses on the theory and not the implementation details).
+
+It is already giving good insights for a validation like the different approaches, challenges when estimating credit risk or data requirements. We can maybe dig deeper in some topics such as the challenges the response is proposing.
+
+Let's ask for some more detail about the model.
+<div class="llm-container">
+    <div class="prompt">
+How does the model address the non-normality of credit returns for better results?
+</div>
+<div class="response">
+        <p>The sources highlight that credit returns deviate significantly from a normal distribution, primarily due to the possibility of defaults, which creates a long downside tail. This characteristic makes relying solely on standard deviation, a measure designed for symmetrical distributions, inadequate for accurately assessing credit risk.
+CreditMetrics tackles this challenge by constructing a model that does not rely on the assumption of normally distributed returns. Instead, it estimates the full distribution of potential value changes through the following steps:</p>
+
+        <ul>
+          <li>
+            <p>Modeling Credit Quality Migrations: CreditMetrics utilizes a transition matrix that captures the probabilities of obligors migrating between different credit ratings or defaulting over a specific time horizon. These probabilities are derived from historical rating data and incorporate the likelihood of both upgrades and downgrades, capturing the full spectrum of potential credit quality changes.</p>
+          </li>
+          <li>
+            <p>Valuation at Different Rating States: For each possible credit quality migration, CreditMetrics revalues the exposures based on their new credit rating. This involves using forward interest rate curves specific to each credit rating to discount future cash flows, accounting for changes in credit spreads associated with each rating category.</p>
+          </li>
+          <li>Incorporating Uncertainty: The model acknowledges and incorporates two key sources of uncertainty that contribute to the non-normality of credit returns:
+            <ul>
+              <li>Market-Driven Exposure Uncertainty: For instruments with market-driven exposures, like swaps and forwards, CreditMetrics factors in market volatilities to model the potential fluctuations in exposure amounts. This is crucial as the credit exposure of these instruments depends on market movements, making their future value inherently uncertain.</li>
+              <li>Recovery Rate Uncertainty: Recovery rates in the event of default are not fixed but exhibit significant variability. CreditMetrics addresses this by treating recovery rates as random variables characterized by their mean and standard deviation. It uses a beta distribution to model the full range of possible recovery rates, further enhancing the accuracy of value estimations in default scenarios.</li>
+            </ul>
+          </li>
+          <li>Simulation for Comprehensive Risk Assessment: By combining these elements within a Monte Carlo simulation framework, CreditMetrics generates a large number of potential future portfolio value scenarios. These scenarios consider both the likelihood of different credit rating migrations and the uncertainty associated with market-driven exposures and recovery rates. Analyzing this simulated distribution enables the calculation of various risk measures, including:
+            <ul>
+              <li>Percentile levels, providing a more nuanced understanding of potential downside risk than standard deviation alone.</li>
+              <li>Expected shortfall, capturing the average loss beyond a chosen confidence level, offering a more conservative risk estimate.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <p>Instead of relying on the normality assumption, CreditMetrics constructs a distribution of possible outcomes based on a model that captures the complexities of credit risk. This approach enables a more accurate and comprehensive assessment of the potential for losses due to credit events, leading to better risk management decisions.</p>
+      </div>
+</div>
+
+
+
+And some even more specific questions I know the model should take into account somehow.
+
+<div class="llm-container">
+    <div class="prompt">
+How does it model the correlation of a portfolio that could have thousands of obligors?
+</div>
+<div class="response">
+        <p>Modeling Correlation in Large Portfolios: CreditMetrics’ Approach</p>
+
+        <p>CreditMetrics recognizes the importance of capturing correlation, particularly in large portfolios with thousands of obligors, to accurately assess portfolio credit risk and diversification benefits. Directly estimating correlations from historical data for each pair of obligors in such a large portfolio is practically impossible due to data limitations and computational complexity.</p>
+
+        <p>CreditMetrics offers a more efficient and practical approach by utilizing an asset value model to estimate correlations and capture the interdependencies among obligors’ credit quality changes. This model is based on the understanding that the value of a company’s assets directly influences its creditworthiness and the likelihood of default.
+Here’s how CreditMetrics models correlation using the asset value model:</p>
+
+        <ol>
+          <li>
+            <p>Mapping Asset Value to Credit Rating: The model assumes that an obligor’s credit rating is determined by the value of its assets relative to certain thresholds. For instance, if the asset value falls below a predefined default threshold, the obligor is likely to default. Similarly, thresholds are defined for other rating categories, creating a mapping between asset value and credit rating.</p>
+          </li>
+          <li>
+            <p>Modeling Asset Value Movements: The asset value of each obligor is assumed to follow a stochastic process, typically a geometric Brownian motion, which incorporates both a drift component (representing the expected growth rate of asset value) and a volatility component (capturing the uncertainty in asset value changes).</p>
+          </li>
+          <li>
+            <p>Introducing Correlation: The key to modeling correlation lies in assuming that the asset value movements of different obligors are correlated. This assumption reflects the fact that macroeconomic factors and industry-specific events can simultaneously influence the financial health of multiple companies.</p>
+          </li>
+          <li>Estimating Asset Correlations: Estimating asset correlations is crucial for determining the degree to which obligors’ creditworthiness is interconnected. CreditMetrics offers various methods for this estimation, including:
+            <ul>
+              <li>Equity Correlations as Proxies: The model utilizes readily available equity return data to estimate correlations between firms’ asset values. This approach assumes that equity prices reflect market perceptions of a company’s underlying asset value and its future prospects.</li>
+              <li>Mapping to Industry Indices: To address the challenge of estimating a vast number of pairwise correlations in large portfolios, CreditMetrics employs a mapping scheme using industry indices. Each obligor is assigned weights according to its participation in different industries and countries. Correlations between these industries, derived from historical data, are then used to calculate pairwise correlations between obligors.</li>
+            </ul>
+          </li>
+          <li>Generating Joint Rating Scenarios: Once asset correlations are estimated, CreditMetrics uses these correlations, along with individual obligor transition probabilities, to generate scenarios of joint credit rating migrations. These scenarios reflect the likelihood of different combinations of credit events, capturing the possibility of multiple obligors experiencing upgrades, downgrades, or defaults simultaneously.</li>
+        </ol>
+
+        <p>By integrating the asset value model into its framework, CreditMetrics provides a robust and efficient way to model correlation in large credit portfolios. It leverages readily available data sources like equity returns and industry indices, allowing for the estimation of a vast number of pairwise correlations without resorting to computationally expensive calculations. This approach enables a more accurate assessment of portfolio diversification benefits and facilitates better risk management decisions.</p>
+      </div>
+</div>
+
+And we could keep digging with technical details and probably combine it with other LLMs such as Chat GPT which in my experience is really good for technical explanations.
+
+In any case, let's try to use this information to get more Model Validation specifics. I will assume I have access to the Monte Carlo simulations detail and ask now Sonnet to give me some code to validate it:
+
+<div class="llm-container">
+    <div class="prompt">
+If you have the model described below, and also have the detail for the monte carlo simulations, could you please give me the code to execute some tests according to SR 11-7 and to validate the assumptions are correct?
+
+**Pasted here the three outcomes above from Notebook LM for CreditMetrics**
+
+</div>
+<div class="response">
+
+        <p>I’ve created a comprehensive validation framework for the CreditMetrics model that addresses the key aspects mentioned in your description and follows SR 11-7 guidelines. Here’s what the code does:</p>
+
+        <ol>
+          <li>
+            <p>Tests for Non-Normality:</p>
+
+            <ul>
+              <li>Performs Jarque-Bera and Kolmogorov-Smirnov tests</li>
+              <li>Calculates skewness and kurtosis</li>
+              <li>Validates the assumption that credit returns are non-normal</li>
+            </ul>
+          </li>
+          <li>
+            <p>Recovery Rate Distribution Testing:</p>
+
+            <ul>
+              <li>Fits a beta distribution to recovery rates</li>
+              <li>Tests the goodness of fit</li>
+              <li>Validates the assumption about recovery rate uncertainty</li>
+            </ul>
+          </li>
+          <li>
+            <p>Asset Correlation Testing:</p>
+
+            <ul>
+              <li>Tests correlation stability over time</li>
+              <li>Validates correlation estimation methods</li>
+              <li>Checks for correlation preservation in simulations</li>
+            </ul>
+          </li>
+          <li>
+            <p>Monte Carlo Simulation Validation:</p>
+            <ul>
+              <li>Tests convergence of simulations</li>
+              <li>Validates preservation of input correlations</li>
+              <li>Verifies accuracy of transition probabilities</li>
+              <li>Implements correlated asset value generation</li>
+            </ul>
+          </li>
+        </ol>
+
+        <p>The framework includes:</p>
+
+        <ul>
+          <li>Comprehensive documentation</li>
+          <li>Type hints for better code clarity</li>
+          <li>Error handling and validation checks</li>
+          <li>Report generation functionality</li>
+        </ul>
+
+        <p>To use this framework, you would:</p>
+
+        <ul>
+          <li>Initialize the validator</li>
+          <li>Provide your actual data (returns, recovery rates, etc.)</li>
+          <li>Run the validation tests</li>
+          <li>Generate a validation report</li>
+        </ul>
+
+      </div>
+</div>
+
+I will post the code the LLM gave me. I have not executed it mostly because I don't have access to the Monte Carlo details, but with my previous tests and how it looks, seems to be a good starting point.
+
+<details>
+      <summary>Click to expand the Python code</summary>
+
+      <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">beta</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">kstest</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span>
+
+<span class="k">class</span> <span class="nc">CreditMetricsValidator</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">confidence_level</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.95</span><span class="p">):</span>
+        <span class="s">"""
+        Initialize the CreditMetrics model validator.
+        
+        Args:
+            confidence_level: Confidence level for statistical tests
+        """</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">confidence_level</span> <span class="o">=</span> <span class="n">confidence_level</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+        
+    <span class="k">def</span> <span class="nf">test_normality</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">returns</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+        <span class="s">"""
+        Test the non-normality assumption of credit returns.
+        
+        Args:
+            returns: Array of credit returns
+            
+        Returns:
+            Dictionary containing test results
+        """</span>
+        <span class="c1"># Calculate descriptive statistics
+</span>        <span class="n">skewness</span> <span class="o">=</span> <span class="n">stats</span><span class="p">.</span><span class="n">skew</span><span class="p">(</span><span class="n">returns</span><span class="p">)</span>
+        <span class="n">kurtosis</span> <span class="o">=</span> <span class="n">stats</span><span class="p">.</span><span class="n">kurtosis</span><span class="p">(</span><span class="n">returns</span><span class="p">)</span>
+        
+        <span class="c1"># Perform Jarque-Bera test for normality
+</span>        <span class="n">jb_stat</span><span class="p">,</span> <span class="n">jb_pvalue</span> <span class="o">=</span> <span class="n">stats</span><span class="p">.</span><span class="n">jarque_bera</span><span class="p">(</span><span class="n">returns</span><span class="p">)</span>
+        
+        <span class="c1"># Perform Kolmogorov-Smirnov test
+</span>        <span class="n">ks_stat</span><span class="p">,</span> <span class="n">ks_pvalue</span> <span class="o">=</span> <span class="n">kstest</span><span class="p">(</span><span class="n">returns</span><span class="p">,</span> <span class="s">'norm'</span><span class="p">)</span>
+        
+        <span class="n">results</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">'skewness'</span><span class="p">:</span> <span class="n">skewness</span><span class="p">,</span>
+            <span class="s">'kurtosis'</span><span class="p">:</span> <span class="n">kurtosis</span><span class="p">,</span>
+            <span class="s">'jarque_bera_stat'</span><span class="p">:</span> <span class="n">jb_stat</span><span class="p">,</span>
+            <span class="s">'jarque_bera_pvalue'</span><span class="p">:</span> <span class="n">jb_pvalue</span><span class="p">,</span>
+            <span class="s">'ks_stat'</span><span class="p">:</span> <span class="n">ks_stat</span><span class="p">,</span>
+            <span class="s">'ks_pvalue'</span><span class="p">:</span> <span class="n">ks_pvalue</span><span class="p">,</span>
+            <span class="s">'is_normal'</span><span class="p">:</span> <span class="n">jb_pvalue</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="p">.</span><span class="n">confidence_level</span><span class="p">)</span>
+        <span class="p">}</span>
+        
+        <span class="k">return</span> <span class="n">results</span>
+    
+    <span class="k">def</span> <span class="nf">test_recovery_rate_distribution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">recovery_rates</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+        <span class="s">"""
+        Test if recovery rates follow a beta distribution.
+        
+        Args:
+            recovery_rates: Array of historical recovery rates
+            
+        Returns:
+            Dictionary containing test results
+        """</span>
+        <span class="c1"># Fit beta distribution
+</span>        <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">loc</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">beta</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">recovery_rates</span><span class="p">)</span>
+        
+        <span class="c1"># Perform Kolmogorov-Smirnov test against fitted beta
+</span>        <span class="n">ks_stat</span><span class="p">,</span> <span class="n">ks_pvalue</span> <span class="o">=</span> <span class="n">kstest</span><span class="p">(</span><span class="n">recovery_rates</span><span class="p">,</span> <span class="s">'beta'</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+        
+        <span class="n">results</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">'beta_params'</span><span class="p">:</span> <span class="p">{</span><span class="s">'a'</span><span class="p">:</span> <span class="n">a</span><span class="p">,</span> <span class="s">'b'</span><span class="p">:</span> <span class="n">b</span><span class="p">,</span> <span class="s">'loc'</span><span class="p">:</span> <span class="n">loc</span><span class="p">,</span> <span class="s">'scale'</span><span class="p">:</span> <span class="n">scale</span><span class="p">},</span>
+            <span class="s">'ks_stat'</span><span class="p">:</span> <span class="n">ks_stat</span><span class="p">,</span>
+            <span class="s">'ks_pvalue'</span><span class="p">:</span> <span class="n">ks_pvalue</span><span class="p">,</span>
+            <span class="s">'fits_beta'</span><span class="p">:</span> <span class="n">ks_pvalue</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="p">.</span><span class="n">confidence_level</span><span class="p">)</span>
+        <span class="p">}</span>
+        
+        <span class="k">return</span> <span class="n">results</span>
+    
+    <span class="k">def</span> <span class="nf">test_asset_correlation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asset_returns1</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">asset_returns2</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+        <span class="s">"""
+        Test asset correlation assumptions.
+        
+        Args:
+            asset_returns1: Array of returns for first asset
+            asset_returns2: Array of returns for second asset
+            
+        Returns:
+            Dictionary containing test results
+        """</span>
+        <span class="c1"># Calculate correlation
+</span>        <span class="n">correlation</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">asset_returns1</span><span class="p">,</span> <span class="n">asset_returns2</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+        
+        <span class="c1"># Test correlation stability
+</span>        <span class="n">window_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">asset_returns1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">4</span>
+        <span class="n">rolling_corr</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">asset_returns1</span><span class="p">)</span> <span class="o">-</span> <span class="n">window_size</span><span class="p">):</span>
+            <span class="n">window_corr</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">corrcoef</span><span class="p">(</span>
+                <span class="n">asset_returns1</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">window_size</span><span class="p">],</span>
+                <span class="n">asset_returns2</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">window_size</span><span class="p">]</span>
+            <span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">rolling_corr</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">window_corr</span><span class="p">)</span>
+            
+        <span class="n">correlation_std</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">std</span><span class="p">(</span><span class="n">rolling_corr</span><span class="p">)</span>
+        
+        <span class="n">results</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">'correlation'</span><span class="p">:</span> <span class="n">correlation</span><span class="p">,</span>
+            <span class="s">'correlation_stability'</span><span class="p">:</span> <span class="n">correlation_std</span><span class="p">,</span>
+            <span class="s">'is_stable'</span><span class="p">:</span> <span class="n">correlation_std</span> <span class="o">&lt;</span> <span class="mf">0.2</span>  <span class="c1"># Threshold for stability
+</span>        <span class="p">}</span>
+        
+        <span class="k">return</span> <span class="n">results</span>
+    
+    <span class="k">def</span> <span class="nf">monte_carlo_validation</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">n_simulations</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">transition_matrix</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">initial_ratings</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">asset_correlations</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+        <span class="s">"""
+        Validate Monte Carlo simulation assumptions and results.
+        
+        Args:
+            n_simulations: Number of Monte Carlo simulations
+            transition_matrix: Rating transition probability matrix
+            initial_ratings: Initial credit ratings
+            asset_correlations: Matrix of asset correlations
+            
+        Returns:
+            Dictionary containing validation results
+        """</span>
+        <span class="k">def</span> <span class="nf">simulate_correlated_normals</span><span class="p">(</span><span class="n">n_assets</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">correlation_matrix</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">:</span>
+            <span class="s">"""Generate correlated normal random variables."""</span>
+            <span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">cholesky</span><span class="p">(</span><span class="n">correlation_matrix</span><span class="p">)</span>
+            <span class="n">uncorrelated</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">standard_normal</span><span class="p">(</span><span class="n">n_assets</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">uncorrelated</span><span class="p">)</span>
+        
+        <span class="n">n_assets</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">initial_ratings</span><span class="p">)</span>
+        <span class="n">rating_paths</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_simulations</span><span class="p">,</span> <span class="n">n_assets</span><span class="p">))</span>
+        
+        <span class="c1"># Perform Monte Carlo simulation
+</span>        <span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_simulations</span><span class="p">):</span>
+            <span class="c1"># Generate correlated asset returns
+</span>            <span class="n">asset_returns</span> <span class="o">=</span> <span class="n">simulate_correlated_normals</span><span class="p">(</span><span class="n">n_assets</span><span class="p">,</span> <span class="n">asset_correlations</span><span class="p">)</span>
+            
+            <span class="c1"># Map asset returns to rating changes (simplified)
+</span>            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_assets</span><span class="p">):</span>
+                <span class="n">rating_paths</span><span class="p">[</span><span class="n">sim</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">searchsorted</span><span class="p">(</span>
+                    <span class="n">np</span><span class="p">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">transition_matrix</span><span class="p">[</span><span class="n">initial_ratings</span><span class="p">[</span><span class="n">i</span><span class="p">]]),</span>
+                    <span class="n">stats</span><span class="p">.</span><span class="n">norm</span><span class="p">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">asset_returns</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="p">)</span>
+        
+        <span class="c1"># Validate simulation results
+</span>        <span class="n">results</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">'convergence'</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">_test_convergence</span><span class="p">(</span><span class="n">rating_paths</span><span class="p">),</span>
+            <span class="s">'correlation_preservation'</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">_test_correlation_preservation</span><span class="p">(</span>
+                <span class="n">rating_paths</span><span class="p">,</span> <span class="n">asset_correlations</span>
+            <span class="p">),</span>
+            <span class="s">'transition_probability_accuracy'</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">_test_transition_probabilities</span><span class="p">(</span>
+                <span class="n">rating_paths</span><span class="p">,</span> <span class="n">transition_matrix</span><span class="p">,</span> <span class="n">initial_ratings</span>
+            <span class="p">)</span>
+        <span class="p">}</span>
+        
+        <span class="k">return</span> <span class="n">results</span>
+    
+    <span class="k">def</span> <span class="nf">_test_convergence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rating_paths</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+        <span class="s">"""Test convergence of Monte Carlo simulation."""</span>
+        <span class="n">means</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">rating_paths</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">rating_paths</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)[:,</span> <span class="n">np</span><span class="p">.</span><span class="n">newaxis</span><span class="p">]</span>
+        
+        <span class="c1"># Calculate relative change in means
+</span>        <span class="n">relative_changes</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">diff</span><span class="p">(</span><span class="n">means</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">means</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        
+        <span class="c1"># Check if convergence criteria are met
+</span>        <span class="n">convergence_threshold</span> <span class="o">=</span> <span class="mf">0.01</span>  <span class="c1"># 1% relative change
+</span>        <span class="n">is_converged</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">all</span><span class="p">(</span><span class="n">relative_changes</span><span class="p">[</span><span class="o">-</span><span class="mi">100</span><span class="p">:]</span> <span class="o">&lt;</span> <span class="n">convergence_threshold</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s">'is_converged'</span><span class="p">:</span> <span class="n">is_converged</span><span class="p">,</span>
+            <span class="s">'final_relative_change'</span><span class="p">:</span> <span class="n">relative_changes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">mean</span><span class="p">()</span>
+        <span class="p">}</span>
+    
+    <span class="k">def</span> <span class="nf">_test_correlation_preservation</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">rating_paths</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">target_correlations</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+        <span class="s">"""Test if simulated correlations match target correlations."""</span>
+        <span class="n">simulated_corr</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">rating_paths</span><span class="p">.</span><span class="n">T</span><span class="p">)</span>
+        <span class="n">correlation_error</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">simulated_corr</span> <span class="o">-</span> <span class="n">target_correlations</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s">'max_correlation_error'</span><span class="p">:</span> <span class="n">correlation_error</span><span class="p">.</span><span class="nb">max</span><span class="p">(),</span>
+            <span class="s">'mean_correlation_error'</span><span class="p">:</span> <span class="n">correlation_error</span><span class="p">.</span><span class="n">mean</span><span class="p">(),</span>
+            <span class="s">'is_preserved'</span><span class="p">:</span> <span class="n">correlation_error</span><span class="p">.</span><span class="nb">max</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.1</span>  <span class="c1"># 10% threshold
+</span>        <span class="p">}</span>
+    
+    <span class="k">def</span> <span class="nf">_test_transition_probabilities</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">rating_paths</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">transition_matrix</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">initial_ratings</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+        <span class="s">"""Test if simulated transition probabilities match input probabilities."""</span>
+        <span class="n">n_ratings</span> <span class="o">=</span> <span class="n">transition_matrix</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">simulated_transitions</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_ratings</span><span class="p">,</span> <span class="n">n_ratings</span><span class="p">))</span>
+        
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">initial_rating</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">initial_ratings</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_ratings</span><span class="p">):</span>
+                <span class="n">simulated_transitions</span><span class="p">[</span><span class="n">initial_rating</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span>
+                    <span class="n">rating_paths</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">j</span>
+                <span class="p">)</span>
+        
+        <span class="n">probability_error</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">abs</span><span class="p">(</span>
+            <span class="n">simulated_transitions</span> <span class="o">-</span> <span class="n">transition_matrix</span><span class="p">[</span><span class="n">initial_ratings</span><span class="p">]</span>
+        <span class="p">)</span>
+        
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s">'max_probability_error'</span><span class="p">:</span> <span class="n">probability_error</span><span class="p">.</span><span class="nb">max</span><span class="p">(),</span>
+            <span class="s">'mean_probability_error'</span><span class="p">:</span> <span class="n">probability_error</span><span class="p">.</span><span class="n">mean</span><span class="p">(),</span>
+            <span class="s">'is_accurate'</span><span class="p">:</span> <span class="n">probability_error</span><span class="p">.</span><span class="nb">max</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.05</span>  <span class="c1"># 5% threshold
+</span>        <span class="p">}</span>
+    
+    <span class="k">def</span> <span class="nf">generate_validation_report</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="s">"""Generate a comprehensive validation report."""</span>
+        <span class="n">report</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">report</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"CreditMetrics Model Validation Report"</span><span class="p">)</span>
+        <span class="n">report</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"="</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">test_name</span><span class="p">,</span> <span class="n">results</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">.</span><span class="n">results</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">report</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="se">\n</span><span class="s">Test: </span><span class="si">{</span><span class="n">test_name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+            <span class="n">report</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"-"</span> <span class="o">*</span> <span class="mi">20</span><span class="p">)</span>
+            
+            <span class="k">for</span> <span class="n">metric</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">results</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">report</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">report</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">example_usage</span><span class="p">():</span>
+    <span class="s">"""Example usage of the CreditMetrics validator."""</span>
+    <span class="c1"># Initialize validator
+</span>    <span class="n">validator</span> <span class="o">=</span> <span class="n">CreditMetricsValidator</span><span class="p">(</span><span class="n">confidence_level</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+    
+    <span class="c1"># Generate sample data
+</span>    <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">n_observations</span> <span class="o">=</span> <span class="mi">1000</span>
+    <span class="n">n_assets</span> <span class="o">=</span> <span class="mi">3</span>
+    
+    <span class="c1"># Sample credit returns (typically non-normal)
+</span>    <span class="n">returns</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">standard_t</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_observations</span><span class="p">)</span>
+    
+    <span class="c1"># Sample recovery rates (between 0 and 1)
+</span>    <span class="n">recovery_rates</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_observations</span><span class="p">)</span>
+    
+    <span class="c1"># Sample asset returns
+</span>    <span class="n">asset_returns1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_observations</span><span class="p">)</span>
+    <span class="n">asset_returns2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_observations</span><span class="p">)</span>
+    
+    <span class="c1"># Sample transition matrix (3x3 for simplicity)
+</span>    <span class="n">transition_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="p">[</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]</span>
+    <span class="p">])</span>
+    
+    <span class="c1"># Sample initial ratings
+</span>    <span class="n">initial_ratings</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+    
+    <span class="c1"># Sample asset correlations
+</span>    <span class="n">asset_correlations</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+    <span class="p">])</span>
+    
+    <span class="c1"># Run tests
+</span>    <span class="n">validator</span><span class="p">.</span><span class="n">results</span><span class="p">[</span><span class="s">'normality'</span><span class="p">]</span> <span class="o">=</span> <span class="n">validator</span><span class="p">.</span><span class="n">test_normality</span><span class="p">(</span><span class="n">returns</span><span class="p">)</span>
+    <span class="n">validator</span><span class="p">.</span><span class="n">results</span><span class="p">[</span><span class="s">'recovery_rates'</span><span class="p">]</span> <span class="o">=</span> <span class="n">validator</span><span class="p">.</span><span class="n">test_recovery_rate_distribution</span><span class="p">(</span><span class="n">recovery_rates</span><span class="p">)</span>
+    <span class="n">validator</span><span class="p">.</span><span class="n">results</span><span class="p">[</span><span class="s">'asset_correlation'</span><span class="p">]</span> <span class="o">=</span> <span class="n">validator</span><span class="p">.</span><span class="n">test_asset_correlation</span><span class="p">(</span>
+        <span class="n">asset_returns1</span><span class="p">,</span> <span class="n">asset_returns2</span>
+    <span class="p">)</span>
+    <span class="n">validator</span><span class="p">.</span><span class="n">results</span><span class="p">[</span><span class="s">'monte_carlo'</span><span class="p">]</span> <span class="o">=</span> <span class="n">validator</span><span class="p">.</span><span class="n">monte_carlo_validation</span><span class="p">(</span>
+        <span class="n">n_simulations</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
+        <span class="n">transition_matrix</span><span class="o">=</span><span class="n">transition_matrix</span><span class="p">,</span>
+        <span class="n">initial_ratings</span><span class="o">=</span><span class="n">initial_ratings</span><span class="p">,</span>
+        <span class="n">asset_correlations</span><span class="o">=</span><span class="n">asset_correlations</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># Generate report
+</span>    <span class="n">report</span> <span class="o">=</span> <span class="n">validator</span><span class="p">.</span><span class="n">generate_validation_report</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">report</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">example_usage</span><span class="p">()</span>
+</code></pre></div>      </div>
+
+    </details>
+  
+</details></div>
+
+  </div><a class="u-url" href="/docs/misc/2024/10/31/test-css.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Josep Rubió Piqué</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Josep Rubió Piqué</li><li><a class="u-email" href="mailto:joseprupi@gmail.com">joseprupi@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/joseprupi"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">joseprupi</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>This is my website.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

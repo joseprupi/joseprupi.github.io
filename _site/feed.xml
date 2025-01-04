@@ -1,0 +1,1861 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-01-04T14:07:22-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Josep Rubió Piqué</title><subtitle>This is my website.</subtitle><entry><title type="html">How LLMs Simplify and Improve Model Validation in Banking</title><link href="http://localhost:4000/docs/misc/2024/10/31/test-css.html" rel="alternate" type="text/html" title="How LLMs Simplify and Improve Model Validation in Banking" /><published>2024-10-31T18:00:00-06:00</published><updated>2024-10-31T18:00:00-06:00</updated><id>http://localhost:4000/docs/misc/2024/10/31/test-css</id><content type="html" xml:base="http://localhost:4000/docs/misc/2024/10/31/test-css.html"><![CDATA[<style>
+/* Two-column layout styles */
+/* Two-column layout styles */
+/* Base post styles */
+/* Base post styles */
+/* Base post styles */
+/* Base post styles */
+/* Base post styles */
+.post {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* TL;DR box styling */
+.tldr-box {
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* LLM conversation container */
+.llm-container {
+    margin: 1rem 0;
+    font-family: monospace;
+    background-color: #f8f9fa;
+    padding: 1.2rem;
+    border-radius: 8px;
+    border-left: 4px solid #BBD7F0;
+}
+
+/* Prompt styling */
+.prompt {
+    margin-bottom: 0.8rem;
+}
+
+/* Response section styling */
+.response {
+    border-top: 1px solid #edf2f7;
+    margin-top: 0.8rem;
+    padding-top: 0.8rem;
+}
+
+/* Lists styling */
+.response ul {
+    margin: 0.4rem 0;
+    padding-left: 1.5rem;
+    list-style-type: disc;
+}
+
+.response ul li {
+    margin-bottom: 0.3rem;
+    line-height: 1.4;
+}
+
+/* Paragraph styling */
+.response p {
+    margin-bottom: 0.8rem;
+    line-height: 1.5;
+}
+
+/* Markdown content styling */
+.response strong {
+    font-weight: 600;
+}
+
+/* Table of contents styling */
+.toc {
+    background: #f8f9fa;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 4px;
+}
+
+/* Header styling */
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 1.8rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.17em; }
+h4 { font-size: 1em; }
+h5 { font-size: 0.83em; }
+h6 { font-size: 0.67em; }
+
+/* Code blocks in responses */
+.response code {
+    background-color: #f5f7fa;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+}
+
+/* Spacing between containers */
+.llm-container + .llm-container {
+    margin-top: 1.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .llm-container {
+        padding: 1rem;
+        margin: 0.8rem 0;
+    }
+}
+
+  /* Styles for collapsible sections */
+details {
+    margin: 0;  /* Remove margin */
+    padding: 0; /* Remove padding */
+    border: none; /* Remove border */
+    background: none; /* Remove background */
+}
+
+summary {
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none; /* Removes default marker */
+    margin-bottom: 0.8rem; /* Match your existing spacing */
+}
+
+/* Remove default marker */
+summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Custom arrow indicators */
+summary::after {
+    content: " ▼";
+    float: right;
+}
+
+details[open] summary::after {
+    content: " ▲";
+}
+
+/* Response content should have no extra styling from details */
+details .response {
+    padding: 0;
+    margin: 0;
+    background: none;
+}
+
+
+</style>
+
+<p><em>The views and opinions expressed in this post are solely my own and do not necessarily reflect those of my employer. This content is for general informational purposes only and does not constitute professional advice.</em></p>
+
+<div style="border: 1px solid #ccc; background-color: #f9f9f9; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
+  <strong>TL;DR:</strong> This post walks through the steps of a banking Model Validation assisted by LLMs. There's already tons of LLM-related material and the results might seem obvious to some readers but I wanted to show how they can be leveraged specifically for model validation. I found the results both time saving and high quality, so I created an app (yes, another LLM wrapper :( ) to make things easier. Feel free to skip directly to it.
+</div>
+
+<ul id="markdown-toc">
+  <li><a href="#model-validation-in-banking" id="markdown-toc-model-validation-in-banking">Model Validation in banking</a></li>
+</ul>
+
+<h3 id="model-validation-in-banking">Model Validation in banking</h3>
+
+<p>This post is mostly me following the steps of a Model Validation in Banking assisted by LLMs. The result is impressive to me in terms of quality and the time saving this could represent. At the end there is an app, front to back, for Model Validation if you want to see that.</p>
+
+<p>Let’s begin by clarifying what model validation means in this post. Yes, it involves ensuring that models function correctly, a broad topic in itself, but here we’ll focus on the US banking environment, where model validation also requires adhering to regulatory standards such as SR 11-7.</p>
+
+<p>In this post you’ll find:</p>
+<ul>
+  <li>What Model Validation in banking entails</li>
+  <li>How LLMs (OpenAI’s ChatGPT, Claude’s Sonnet, and Google’s Notebook LM) can assist in various aspects of model validation</li>
+  <li>How these tools can help streamline code reviews, validation tests, and the handling of large model documentation</li>
+  <li>An LLM-based, front-to-back application (yes, another LLM wrapper) to generate tests and Validation Reports only using natural language</li>
+</ul>
+
+<p>Before we start, let’s see what ChatGPT has to say about model validation in this context.</p>
+
+<div class="llm-container">
+    <div class="prompt">
+        What does model validation mean in the US banking environment? Could you summarize it with few sentences?
+    </div>
+    <details>
+        <summary>Response</summary>
+        <div class="response">
+      <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        In the U.S. banking environment, model validation refers to the rigorous process of evaluating financial models to ensure they are reliable, accurate, and compliant with regulatory standards. It involves assessing the model's performance, assumptions, limitations, and potential risks. This practice is essential for managing model risk and adhering to regulatory guidelines such as SR 11-7, which requires banks to maintain robust model risk management frameworks to prevent financial and operational issues.
+    &lt;/div&gt;
+&lt;/details&gt;
+</code></pre></div>      </div>
+    </div>
+
+### Key Components of SR 11-7
+
+Alright, we have a base now. We understand that validating models is a regulated process guided by SR 11-7 so let's gather some more detail on what this should be:
+<div class="llm-container">
+    <div class="prompt">
+What should a model validation contain according to SR 11-7?
+    </div>
+    <div class="response">
+        <p>According to SR 11-7, a comprehensive model validation should include the following key components:</p>
+        <ul>
+          <li><strong>Evaluation of Conceptual Soundness:</strong> An in-depth assessment of the model’s design, theory, and logic, including underlying assumptions and methodology. This ensures that the model is appropriate for its intended purpose.</li>
+          <li><strong>Ongoing Monitoring:</strong> Regular checks to confirm that the model’s performance aligns with expectations over time. This includes tracking key performance metrics and reviewing outcomes to identify any significant deviations.</li>
+          <li><strong>Outcomes Analysis:</strong> A quantitative comparison of the model’s predictions against actual outcomes. This step helps assess the accuracy and reliability of the model in real-world conditions.</li>
+          <li><strong>Benchmarking and Back-Testing:</strong> Comparing the model’s results with alternative models and validating performance through back-testing with historical data.</li>
+          <li><strong>Assessment of Limitations and Uncertainty:</strong> Identifying potential limitations in the model’s framework and quantifying any associated uncertainties or risks.
+These elements ensure a robust validation process, enabling institutions to identify and mitigate model risks effectively, maintaining compliance with regulatory requirements.</li>
+        </ul>
+      </div>
+</div>
+
+
+And what form and structure does a model validation take?
+
+<div class="llm-container">
+    <div class="prompt">
+How should these results be presented?
+    </div>
+<div class="response">
+        <p>Model validation results, in line with SR 11-7, should be presented in a structured, transparent, and comprehensive report, typically covering the following sections:</p>
+        <ul>
+          <li><strong>Executive Summary</strong>: A concise overview of the validation’s key findings, model strengths and weaknesses, and an overall assessment of the model’s risk level and validation outcome (e.g., approved, approved with conditions, or not approved).</li>
+          <li><strong>Scope and Objectives</strong>: A clear outline of the validation’s purpose, including the model’s intended use, its assumptions, and limitations. It should specify the validation scope, such as whether it’s a full-scope or targeted validation.</li>
+          <li><strong>Methodology and Approach</strong>: A description of the validation process, including the methods, tools, and benchmarks used. This part should clarify how the validation aligns with regulatory requirements and internal policies.</li>
+          <li><strong>Evaluation of Conceptual Soundness</strong>: Findings on the model’s design, methodology, assumptions, and overall soundness. This section often includes a detailed review of data sources, model components, and theoretical foundations.</li>
+          <li><strong>Ongoing Monitoring and Performance Review</strong>: Insights into the model’s stability, accuracy, and predictive power over time, along with performance metrics and any monitoring results that highlight trends or areas of concern.</li>
+          <li><strong>Outcomes Analysis and Back-Testing Results</strong>: Results of outcome analysis, including back-testing findings that compare predicted versus actual results. This section should provide quantitative and qualitative analyses, highlighting any discrepancies and their implications.</li>
+          <li><strong>Issues and Recommendations</strong>: Identification of any issues, weaknesses, or limitations, along with prioritized recommendations for improvements. This can include both short-term remediation actions and longer-term improvements to address identified risks.</li>
+          <li><strong>Conclusion and Sign-Off</strong>: A summary of key points and the final opinion on the model’s viability, along with sign-offs from validation team members and relevant stakeholders.</li>
+          <li><strong>Supporting Documentation</strong>: Additional materials such as data sources, code, validation testing details, and other relevant documents to ensure transparency and reproducibility.
+Effective presentation should ensure clarity for stakeholders, including management and regulators, with visual aids like charts and tables where helpful.</li>
+        </ul>
+      </div>
+</div>
+
+In short, validating models in banking requires assessing whether they work properly and creating detailed, regulator-friendly reports. And while the process may seem simple and even obvious —and in many ways it is— it also is extremely valuable and not commonly adopted outside of banking. I believe other industries could benefit from a similar, standardized approach to ensure models are reliable and used appropriately through clear, consistent reporting.
+
+Importantly, the goal of this process isn’t just to produce reports, but to improve the quality of models. And from my experience, it works. Development teams build better products when they know their work will be audited, requiring them to justify decisions and document their processes in ways that business stakeholders can easily understand.
+
+### Choosing a Sample Model to Validate
+
+To illustrate, I’ll try to show how to validate a model and demonstrate how LLMs can help with an example.
+
+So for his demonstration, I needed a model that resembles a real financial case. And I found this Kaggle challenge:
+
+&gt; [Home Credit - Credit Risk Model Stability](https://www.kaggle.com/competitions/home-credit-credit-risk-model-stability). 
+&gt; 
+&gt; **Overview:** The goal of this competition is to predict which clients are more likely to default on their loans. The evaluation will favor solutions that are stable over time.
+
+I also discovered a working example notebook of what seems to be an example for the challenge: [Home Credit 2024 Starter Notebook](https://www.kaggle.com/code/jetakow/home-credit-2024-starter-notebook/notebook).
+
+### Reviewing the Code with an LLM
+
+One initial step in model validation is a high-level code review, and LLMs can help with this. Below is an example of what Claude said when I asked it to summarize the code after pasting it into the interface:
+
+
+<div class="llm-container">
+    <div class="prompt">
+What is this code doing?
+</div>
+<div class="response">
+        <p>Let me break down this code - it appears to be implementing a credit risk or default prediction model with a focus on stability across time. Here are the key components:</p>
+
+        <p>1 Data Loading and Preprocessing:</p>
+        <ul>
+          <li>Loads several CSV files containing different types of data (base tables, static data, credit bureau data, person data)</li>
+          <li>Uses Polars (a fast DataFrame library) for initial data processing</li>
+          <li>The data appears to be related to loan applications, with different tables containing various attributes about applicants</li>
+        </ul>
+
+        <p>2 Feature Engineering:</p>
+        <ul>
+          <li>Creates aggregated features from person-related data:
+            <ul>
+              <li>Maximum occupation income</li>
+              <li>Whether any applicant is self-employed</li>
+              <li>Housing type for primary applicant</li>
+            </ul>
+          </li>
+          <li>Creates credit bureau features:
+            <ul>
+              <li>Maximum payments overdue</li>
+              <li>Whether payments were overdue by more than 31 days</li>
+            </ul>
+          </li>
+        </ul>
+
+        <p>3 Model Training:</p>
+        <ul>
+          <li>Uses LightGBM, a gradient boosting framework</li>
+          <li>Splits data into train (60%), validation (20%), and test (20%) sets</li>
+          <li>Trains a binary classification model with AUC (Area Under Curve) as the metric</li>
+          <li>Uses early stopping to prevent overfitting</li>
+        </ul>
+
+        <p>4 Model Evaluation:</p>
+
+        <ul>
+          <li>Calculates AUC scores for train, validation, and test sets</li>
+          <li>Implements a custom stability metric called gini_stability that:
+            <ul>
+              <li>Tracks model performance (Gini coefficient) across different time periods (WEEK_NUM)</li>
+              <li>Penalizes:
+                <ul>
+                  <li>Declining performance over time (negative slope in performance)</li>
+                  <li>High variance in performance (standard deviation of residuals)</li>
+                </ul>
+              </li>
+              <li>This suggests the model is being used in a production setting where stable predictions over time are important</li>
+            </ul>
+          </li>
+        </ul>
+
+        <p>5 The hyperparameters used suggest a relatively conservative model:</p>
+        <ul>
+          <li>Max depth of 3</li>
+          <li>Learning rate of 0.05</li>
+          <li>Feature and bagging fractions &lt; 1 for regularization</li>
+        </ul>
+
+        <p>This code appears to be part of a production system where model stability over time is as important as raw predictive performance. The stability metric is particularly interesting as it penalizes both declining performance over time and high variance in performance, which are important considerations for deployed models.</p>
+      </div>
+</div>
+
+It explains the code, touches on model parametrization, and highlights existing time-based performance tests. All are crucial details in a banking Model Validation.
+
+Next, I asked for enhancements:
+
+<div class="llm-container">
+    <div class="prompt">
+Given this code, are there errors or would you recommend enhancements to it?
+</div>
+<div class="response">
+        <p>Here are the key issues and recommended enhancements:</p>
+        <ol>
+          <li>Type Conversion Issues:
+            <pre><code class="language-Python">for df in [X_train, X_valid, X_test]:
+     df = convert_strings(df)
+</code></pre>
+            <p>This reassignment doesn’t modify the original dataframes. Should be:</p>
+            <pre><code class="language-Python">X_train = convert_strings(X_train)
+X_valid = convert_strings(X_valid)
+X_test = convert_strings(X_test)
+</code></pre>
+          </li>
+        </ol>
+
+        <p>2.Missing Error Handling:</p>
+        <ul>
+          <li>Add error handling for file loading</li>
+          <li>Validate data before model training</li>
+          <li>Check for missing values</li>
+        </ul>
+
+        <p>3.Performance Improvements:</p>
+
+        <ul>
+          <li>Consider using pl.LazyFrame for memory efficiency</li>
+          <li>Move categorical conversion to set_table_dtypes function</li>
+          <li>Use parallel processing for data aggregation</li>
+        </ul>
+
+        <p>4.Model Enhancements:</p>
+
+        <ul>
+          <li>Add feature importance analysis</li>
+          <li>Implement cross-validation</li>
+          <li>Consider hyperparameter tuning</li>
+          <li>Add model serialization</li>
+        </ul>
+
+        <p>5.Output Enhancement:</p>
+
+        <ul>
+          <li>Add confidence intervals for predictions</li>
+          <li>Include feature importance plots</li>
+          <li>Add model performance metrics beyond AUC</li>
+        </ul>
+      </div>
+</div>
+
+While some suggestions are more software-engineering focused, they also included important validation aspects. 
+
+For example, having evidence to support model parameterization is essential for a validation. Unlike Kaggle, where the primary objective is to achieve the highest score by any means, banking places a strong emphasis on justifying the decisions made in the model design.
+
+### Conducting Validation Tests (SR 11-7) with LLMs
+
+With this approach and just a few minutes, I have good insights into this model’s implementation. I think we can now start implementing tests.
+
+Let's ask the LLM for help.
+<div class="llm-container">
+    <div class="prompt">
+Given this code to train a credit model, could you create and give me the tests that should be performed according to SR 11-7? The tests should have visualization when possible, the scope should be as broad as possible and the results compiled into a tex file, including the images. Could you make it in a way that all outputs (tex and images) are in the same folder?
+</div>
+<div class="response">
+        <p>Lots of Python code.</p>
+      </div>
+</div>
+
+The result from this request is some code that I execute in a cell right after the last one from the Notebook I have downloaded, and it works straight away generating tex content that also compiles into pdf without errors.
+
+The LLM generated Python code for:  
+- Feature correlation checks  
+- Performance metrics over training, validation, and testing sets  
+- Population Stability Index (PSI) over time  
+- Basic conceptual soundness and outcomes analysis  
+
+And after compiling the .tex file it produced, here are the results in pdf format:
+
+![image](/assets/output1.jpg)
+![image](/assets/output2.jpg)
+![image](/assets/output3.jpg)
+![image](/assets/output4.jpg)
+![image](/assets/output5.jpg)
+
+If the code and results are accurate, these outputs are quite impressive from a Model Validation standpoint. In just five minutes, I’ve generated a report that provides insights into fundamental aspects of the model.
+
+While the report lacks deeper details such as what the feature importance scores are, it still offers valuable data like feature correlations, model performance across datasets, and temporal performance trends. 
+
+Some might see these tests as too simple, but the requirements for credit models in finance are highly specific. In other fields and industries, the focus is on boosting a performance metric—often by building complex ensembles that use every possible feature. In contrast, credit modeling strongly emphasizes simplicity and interpretability, largely due to regulatory obligations and the need for business stakeholders to clearly understand how the model works. So these tests are truly valid.
+
+For instance, seeing a correlation matrix reveal “dark islands” indicates an area needing further examination, exactly the kind of test that would be conducted in a real world validation setting. Likewise, the PSI-over-time plot, along with average score trends, suggests a potential behavior shift around week 60. Understanding what might have changed in the model or the data environment during that period is crucial.
+
+Overall, these tests are quite useful given how quickly they were produced. It took only minutes to write, execute, and compile them into a PDF document. I’m sure continuing the conversation and refining prompts could yield even more robust results.
+
+### Leveraging LLMs to Explore Model Documentation
+
+There are other tools based on LLMs such as Google’s Notebook LM which can help with tasks like exploring model documentation.
+
+To give some context and from my experience, model documentation is often much larger and more complex than the documentation for a Kaggle credit model. Reading, understanding, and navigating this documentation is a critical part of the validation process, and when the documentation is several hundred pages long, it can become painful. After months of working on validations, you’ll likely revisit the documentation dozens of times and even if you read it all at the start, you’ll inevitably forget some of the model specifics over time.
+
+This is where tools like Google’s Notebook LM come in handy as they can handle texts longer than the model’s context, allowing you to input large documents and ask questions and get relevant responses with references to where is taking the information from the input text.
+
+To see if this is a useful resource we can try an example with a more complex and long documentation. Let's use CreditMetrics from MSCI, which is tool used for credit risk estimations such as economic capital or unexpected losses and with available documentation online.
+
+Few things before keep moving:
+* This documentation for this model is available online and in [pdf format](https://www.msci.com/documents/10199/93396227-d449-4229-9143-24a94dab122f).
+* While this model would be classified as a vendor model (implemented by a third party with restricted access to certain details like source code), I will use it here as if it were developed in-house.
+* The responses below from Notebook LM include references to the input, as shown in the example image. This is particularly useful for validation purposes, ensuring that the source of information is clearly traceable.
+
+![image](/assets/notebooklm.jpeg)
+
+
+
+
+We can start asking some questions to the LLM about this documentation:
+
+<div class="llm-container">
+    <div class="prompt">
+What is CreditMetrics?
+</div>
+<div class="response">
+        <p>CreditMetrics: A Comprehensive Framework for Measuring Portfolio Credit Risk</p>
+
+        <p>CreditMetrics is a tool for assessing portfolio risk that arises from changes in the value of debt due to changes in the credit quality of obligors. This approach considers changes in value caused by potential defaults, upgrades, and downgrades in credit quality. CreditMetrics focuses on calculating the volatility of value (Value at Risk or VaR), not just the expected losses, within the context of a portfolio. It accounts for the correlation of credit quality movements across obligors, enabling the direct calculation of diversification benefits or potential over-concentrations across the portfolio.</p>
+
+        <p>CreditMetrics’ constructive approach focuses on modeling the mechanisms of value changes stemming from credit events rather than directly observing value changes, which is unlike market risk models that typically rely on readily available market data.
+Here’s a breakdown of CreditMetrics’ key features:</p>
+
+        <ul>
+          <li>
+            <p>Types of Risks Modeled: CreditMetrics primarily focuses on credit risk arising from credit events such as upgrades, downgrades, or defaults. It can also incorporate certain market risk components like market-driven volatility of credit exposures in instruments like swaps, forwards, and bonds.</p>
+          </li>
+          <li>Portfolio Approach: CreditMetrics emphasizes a portfolio approach to credit risk assessment because:
+            <ul>
+              <li>Credit portfolios exhibit diversification benefits due to imperfect correlations among obligors’ credit quality changes.</li>
+              <li>Innovative credit instruments, such as credit derivatives, explicitly derive value from correlation estimates or credit events.</li>
+            </ul>
+          </li>
+          <li>Challenges in Estimating Portfolio Credit Risk: Estimating portfolio credit risk is more challenging than estimating portfolio market risk due to:
+            <ul>
+              <li>Non-normality of Credit Returns: The distribution of credit returns is often skewed with a long downside tail due to the possibility of defaults, making it difficult to characterize the distribution using only the mean and standard deviation.</li>
+              <li>Difficulty in Modeling Correlations: Unlike equities with readily available high-frequency market data, credit quality correlations are difficult to estimate directly from historical data due to data sparsity and infrequent pricing.</li>
+            </ul>
+          </li>
+          <li>Data Requirements: Implementing CreditMetrics requires three primary types of data:
+            <ul>
+              <li>Likelihoods of credit quality migration: Transition matrices provide the probabilities of an obligor migrating from one credit rating to another or defaulting over a given time horizon. These can be obtained from rating agencies or calculated from other sources like KMV’s Expected Default Frequencies (EDFs).</li>
+              <li>Likelihoods of joint credit quality migration: Capturing the portfolio effect requires estimating the likelihood of joint credit quality movements between obligors. This is typically achieved by either historically tabulating joint credit rating moves or proposing models to capture the correlation between obligors’ creditworthiness, such as the asset value model.</li>
+              <li>Valuation estimates: Data is needed to calculate the change in value for each instrument given a possible credit quality migration. This includes information such as coupon rates, maturities, recovery rates for different seniority classes, and credit spreads for various rating categories.</li>
+            </ul>
+          </li>
+          <li>Advanced Modeling Features: CreditMetrics incorporates features for more precise risk estimation:
+            <ul>
+              <li>Market-Driven Exposure Uncertainty: For instruments like swaps and forwards, where credit exposure depends on market rates, market volatilities are considered to model the uncertainty in potential losses.</li>
+              <li>Recovery Rate Uncertainty: Recovery rates in the event of default are inherently uncertain. CreditMetrics allows for treating recoveries as random quantities using mean and standard deviation estimates.</li>
+            </ul>
+          </li>
+          <li>Risk Measures: CreditMetrics offers two primary risk measures:
+            <ul>
+              <li>Standard Deviation: A symmetric measure of dispersion around the average portfolio value, reflecting the variability in portfolio value due to credit quality changes.</li>
+              <li>Percentile Level: Represents a specific point in the distribution of portfolio values, indicating the lowest value the portfolio is expected to reach with a given probability (e.g., the 1st percentile).</li>
+            </ul>
+          </li>
+        </ul>
+
+        <p>CreditMetrics, by incorporating these features and methodologies, provides a robust and comprehensive framework for measuring and managing credit risk within a portfolio context. It allows institutions to make informed decisions regarding risk mitigation, limit setting, and economic capital allocation, ultimately leading to more efficient utilization of risk-taking capacity.</p>
+      </div>
+</div>
+
+We now have a good summary of this model documentation of 200 pages (although I would say this is not exactly what I would call a model documentation as it mostly focuses on the theory and not the implementation details).
+
+It is already giving good insights for a validation like the different approaches, challenges when estimating credit risk or data requirements. We can maybe dig deeper in some topics such as the challenges the response is proposing.
+
+Let's ask for some more detail about the model.
+<div class="llm-container">
+    <div class="prompt">
+How does the model address the non-normality of credit returns for better results?
+</div>
+<div class="response">
+        <p>The sources highlight that credit returns deviate significantly from a normal distribution, primarily due to the possibility of defaults, which creates a long downside tail. This characteristic makes relying solely on standard deviation, a measure designed for symmetrical distributions, inadequate for accurately assessing credit risk.
+CreditMetrics tackles this challenge by constructing a model that does not rely on the assumption of normally distributed returns. Instead, it estimates the full distribution of potential value changes through the following steps:</p>
+
+        <ul>
+          <li>
+            <p>Modeling Credit Quality Migrations: CreditMetrics utilizes a transition matrix that captures the probabilities of obligors migrating between different credit ratings or defaulting over a specific time horizon. These probabilities are derived from historical rating data and incorporate the likelihood of both upgrades and downgrades, capturing the full spectrum of potential credit quality changes.</p>
+          </li>
+          <li>
+            <p>Valuation at Different Rating States: For each possible credit quality migration, CreditMetrics revalues the exposures based on their new credit rating. This involves using forward interest rate curves specific to each credit rating to discount future cash flows, accounting for changes in credit spreads associated with each rating category.</p>
+          </li>
+          <li>Incorporating Uncertainty: The model acknowledges and incorporates two key sources of uncertainty that contribute to the non-normality of credit returns:
+            <ul>
+              <li>Market-Driven Exposure Uncertainty: For instruments with market-driven exposures, like swaps and forwards, CreditMetrics factors in market volatilities to model the potential fluctuations in exposure amounts. This is crucial as the credit exposure of these instruments depends on market movements, making their future value inherently uncertain.</li>
+              <li>Recovery Rate Uncertainty: Recovery rates in the event of default are not fixed but exhibit significant variability. CreditMetrics addresses this by treating recovery rates as random variables characterized by their mean and standard deviation. It uses a beta distribution to model the full range of possible recovery rates, further enhancing the accuracy of value estimations in default scenarios.</li>
+            </ul>
+          </li>
+          <li>Simulation for Comprehensive Risk Assessment: By combining these elements within a Monte Carlo simulation framework, CreditMetrics generates a large number of potential future portfolio value scenarios. These scenarios consider both the likelihood of different credit rating migrations and the uncertainty associated with market-driven exposures and recovery rates. Analyzing this simulated distribution enables the calculation of various risk measures, including:
+            <ul>
+              <li>Percentile levels, providing a more nuanced understanding of potential downside risk than standard deviation alone.</li>
+              <li>Expected shortfall, capturing the average loss beyond a chosen confidence level, offering a more conservative risk estimate.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <p>Instead of relying on the normality assumption, CreditMetrics constructs a distribution of possible outcomes based on a model that captures the complexities of credit risk. This approach enables a more accurate and comprehensive assessment of the potential for losses due to credit events, leading to better risk management decisions.</p>
+      </div>
+</div>
+
+
+
+And some even more specific questions I know the model should take into account somehow.
+
+<div class="llm-container">
+    <div class="prompt">
+How does it model the correlation of a portfolio that could have thousands of obligors?
+</div>
+<div class="response">
+        <p>Modeling Correlation in Large Portfolios: CreditMetrics’ Approach</p>
+
+        <p>CreditMetrics recognizes the importance of capturing correlation, particularly in large portfolios with thousands of obligors, to accurately assess portfolio credit risk and diversification benefits. Directly estimating correlations from historical data for each pair of obligors in such a large portfolio is practically impossible due to data limitations and computational complexity.</p>
+
+        <p>CreditMetrics offers a more efficient and practical approach by utilizing an asset value model to estimate correlations and capture the interdependencies among obligors’ credit quality changes. This model is based on the understanding that the value of a company’s assets directly influences its creditworthiness and the likelihood of default.
+Here’s how CreditMetrics models correlation using the asset value model:</p>
+
+        <ol>
+          <li>
+            <p>Mapping Asset Value to Credit Rating: The model assumes that an obligor’s credit rating is determined by the value of its assets relative to certain thresholds. For instance, if the asset value falls below a predefined default threshold, the obligor is likely to default. Similarly, thresholds are defined for other rating categories, creating a mapping between asset value and credit rating.</p>
+          </li>
+          <li>
+            <p>Modeling Asset Value Movements: The asset value of each obligor is assumed to follow a stochastic process, typically a geometric Brownian motion, which incorporates both a drift component (representing the expected growth rate of asset value) and a volatility component (capturing the uncertainty in asset value changes).</p>
+          </li>
+          <li>
+            <p>Introducing Correlation: The key to modeling correlation lies in assuming that the asset value movements of different obligors are correlated. This assumption reflects the fact that macroeconomic factors and industry-specific events can simultaneously influence the financial health of multiple companies.</p>
+          </li>
+          <li>Estimating Asset Correlations: Estimating asset correlations is crucial for determining the degree to which obligors’ creditworthiness is interconnected. CreditMetrics offers various methods for this estimation, including:
+            <ul>
+              <li>Equity Correlations as Proxies: The model utilizes readily available equity return data to estimate correlations between firms’ asset values. This approach assumes that equity prices reflect market perceptions of a company’s underlying asset value and its future prospects.</li>
+              <li>Mapping to Industry Indices: To address the challenge of estimating a vast number of pairwise correlations in large portfolios, CreditMetrics employs a mapping scheme using industry indices. Each obligor is assigned weights according to its participation in different industries and countries. Correlations between these industries, derived from historical data, are then used to calculate pairwise correlations between obligors.</li>
+            </ul>
+          </li>
+          <li>Generating Joint Rating Scenarios: Once asset correlations are estimated, CreditMetrics uses these correlations, along with individual obligor transition probabilities, to generate scenarios of joint credit rating migrations. These scenarios reflect the likelihood of different combinations of credit events, capturing the possibility of multiple obligors experiencing upgrades, downgrades, or defaults simultaneously.</li>
+        </ol>
+
+        <p>By integrating the asset value model into its framework, CreditMetrics provides a robust and efficient way to model correlation in large credit portfolios. It leverages readily available data sources like equity returns and industry indices, allowing for the estimation of a vast number of pairwise correlations without resorting to computationally expensive calculations. This approach enables a more accurate assessment of portfolio diversification benefits and facilitates better risk management decisions.</p>
+      </div>
+</div>
+
+And we could keep digging with technical details and probably combine it with other LLMs such as Chat GPT which in my experience is really good for technical explanations.
+
+In any case, let's try to use this information to get more Model Validation specifics. I will assume I have access to the Monte Carlo simulations detail and ask now Sonnet to give me some code to validate it:
+
+<div class="llm-container">
+    <div class="prompt">
+If you have the model described below, and also have the detail for the monte carlo simulations, could you please give me the code to execute some tests according to SR 11-7 and to validate the assumptions are correct?
+
+**Pasted here the three outcomes above from Notebook LM for CreditMetrics**
+
+</div>
+<div class="response">
+
+        <p>I’ve created a comprehensive validation framework for the CreditMetrics model that addresses the key aspects mentioned in your description and follows SR 11-7 guidelines. Here’s what the code does:</p>
+
+        <ol>
+          <li>
+            <p>Tests for Non-Normality:</p>
+
+            <ul>
+              <li>Performs Jarque-Bera and Kolmogorov-Smirnov tests</li>
+              <li>Calculates skewness and kurtosis</li>
+              <li>Validates the assumption that credit returns are non-normal</li>
+            </ul>
+          </li>
+          <li>
+            <p>Recovery Rate Distribution Testing:</p>
+
+            <ul>
+              <li>Fits a beta distribution to recovery rates</li>
+              <li>Tests the goodness of fit</li>
+              <li>Validates the assumption about recovery rate uncertainty</li>
+            </ul>
+          </li>
+          <li>
+            <p>Asset Correlation Testing:</p>
+
+            <ul>
+              <li>Tests correlation stability over time</li>
+              <li>Validates correlation estimation methods</li>
+              <li>Checks for correlation preservation in simulations</li>
+            </ul>
+          </li>
+          <li>
+            <p>Monte Carlo Simulation Validation:</p>
+            <ul>
+              <li>Tests convergence of simulations</li>
+              <li>Validates preservation of input correlations</li>
+              <li>Verifies accuracy of transition probabilities</li>
+              <li>Implements correlated asset value generation</li>
+            </ul>
+          </li>
+        </ol>
+
+        <p>The framework includes:</p>
+
+        <ul>
+          <li>Comprehensive documentation</li>
+          <li>Type hints for better code clarity</li>
+          <li>Error handling and validation checks</li>
+          <li>Report generation functionality</li>
+        </ul>
+
+        <p>To use this framework, you would:</p>
+
+        <ul>
+          <li>Initialize the validator</li>
+          <li>Provide your actual data (returns, recovery rates, etc.)</li>
+          <li>Run the validation tests</li>
+          <li>Generate a validation report</li>
+        </ul>
+
+      </div>
+</div>
+
+I will post the code the LLM gave me. I have not executed it mostly because I don't have access to the Monte Carlo details, but with my previous tests and how it looks, seems to be a good starting point.
+
+<details>
+      <summary>Click to expand the Python code</summary>
+
+      <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">beta</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">kstest</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span>
+
+<span class="k">class</span> <span class="nc">CreditMetricsValidator</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">confidence_level</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.95</span><span class="p">):</span>
+        <span class="s">"""
+        Initialize the CreditMetrics model validator.
+        
+        Args:
+            confidence_level: Confidence level for statistical tests
+        """</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">confidence_level</span> <span class="o">=</span> <span class="n">confidence_level</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+        
+    <span class="k">def</span> <span class="nf">test_normality</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">returns</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+        <span class="s">"""
+        Test the non-normality assumption of credit returns.
+        
+        Args:
+            returns: Array of credit returns
+            
+        Returns:
+            Dictionary containing test results
+        """</span>
+        <span class="c1"># Calculate descriptive statistics
+</span>        <span class="n">skewness</span> <span class="o">=</span> <span class="n">stats</span><span class="p">.</span><span class="n">skew</span><span class="p">(</span><span class="n">returns</span><span class="p">)</span>
+        <span class="n">kurtosis</span> <span class="o">=</span> <span class="n">stats</span><span class="p">.</span><span class="n">kurtosis</span><span class="p">(</span><span class="n">returns</span><span class="p">)</span>
+        
+        <span class="c1"># Perform Jarque-Bera test for normality
+</span>        <span class="n">jb_stat</span><span class="p">,</span> <span class="n">jb_pvalue</span> <span class="o">=</span> <span class="n">stats</span><span class="p">.</span><span class="n">jarque_bera</span><span class="p">(</span><span class="n">returns</span><span class="p">)</span>
+        
+        <span class="c1"># Perform Kolmogorov-Smirnov test
+</span>        <span class="n">ks_stat</span><span class="p">,</span> <span class="n">ks_pvalue</span> <span class="o">=</span> <span class="n">kstest</span><span class="p">(</span><span class="n">returns</span><span class="p">,</span> <span class="s">'norm'</span><span class="p">)</span>
+        
+        <span class="n">results</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">'skewness'</span><span class="p">:</span> <span class="n">skewness</span><span class="p">,</span>
+            <span class="s">'kurtosis'</span><span class="p">:</span> <span class="n">kurtosis</span><span class="p">,</span>
+            <span class="s">'jarque_bera_stat'</span><span class="p">:</span> <span class="n">jb_stat</span><span class="p">,</span>
+            <span class="s">'jarque_bera_pvalue'</span><span class="p">:</span> <span class="n">jb_pvalue</span><span class="p">,</span>
+            <span class="s">'ks_stat'</span><span class="p">:</span> <span class="n">ks_stat</span><span class="p">,</span>
+            <span class="s">'ks_pvalue'</span><span class="p">:</span> <span class="n">ks_pvalue</span><span class="p">,</span>
+            <span class="s">'is_normal'</span><span class="p">:</span> <span class="n">jb_pvalue</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="p">.</span><span class="n">confidence_level</span><span class="p">)</span>
+        <span class="p">}</span>
+        
+        <span class="k">return</span> <span class="n">results</span>
+    
+    <span class="k">def</span> <span class="nf">test_recovery_rate_distribution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">recovery_rates</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+        <span class="s">"""
+        Test if recovery rates follow a beta distribution.
+        
+        Args:
+            recovery_rates: Array of historical recovery rates
+            
+        Returns:
+            Dictionary containing test results
+        """</span>
+        <span class="c1"># Fit beta distribution
+</span>        <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">loc</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">beta</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">recovery_rates</span><span class="p">)</span>
+        
+        <span class="c1"># Perform Kolmogorov-Smirnov test against fitted beta
+</span>        <span class="n">ks_stat</span><span class="p">,</span> <span class="n">ks_pvalue</span> <span class="o">=</span> <span class="n">kstest</span><span class="p">(</span><span class="n">recovery_rates</span><span class="p">,</span> <span class="s">'beta'</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+        
+        <span class="n">results</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">'beta_params'</span><span class="p">:</span> <span class="p">{</span><span class="s">'a'</span><span class="p">:</span> <span class="n">a</span><span class="p">,</span> <span class="s">'b'</span><span class="p">:</span> <span class="n">b</span><span class="p">,</span> <span class="s">'loc'</span><span class="p">:</span> <span class="n">loc</span><span class="p">,</span> <span class="s">'scale'</span><span class="p">:</span> <span class="n">scale</span><span class="p">},</span>
+            <span class="s">'ks_stat'</span><span class="p">:</span> <span class="n">ks_stat</span><span class="p">,</span>
+            <span class="s">'ks_pvalue'</span><span class="p">:</span> <span class="n">ks_pvalue</span><span class="p">,</span>
+            <span class="s">'fits_beta'</span><span class="p">:</span> <span class="n">ks_pvalue</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="p">.</span><span class="n">confidence_level</span><span class="p">)</span>
+        <span class="p">}</span>
+        
+        <span class="k">return</span> <span class="n">results</span>
+    
+    <span class="k">def</span> <span class="nf">test_asset_correlation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asset_returns1</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">asset_returns2</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+        <span class="s">"""
+        Test asset correlation assumptions.
+        
+        Args:
+            asset_returns1: Array of returns for first asset
+            asset_returns2: Array of returns for second asset
+            
+        Returns:
+            Dictionary containing test results
+        """</span>
+        <span class="c1"># Calculate correlation
+</span>        <span class="n">correlation</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">asset_returns1</span><span class="p">,</span> <span class="n">asset_returns2</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+        
+        <span class="c1"># Test correlation stability
+</span>        <span class="n">window_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">asset_returns1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">4</span>
+        <span class="n">rolling_corr</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">asset_returns1</span><span class="p">)</span> <span class="o">-</span> <span class="n">window_size</span><span class="p">):</span>
+            <span class="n">window_corr</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">corrcoef</span><span class="p">(</span>
+                <span class="n">asset_returns1</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">window_size</span><span class="p">],</span>
+                <span class="n">asset_returns2</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">window_size</span><span class="p">]</span>
+            <span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">rolling_corr</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">window_corr</span><span class="p">)</span>
+            
+        <span class="n">correlation_std</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">std</span><span class="p">(</span><span class="n">rolling_corr</span><span class="p">)</span>
+        
+        <span class="n">results</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">'correlation'</span><span class="p">:</span> <span class="n">correlation</span><span class="p">,</span>
+            <span class="s">'correlation_stability'</span><span class="p">:</span> <span class="n">correlation_std</span><span class="p">,</span>
+            <span class="s">'is_stable'</span><span class="p">:</span> <span class="n">correlation_std</span> <span class="o">&lt;</span> <span class="mf">0.2</span>  <span class="c1"># Threshold for stability
+</span>        <span class="p">}</span>
+        
+        <span class="k">return</span> <span class="n">results</span>
+    
+    <span class="k">def</span> <span class="nf">monte_carlo_validation</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">n_simulations</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">transition_matrix</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">initial_ratings</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">asset_correlations</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+        <span class="s">"""
+        Validate Monte Carlo simulation assumptions and results.
+        
+        Args:
+            n_simulations: Number of Monte Carlo simulations
+            transition_matrix: Rating transition probability matrix
+            initial_ratings: Initial credit ratings
+            asset_correlations: Matrix of asset correlations
+            
+        Returns:
+            Dictionary containing validation results
+        """</span>
+        <span class="k">def</span> <span class="nf">simulate_correlated_normals</span><span class="p">(</span><span class="n">n_assets</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">correlation_matrix</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">:</span>
+            <span class="s">"""Generate correlated normal random variables."""</span>
+            <span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">cholesky</span><span class="p">(</span><span class="n">correlation_matrix</span><span class="p">)</span>
+            <span class="n">uncorrelated</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">standard_normal</span><span class="p">(</span><span class="n">n_assets</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">uncorrelated</span><span class="p">)</span>
+        
+        <span class="n">n_assets</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">initial_ratings</span><span class="p">)</span>
+        <span class="n">rating_paths</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_simulations</span><span class="p">,</span> <span class="n">n_assets</span><span class="p">))</span>
+        
+        <span class="c1"># Perform Monte Carlo simulation
+</span>        <span class="k">for</span> <span class="n">sim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_simulations</span><span class="p">):</span>
+            <span class="c1"># Generate correlated asset returns
+</span>            <span class="n">asset_returns</span> <span class="o">=</span> <span class="n">simulate_correlated_normals</span><span class="p">(</span><span class="n">n_assets</span><span class="p">,</span> <span class="n">asset_correlations</span><span class="p">)</span>
+            
+            <span class="c1"># Map asset returns to rating changes (simplified)
+</span>            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_assets</span><span class="p">):</span>
+                <span class="n">rating_paths</span><span class="p">[</span><span class="n">sim</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">searchsorted</span><span class="p">(</span>
+                    <span class="n">np</span><span class="p">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">transition_matrix</span><span class="p">[</span><span class="n">initial_ratings</span><span class="p">[</span><span class="n">i</span><span class="p">]]),</span>
+                    <span class="n">stats</span><span class="p">.</span><span class="n">norm</span><span class="p">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">asset_returns</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="p">)</span>
+        
+        <span class="c1"># Validate simulation results
+</span>        <span class="n">results</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">'convergence'</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">_test_convergence</span><span class="p">(</span><span class="n">rating_paths</span><span class="p">),</span>
+            <span class="s">'correlation_preservation'</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">_test_correlation_preservation</span><span class="p">(</span>
+                <span class="n">rating_paths</span><span class="p">,</span> <span class="n">asset_correlations</span>
+            <span class="p">),</span>
+            <span class="s">'transition_probability_accuracy'</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">_test_transition_probabilities</span><span class="p">(</span>
+                <span class="n">rating_paths</span><span class="p">,</span> <span class="n">transition_matrix</span><span class="p">,</span> <span class="n">initial_ratings</span>
+            <span class="p">)</span>
+        <span class="p">}</span>
+        
+        <span class="k">return</span> <span class="n">results</span>
+    
+    <span class="k">def</span> <span class="nf">_test_convergence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rating_paths</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+        <span class="s">"""Test convergence of Monte Carlo simulation."""</span>
+        <span class="n">means</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">rating_paths</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">rating_paths</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)[:,</span> <span class="n">np</span><span class="p">.</span><span class="n">newaxis</span><span class="p">]</span>
+        
+        <span class="c1"># Calculate relative change in means
+</span>        <span class="n">relative_changes</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">diff</span><span class="p">(</span><span class="n">means</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">means</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        
+        <span class="c1"># Check if convergence criteria are met
+</span>        <span class="n">convergence_threshold</span> <span class="o">=</span> <span class="mf">0.01</span>  <span class="c1"># 1% relative change
+</span>        <span class="n">is_converged</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">all</span><span class="p">(</span><span class="n">relative_changes</span><span class="p">[</span><span class="o">-</span><span class="mi">100</span><span class="p">:]</span> <span class="o">&lt;</span> <span class="n">convergence_threshold</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s">'is_converged'</span><span class="p">:</span> <span class="n">is_converged</span><span class="p">,</span>
+            <span class="s">'final_relative_change'</span><span class="p">:</span> <span class="n">relative_changes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">mean</span><span class="p">()</span>
+        <span class="p">}</span>
+    
+    <span class="k">def</span> <span class="nf">_test_correlation_preservation</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">rating_paths</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">target_correlations</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+        <span class="s">"""Test if simulated correlations match target correlations."""</span>
+        <span class="n">simulated_corr</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">rating_paths</span><span class="p">.</span><span class="n">T</span><span class="p">)</span>
+        <span class="n">correlation_error</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">simulated_corr</span> <span class="o">-</span> <span class="n">target_correlations</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s">'max_correlation_error'</span><span class="p">:</span> <span class="n">correlation_error</span><span class="p">.</span><span class="nb">max</span><span class="p">(),</span>
+            <span class="s">'mean_correlation_error'</span><span class="p">:</span> <span class="n">correlation_error</span><span class="p">.</span><span class="n">mean</span><span class="p">(),</span>
+            <span class="s">'is_preserved'</span><span class="p">:</span> <span class="n">correlation_error</span><span class="p">.</span><span class="nb">max</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.1</span>  <span class="c1"># 10% threshold
+</span>        <span class="p">}</span>
+    
+    <span class="k">def</span> <span class="nf">_test_transition_probabilities</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">rating_paths</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">transition_matrix</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">initial_ratings</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">ndarray</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+        <span class="s">"""Test if simulated transition probabilities match input probabilities."""</span>
+        <span class="n">n_ratings</span> <span class="o">=</span> <span class="n">transition_matrix</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">simulated_transitions</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_ratings</span><span class="p">,</span> <span class="n">n_ratings</span><span class="p">))</span>
+        
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">initial_rating</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">initial_ratings</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_ratings</span><span class="p">):</span>
+                <span class="n">simulated_transitions</span><span class="p">[</span><span class="n">initial_rating</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span>
+                    <span class="n">rating_paths</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">j</span>
+                <span class="p">)</span>
+        
+        <span class="n">probability_error</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">abs</span><span class="p">(</span>
+            <span class="n">simulated_transitions</span> <span class="o">-</span> <span class="n">transition_matrix</span><span class="p">[</span><span class="n">initial_ratings</span><span class="p">]</span>
+        <span class="p">)</span>
+        
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s">'max_probability_error'</span><span class="p">:</span> <span class="n">probability_error</span><span class="p">.</span><span class="nb">max</span><span class="p">(),</span>
+            <span class="s">'mean_probability_error'</span><span class="p">:</span> <span class="n">probability_error</span><span class="p">.</span><span class="n">mean</span><span class="p">(),</span>
+            <span class="s">'is_accurate'</span><span class="p">:</span> <span class="n">probability_error</span><span class="p">.</span><span class="nb">max</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.05</span>  <span class="c1"># 5% threshold
+</span>        <span class="p">}</span>
+    
+    <span class="k">def</span> <span class="nf">generate_validation_report</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="s">"""Generate a comprehensive validation report."""</span>
+        <span class="n">report</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">report</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"CreditMetrics Model Validation Report"</span><span class="p">)</span>
+        <span class="n">report</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"="</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">test_name</span><span class="p">,</span> <span class="n">results</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">.</span><span class="n">results</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">report</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="se">\n</span><span class="s">Test: </span><span class="si">{</span><span class="n">test_name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+            <span class="n">report</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"-"</span> <span class="o">*</span> <span class="mi">20</span><span class="p">)</span>
+            
+            <span class="k">for</span> <span class="n">metric</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">results</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">report</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">report</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">example_usage</span><span class="p">():</span>
+    <span class="s">"""Example usage of the CreditMetrics validator."""</span>
+    <span class="c1"># Initialize validator
+</span>    <span class="n">validator</span> <span class="o">=</span> <span class="n">CreditMetricsValidator</span><span class="p">(</span><span class="n">confidence_level</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+    
+    <span class="c1"># Generate sample data
+</span>    <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">n_observations</span> <span class="o">=</span> <span class="mi">1000</span>
+    <span class="n">n_assets</span> <span class="o">=</span> <span class="mi">3</span>
+    
+    <span class="c1"># Sample credit returns (typically non-normal)
+</span>    <span class="n">returns</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">standard_t</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_observations</span><span class="p">)</span>
+    
+    <span class="c1"># Sample recovery rates (between 0 and 1)
+</span>    <span class="n">recovery_rates</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_observations</span><span class="p">)</span>
+    
+    <span class="c1"># Sample asset returns
+</span>    <span class="n">asset_returns1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_observations</span><span class="p">)</span>
+    <span class="n">asset_returns2</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_observations</span><span class="p">)</span>
+    
+    <span class="c1"># Sample transition matrix (3x3 for simplicity)
+</span>    <span class="n">transition_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="p">[</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]</span>
+    <span class="p">])</span>
+    
+    <span class="c1"># Sample initial ratings
+</span>    <span class="n">initial_ratings</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+    
+    <span class="c1"># Sample asset correlations
+</span>    <span class="n">asset_correlations</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+    <span class="p">])</span>
+    
+    <span class="c1"># Run tests
+</span>    <span class="n">validator</span><span class="p">.</span><span class="n">results</span><span class="p">[</span><span class="s">'normality'</span><span class="p">]</span> <span class="o">=</span> <span class="n">validator</span><span class="p">.</span><span class="n">test_normality</span><span class="p">(</span><span class="n">returns</span><span class="p">)</span>
+    <span class="n">validator</span><span class="p">.</span><span class="n">results</span><span class="p">[</span><span class="s">'recovery_rates'</span><span class="p">]</span> <span class="o">=</span> <span class="n">validator</span><span class="p">.</span><span class="n">test_recovery_rate_distribution</span><span class="p">(</span><span class="n">recovery_rates</span><span class="p">)</span>
+    <span class="n">validator</span><span class="p">.</span><span class="n">results</span><span class="p">[</span><span class="s">'asset_correlation'</span><span class="p">]</span> <span class="o">=</span> <span class="n">validator</span><span class="p">.</span><span class="n">test_asset_correlation</span><span class="p">(</span>
+        <span class="n">asset_returns1</span><span class="p">,</span> <span class="n">asset_returns2</span>
+    <span class="p">)</span>
+    <span class="n">validator</span><span class="p">.</span><span class="n">results</span><span class="p">[</span><span class="s">'monte_carlo'</span><span class="p">]</span> <span class="o">=</span> <span class="n">validator</span><span class="p">.</span><span class="n">monte_carlo_validation</span><span class="p">(</span>
+        <span class="n">n_simulations</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
+        <span class="n">transition_matrix</span><span class="o">=</span><span class="n">transition_matrix</span><span class="p">,</span>
+        <span class="n">initial_ratings</span><span class="o">=</span><span class="n">initial_ratings</span><span class="p">,</span>
+        <span class="n">asset_correlations</span><span class="o">=</span><span class="n">asset_correlations</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># Generate report
+</span>    <span class="n">report</span> <span class="o">=</span> <span class="n">validator</span><span class="p">.</span><span class="n">generate_validation_report</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">report</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">example_usage</span><span class="p">()</span>
+</code></pre></div>      </div>
+
+    </details>
+  
+</details></div>]]></content><author><name></name></author><category term="docs" /><category term="misc" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">A not so fast implementation of cosine similarity in C++ and SIMD</title><link href="http://localhost:4000/docs/misc/2024/07/07/cosine-similarity-simd-implementation.html" rel="alternate" type="text/html" title="A not so fast implementation of cosine similarity in C++ and SIMD" /><published>2024-07-07T18:00:00-06:00</published><updated>2024-07-07T18:00:00-06:00</updated><id>http://localhost:4000/docs/misc/2024/07/07/cosine-similarity-simd-implementation</id><content type="html" xml:base="http://localhost:4000/docs/misc/2024/07/07/cosine-similarity-simd-implementation.html"><![CDATA[<p><em>Edit: This post made it to the front page of Hacker News! You can find the discussion <a href="https://news.ycombinator.com/item?id=41842339">here</a>.</em></p>
+
+<p>There isn’t much to see here, just me dusting off some old architecture knowledge to parallelize computations using SIMD, implement it in C++, and compare the results with Python.</p>
+
+<p>The task involved creating a vectorized version of the cosine similarity in C++ to compare its performance against Python, NumPy, SciPy, and plain C++ implementations.</p>
+
+<p>Below is my implementation and the average times for calculating the similarity between two random vectors of 640,000 floats. The full code can be found <a href="https://github.com/joseprupi/cosine-similarity-comparison">here</a>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Python
+</span><span class="k">def</span> <span class="nf">cosine</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
+    <span class="n">dot</span> <span class="o">=</span> <span class="n">denom_a</span> <span class="o">=</span> <span class="n">denom_b</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
+        <span class="n">dot</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">denom_a</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">denom_b</span> <span class="o">+=</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">dot</span> <span class="o">/</span> <span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">denom_a</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">denom_b</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Scipy
+</span><span class="n">cos_sim</span> <span class="o">=</span> <span class="n">distance</span><span class="p">.</span><span class="n">cosine</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Numpy
+</span><span class="n">cos_sim</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">*</span><span class="n">norm</span><span class="p">(</span><span class="n">B</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Plain C++</span>
+<span class="kt">float</span> <span class="nf">cosine_similarity</span><span class="p">(</span><span class="kt">float</span> <span class="o">*</span><span class="n">A</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">B</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">float</span> <span class="n">dot</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">denom_a</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">denom_b</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">SIZE</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">dot</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="n">denom_a</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="n">denom_b</span> <span class="o">+=</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">dot</span> <span class="o">/</span> <span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="n">denom_a</span><span class="p">)</span> <span class="o">*</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">denom_b</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Vectorized C++</span>
+<span class="kr">inline</span> <span class="kt">float</span> <span class="nf">simd_horizontal_sum</span><span class="p">(</span><span class="n">__m256</span> <span class="o">&amp;</span><span class="n">r</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">__m128</span> <span class="n">r4</span> <span class="o">=</span> <span class="n">_mm_add_ps</span><span class="p">(</span><span class="n">_mm256_castps256_ps128</span><span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="n">_mm256_extractf128_ps</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+    <span class="n">__m128</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">_mm_add_ps</span><span class="p">(</span><span class="n">r4</span><span class="p">,</span> <span class="n">_mm_movehl_ps</span><span class="p">(</span><span class="n">r4</span><span class="p">,</span> <span class="n">r4</span><span class="p">));</span>
+    <span class="n">__m128</span> <span class="n">r1</span> <span class="o">=</span> <span class="n">_mm_add_ss</span><span class="p">(</span><span class="n">r2</span><span class="p">,</span> <span class="n">_mm_movehdup_ps</span><span class="p">(</span><span class="n">r2</span><span class="p">));</span>
+    <span class="k">return</span> <span class="n">_mm_cvtss_f32</span><span class="p">(</span><span class="n">r1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">float</span> <span class="n">cosine_similarity_simd</span><span class="p">(</span><span class="kt">float</span> <span class="o">*</span><span class="n">A</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span><span class="n">B</span><span class="p">)</span>
+<span class="p">{</span>
+
+    <span class="n">__m256</span> <span class="n">sum_dot</span> <span class="o">=</span> <span class="n">_mm256_setzero_ps</span><span class="p">();</span>
+    <span class="n">__m256</span> <span class="n">sum_A</span> <span class="o">=</span> <span class="n">_mm256_setzero_ps</span><span class="p">();</span>
+    <span class="n">__m256</span> <span class="n">sum_B</span> <span class="o">=</span> <span class="n">_mm256_setzero_ps</span><span class="p">();</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">SIZE</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">8</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">__m256</span> <span class="n">buf1</span> <span class="o">=</span> <span class="n">_mm256_loadu_ps</span><span class="p">(</span><span class="n">A</span> <span class="o">+</span> <span class="n">i</span><span class="p">);</span>
+        <span class="n">__m256</span> <span class="n">buf2</span> <span class="o">=</span> <span class="n">_mm256_loadu_ps</span><span class="p">(</span><span class="n">B</span> <span class="o">+</span> <span class="n">i</span><span class="p">);</span>
+
+        <span class="n">sum_dot</span> <span class="o">=</span> <span class="n">_mm256_fmadd_ps</span><span class="p">(</span><span class="n">buf1</span><span class="p">,</span> <span class="n">buf2</span><span class="p">,</span> <span class="n">sum_dot</span><span class="p">);</span>
+        <span class="n">sum_A</span> <span class="o">=</span> <span class="n">_mm256_fmadd_ps</span><span class="p">(</span><span class="n">buf1</span><span class="p">,</span> <span class="n">buf1</span><span class="p">,</span> <span class="n">sum_A</span><span class="p">);</span>
+        <span class="n">sum_B</span> <span class="o">=</span> <span class="n">_mm256_fmadd_ps</span><span class="p">(</span><span class="n">buf2</span><span class="p">,</span> <span class="n">buf2</span><span class="p">,</span> <span class="n">sum_B</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kt">float</span> <span class="n">float_dot</span> <span class="o">=</span> <span class="n">simd_horizontal_sum</span><span class="p">(</span><span class="n">sum_dot</span><span class="p">);</span>
+    <span class="kt">float</span> <span class="n">float_A_norm</span> <span class="o">=</span> <span class="n">simd_horizontal_sum</span><span class="p">(</span><span class="n">sum_A</span><span class="p">);</span>
+    <span class="kt">float</span> <span class="n">float_B_norm</span> <span class="o">=</span> <span class="n">simd_horizontal_sum</span><span class="p">(</span><span class="n">sum_B</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">float_dot</span> <span class="o">/</span> <span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="n">float_A_norm</span><span class="p">)</span> <span class="o">*</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">float_B_norm</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Implementation</th>
+      <th style="text-align: right">Time (ms)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Vectorized C++</td>
+      <td style="text-align: right">0.0936</td>
+    </tr>
+    <tr>
+      <td>C++</td>
+      <td style="text-align: right">0.5416</td>
+    </tr>
+    <tr>
+      <td>SciPy</td>
+      <td style="text-align: right">0.5494</td>
+    </tr>
+    <tr>
+      <td>NumPy</td>
+      <td style="text-align: right">0.6953</td>
+    </tr>
+    <tr>
+      <td>Plain Python</td>
+      <td style="text-align: right">323.389</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>As expected, SIMD is the fastest and plain Python is frustratingly slow. Yes, maybe we can do better with the plain Python implementation making it more “pythonic”:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">cosine</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
+    <span class="n">dot</span> <span class="o">=</span> <span class="n">denom_a</span> <span class="o">=</span> <span class="n">denom_b</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="n">dot</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">a</span><span class="o">*</span><span class="n">b</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)])</span>
+    <span class="n">denom_a</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">A</span><span class="p">])</span>
+    <span class="n">denom_b</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">B</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">dot</span> <span class="o">/</span> <span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">denom_a</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">denom_b</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Implementation</th>
+      <th style="text-align: right">Time (ms)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Vectorized C++</td>
+      <td style="text-align: right">0.0936</td>
+    </tr>
+    <tr>
+      <td>C++</td>
+      <td style="text-align: right">0.5416</td>
+    </tr>
+    <tr>
+      <td>SciPy</td>
+      <td style="text-align: right">0.5494</td>
+    </tr>
+    <tr>
+      <td>NumPy</td>
+      <td style="text-align: right">0.6953</td>
+    </tr>
+    <tr>
+      <td><span style="color:red">Plain Python, more pythonic</span></td>
+      <td style="text-align: right"><span style="color:red">271.683</span></td>
+    </tr>
+    <tr>
+      <td>Plain Python</td>
+      <td style="text-align: right">323.389</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Which results in a ~20% improvement, but still nowhere near the performance of the other implementations, so I’ll stop here and shift my focus to Python libraries.</p>
+
+<p>Interestingly, Python’s libraries are comparable to plain C++ in performance, which isn’t bad in my opinion. Yes, the vectorized C++ version is an order of magnitude faster, but unless you opt to implement a processor-specific calculation in C++, the Python libraries are decently optimized for tasks like this.</p>
+
+<p>However, SciPy is slightly faster than my NumPy implementation even though it is built using NumPy, and there shouldn’t be much fantasy in the cosine similarity implementation, so let me check it out <a href="https://github.com/scipy/scipy/blob/main/scipy/spatial/distance.py#L575">here</a>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">correlation</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">centered</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    
+    <span class="n">u</span> <span class="o">=</span> <span class="n">_validate_vector</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">_validate_vector</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">w</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">_validate_weights</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">w</span> <span class="o">/</span> <span class="n">w</span><span class="p">.</span><span class="nb">sum</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">centered</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">w</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">umu</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+            <span class="n">vmu</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">umu</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+            <span class="n">vmu</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">u</span> <span class="o">-</span> <span class="n">umu</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">v</span> <span class="o">-</span> <span class="n">vmu</span>
+    <span class="k">if</span> <span class="n">w</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">vw</span> <span class="o">=</span> <span class="n">v</span> <span class="o">*</span> <span class="n">w</span>
+        <span class="n">uw</span> <span class="o">=</span> <span class="n">u</span> <span class="o">*</span> <span class="n">w</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">vw</span><span class="p">,</span> <span class="n">uw</span> <span class="o">=</span> <span class="n">v</span><span class="p">,</span> <span class="n">u</span>
+    <span class="n">uv</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">vw</span><span class="p">)</span>
+    <span class="n">uu</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">uw</span><span class="p">)</span>
+    <span class="n">vv</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">vw</span><span class="p">)</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">uv</span> <span class="o">/</span> <span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">uu</span> <span class="o">*</span> <span class="n">vv</span><span class="p">)</span>
+    <span class="c1"># Clip the result to avoid rounding error
+</span>    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">clip</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">cosine</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">correlation</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">w</span><span class="p">,</span> <span class="n">centered</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>My initial thought was that the difference in performance was due to the denominator, I have no idea why but that is the only difference I see. My implementation is using the <em>norm</em> function from NumPy while SciPy uses two NumPy dot multiplications and the Python <em>sqrt</em> function.</p>
+
+<p>Before diving deeper into the difference, I simplified the correlation function by removing extra checks and generalizations that weren’t needed for my use case, making it easier to read and hopefully a bit faster:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">cosine</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    
+    <span class="n">uv</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+    <span class="n">uu</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
+    <span class="n">vv</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">uv</span> <span class="o">/</span> <span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">uu</span> <span class="o">*</span> <span class="n">vv</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">clip</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>And now, re-run it to ensure everything works as expected and also see if removing those checks improves performance.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Implementation</th>
+      <th style="text-align: right">Time (ms)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Vectorized C++</td>
+      <td style="text-align: right">0.0936</td>
+    </tr>
+    <tr>
+      <td>C++</td>
+      <td style="text-align: right">0.5416</td>
+    </tr>
+    <tr>
+      <td>SciPy</td>
+      <td style="text-align: right">0.5494</td>
+    </tr>
+    <tr>
+      <td><span style="color:red">NumPy as Scipy</span></td>
+      <td style="text-align: right"><span style="color:red">0.6714</span></td>
+    </tr>
+    <tr>
+      <td>NumPy</td>
+      <td style="text-align: right">0.6953</td>
+    </tr>
+    <tr>
+      <td>Plain Python, more pythonic</td>
+      <td style="text-align: right">271.683</td>
+    </tr>
+    <tr>
+      <td>Plain Python</td>
+      <td style="text-align: right">323.389</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>And the result is ~0.7 ms, which oh crap, is slower than executing the original SciPy version and almost identical to my original NumPy implementation. It turns out that I removed two important lines from the <em>correlation</em> function:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">u</span> <span class="o">=</span> <span class="n">_validate_vector</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">_validate_vector</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The name seems pretty explicit, validate the vectors, something I don’t need as I know what I am using at runtime, but <em>_validate_vector</em> is implemented as:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">_validate_vector</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s">'c'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">u</span><span class="p">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">u</span>
+    <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">"Input vector should be 1-D."</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Which not only validates that the input is a <strong>1 x n</strong> array but also makes the array contiguous in memory calling <em>np.asarray</em> (see <em>order</em> parameter from <a href="https://numpy.org/doc/stable/reference/generated/numpy.asarray.html">NumPy documentation</a>), something that can’t be guaranteed when loading a vector from disk as I am doing.</p>
+
+<p>As CPUs love working with contiguous things, having things contiguous in memory is always good to go fast, either to compute in parallel or access things faster from cache, something the underlying Python libraries can probably take advantage of. So the time spent making vectors contiguous in memory, along with performing the calculations, seems worth it in this case as it is slightly faster.</p>
+
+<p>Just to be sure this is true, let’s reload the vectors, make them contiguous and see if my NumPy and SciPy are close in execution time this way.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">file_data</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="s">'../tools/vectors.csv'</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">','</span><span class="p">)</span>
+<span class="n">A</span><span class="p">,</span><span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">file_data</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">).</span><span class="n">astype</span><span class="p">(</span><span class="s">'f'</span><span class="p">)</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s">'float'</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s">'c'</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s">'float'</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s">'c'</span><span class="p">)</span>
+
+<span class="n">accum</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">EXECUTIONS</span><span class="p">):</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">cos_sim</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">*</span><span class="n">norm</span><span class="p">(</span><span class="n">B</span><span class="p">))</span>
+    <span class="n">accum</span> <span class="o">+=</span>  <span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">" %s ms"</span> <span class="o">%</span> <span class="p">(</span><span class="n">accum</span><span class="o">/</span><span class="n">EXECUTIONS</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">cosine</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    
+    <span class="n">uv</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+    <span class="n">uu</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
+    <span class="n">vv</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">uv</span> <span class="o">/</span> <span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">uu</span> <span class="o">*</span> <span class="n">vv</span><span class="p">)</span>
+    <span class="c1"># Clip the result to avoid rounding error
+</span>    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">clip</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+
+<span class="n">accum</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">EXECUTIONS</span><span class="p">):</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">cos_sim</span> <span class="o">=</span> <span class="n">cosine</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+    <span class="n">accum</span> <span class="o">+=</span> <span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">" %s ms"</span> <span class="o">%</span> <span class="p">(</span><span class="n">accum</span><span class="o">/</span><span class="n">EXECUTIONS</span><span class="p">))</span>
+
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Implementation</th>
+      <th style="text-align: right">Time (ms)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span style="color:red">NumPy. Contiguous array</span></td>
+      <td style="text-align: right"><span style="color:red">0.04193<span></span></span></td>
+    </tr>
+    <tr>
+      <td><span style="color:red">NumPy as Scipy. Contiguous array</span></td>
+      <td style="text-align: right"><span style="color:red">0.04264</span></td>
+    </tr>
+    <tr>
+      <td>Vectorized C++</td>
+      <td style="text-align: right">0.0936</td>
+    </tr>
+    <tr>
+      <td>SciPy</td>
+      <td style="text-align: right">0.549369</td>
+    </tr>
+    <tr>
+      <td>NumPy</td>
+      <td style="text-align: right">0.695258</td>
+    </tr>
+    <tr>
+      <td>C++</td>
+      <td style="text-align: right">2.3839</td>
+    </tr>
+    <tr>
+      <td>Plain Python, more pythonic</td>
+      <td style="text-align: right">271.683</td>
+    </tr>
+    <tr>
+      <td>Plain Python</td>
+      <td style="text-align: right">323.389</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The results show that making arrays contiguous does improve performance significantly. Mmmmm… not only that, they are also faster than my SIMD implementation, twice as fast in fact.</p>
+
+<p>Why? Because they are calculated using the BLAS library available in the OS, which means that not even writing C++ SIMD code will make me have a faster implementation than the one Python is using and I will probably have to write my own assembly code with compiler-like tricks to go as fast as Python plus C++ libraries.</p>
+
+<p>Honestly Python<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> is lightning fast for my purposes and deadlines.</p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>Where Python is the experience you get when you open VS Code and start coding—no specifics about language implementations, libraries, or interpreters. It’s all about diving into coding quickly. If you view Python differently, this might not be for you. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>]]></content><author><name></name></author><category term="docs" /><category term="misc" /><summary type="html"><![CDATA[Edit: This post made it to the front page of Hacker News! You can find the discussion here.]]></summary></entry><entry><title type="html">Playing with genetic algorithms in python</title><link href="http://localhost:4000/docs/misc/2023/08/18/playing_with_genetic_algorithms_in_python.html" rel="alternate" type="text/html" title="Playing with genetic algorithms in python" /><published>2023-08-18T18:00:00-06:00</published><updated>2023-08-18T18:00:00-06:00</updated><id>http://localhost:4000/docs/misc/2023/08/18/playing_with_genetic_algorithms_in_python</id><content type="html" xml:base="http://localhost:4000/docs/misc/2023/08/18/playing_with_genetic_algorithms_in_python.html"><![CDATA[<p><em>Edit: This post made it to the front page of Hacker News! You can find the discussion <a href="https://news.ycombinator.com/item?id=37407802">here</a>.</em></p>
+
+<p>A long long time ago I was young and going to school to attend a Computer Science program. It was so long ago that the data structures course was done in C++ and Java was shown to us as the new kid on the block.</p>
+
+<p>Something I learned in CS that sticked in my head were Genetic Algorithms. I guess the reason was that GA were one of the first (and few) applied things I saw in CS and it seemed to me a simple, intuitive and brilliant idea. Today I was bored at home and I decided to play a little bit with it.</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Genetic_algorithm">GAs</a> are a search technique that is inspired in biological evolution and genetic mutations which are used to purge certain parts of the search space. This is done encoding the nodes in the space into a genetic representation and using a fitness function to evaluate them.</p>
+
+<p>I started implementing a useless but I think illustrative example of GAs which is generating a sequence of random bits and then search for it. Plotting it as an $nxn$ matrix makes it is easier to  visualize and debug the process.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="p">.</span><span class="n">cm</span><span class="p">.</span><span class="n">gray</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="/assets/random_array.png" alt="image" /></p>
+
+<p>This is a 15x15 array, so 225 bits and therefore a space of 2^225 possible combinations. Next I define the fitness function which is nothing more than the amount of bits of the image have the same value. In Numpy it would be:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="n">matrix1</span><span class="p">,</span> <span class="n">matrix2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">matrix1</span> <span class="o">==</span> <span class="n">matrix2</span><span class="p">).</span><span class="nb">sum</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>The genetic algorithm implementation per se (the fitness function, crossover and mutation) is implemented below, where the parameters <strong>population</strong> is the initial population and <strong>mutations</strong> are the percentage of mutated bits.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">def</span> <span class="nf">ga</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">population</span><span class="p">,</span> <span class="n">mutations</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="n">matrix1</span><span class="p">,</span> <span class="n">matrix2</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">matrix1</span> <span class="o">==</span> <span class="n">matrix2</span><span class="p">).</span><span class="nb">sum</span><span class="p">()</span>
+
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">array</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="n">array</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">mid</span> <span class="o">=</span> <span class="n">rows</span><span class="o">//</span><span class="mi">2</span>
+
+    <span class="n">mem</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">population</span><span class="p">,</span> <span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="p">))</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span> <span class="o">*</span> <span class="n">population</span><span class="p">))</span>
+    <span class="n">bottom</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mem</span><span class="p">)))</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">):</span>
+        
+        <span class="c1"># When initialized bottom will contain a set of random individuals. Later it will be
+</span>        <span class="c1"># the bottom of the list of individuals sorted by score
+</span>        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">bottom</span><span class="p">:</span>
+            <span class="n">scores</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">score</span><span class="p">(</span><span class="n">mem</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">array</span><span class="p">)</span>
+
+        <span class="c1"># Check if the solution has been found
+</span>        <span class="n">max_score</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">scores</span><span class="p">[</span><span class="n">max_score</span><span class="p">]</span> <span class="o">==</span> <span class="n">rows</span> <span class="o">*</span> <span class="n">columns</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">plt</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mem</span><span class="p">[</span><span class="n">max_score</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="p">.</span><span class="n">cm</span><span class="p">.</span><span class="n">gray</span><span class="p">)</span>  <span class="c1"># use appropriate colormap here
+</span>            <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+            <span class="k">break</span>
+
+        <span class="c1"># Select the population of individuals according to the score function
+</span>        <span class="n">top_n_scores</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">argpartition</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">population</span><span class="p">)</span>
+        <span class="n">top</span> <span class="o">=</span> <span class="n">top_n_scores</span><span class="p">[</span><span class="n">population</span><span class="p">:]</span>
+        <span class="n">bottom</span> <span class="o">=</span> <span class="n">top_n_scores</span><span class="p">[:</span><span class="n">population</span><span class="p">]</span>
+
+        <span class="c1"># Create #population new elements from the crossover and mutation
+</span>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">population</span><span class="p">):</span>
+            
+            <span class="c1"># Crossover -&gt; Select parents from the top individuals
+</span>            <span class="c1">#
+</span>            <span class="c1"># I tried this with random.choice or just picking a random position from the list and
+</span>            <span class="c1"># the next one. The result is the same for both but way faster
+</span>            <span class="c1"># with the latter option.
+</span>            <span class="c1"># The reason it still works might be either because of the randomization of the initial 
+</span>            <span class="c1"># population or maybe the implementation of argpartition? or both?
+</span>            <span class="n">r</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">randrange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">top</span><span class="p">))</span>  
+            <span class="n">idx</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="p">(</span><span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="nb">len</span><span class="p">(</span><span class="n">top</span><span class="p">)]</span>
+            <span class="n">parents</span> <span class="o">=</span> <span class="p">[</span><span class="n">top</span><span class="p">[</span><span class="n">idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span><span class="n">top</span><span class="p">[</span><span class="n">idx</span><span class="p">[</span><span class="mi">1</span><span class="p">]]]</span>
+            
+            <span class="n">mem</span><span class="p">[</span><span class="n">bottom</span><span class="p">[</span><span class="n">j</span><span class="p">]][</span><span class="mi">0</span><span class="p">:</span><span class="n">mid</span><span class="p">]</span> <span class="o">=</span> <span class="n">mem</span><span class="p">[</span><span class="n">parents</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="mi">0</span><span class="p">:</span><span class="n">mid</span><span class="p">]</span>
+            <span class="n">mem</span><span class="p">[</span><span class="n">bottom</span><span class="p">[</span><span class="n">j</span><span class="p">]][</span><span class="o">-</span><span class="p">(</span><span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">):]</span> <span class="o">=</span> <span class="n">mem</span><span class="p">[</span><span class="n">parents</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="o">-</span><span class="p">(</span><span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">):]</span>
+
+            <span class="c1"># Mutation -&gt; Mutate the bits
+</span>            <span class="c1">#
+</span>            <span class="c1"># The random choice of the bits to mutate is the most costly of the implementation
+</span>            <span class="c1"># It seems there has to be some way to speed up this 
+</span>            <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="p">[(</span><span class="mi">1</span><span class="o">-</span><span class="n">mutations</span><span class="p">),</span> <span class="n">mutations</span><span class="p">],</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span><span class="n">columns</span><span class="p">))</span>
+            <span class="n">mem</span><span class="p">[</span><span class="n">bottom</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">mem</span><span class="p">[</span><span class="n">bottom</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">-</span> <span class="n">idx</span><span class="p">)</span>
+
+</code></pre></div></div>
+<p>With some manual testing and trial error I ended up with an initial population of 500 and a mutation of 0.5% as the fastest way to find the array of bits, which finishes in approximately 160 iterations and 3 seconds in my computer. Even the experiment not making sense seems pretty good to me taking into account that the space is 2^225 and it can be implemented with few lines of code.</p>
+
+<p>The entire implementation can be found <a href="https://github.com/joseprupi/ga/blob/master/test.ipynb">here</a></p>
+
+<p>Next I wanted to try something more useful, solving mastermind with 6 colors and 4 pegs, the original game had to be solved with 12 moves.</p>
+
+<p>The implementation is similar to the previous one, mostly changing the score function. To count the number of evaluated choices I memoize the score function.</p>
+
+<p>My best approach is a population of 2, and mutate 1 out of 4 pegs, with an average of ~36 evaluateed choices, so three times more than what would be the 12 choices of the original game. Something interesting is that with only crossover and mutation the information regarding the pegs with the correct color but not in the correct spot does not seem to be relevant.</p>
+
+<p>The entire implementation can be found <a href="https://github.com/joseprupi/ga/blob/master/mastermind.ipynb">here</a></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">def</span> <span class="nf">ga</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">population</span><span class="p">,</span> <span class="n">mutations</span><span class="p">):</span>
+
+    <span class="n">score_memoization</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="n">board</span><span class="p">,</span> <span class="n">choice</span><span class="p">):</span>
+        
+        <span class="n">key</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">choice</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">score_memoization</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">score_memoization</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+        <span class="n">tmp_board</span> <span class="o">=</span> <span class="n">board</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="n">in_place</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">in_place_list</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">same_color</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">choice</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">choice</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">board</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                <span class="n">in_place</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">in_place_list</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                <span class="n">tmp_board</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">choice</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">in_place_list</span> <span class="ow">and</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">tmp_board</span><span class="p">:</span>
+                <span class="n">same_color</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="c1"># In correct place and correct color
+</span>        <span class="c1">#score = (2 * in_place) + same_color
+</span>        
+        <span class="c1"># Only in correct place
+</span>        <span class="n">score</span> <span class="o">=</span> <span class="n">in_place</span>
+
+        <span class="n">score_memoization</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">score</span>
+
+        <span class="k">return</span> <span class="n">score</span>
+
+    <span class="n">mid</span> <span class="o">=</span> <span class="mi">4</span><span class="o">//</span><span class="mi">2</span>
+
+    <span class="n">mem</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">population</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span> <span class="o">*</span> <span class="n">population</span><span class="p">))</span>
+    <span class="n">bottom</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mem</span><span class="p">)))</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">):</span>
+        
+        <span class="c1"># When initialized bottom will contain a set of random individuals. Later it will be
+</span>        <span class="c1"># the bottom of the list of individuals sorted by score
+</span>        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">bottom</span><span class="p">:</span>
+            <span class="n">scores</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">score</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">mem</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+
+        <span class="c1"># Check if the solution has been found
+</span>        <span class="n">max_score</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">scores</span><span class="p">[</span><span class="n">max_score</span><span class="p">]</span> <span class="o">==</span> <span class="mi">8</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">i</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">score_memoization</span><span class="p">)</span>
+
+        <span class="c1"># Select the population of individuals according to the score function
+</span>        <span class="n">top_n_scores</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">argpartition</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">population</span><span class="p">)</span>
+        <span class="n">top</span> <span class="o">=</span> <span class="n">top_n_scores</span><span class="p">[</span><span class="n">population</span><span class="p">:]</span>
+        <span class="n">bottom</span> <span class="o">=</span> <span class="n">top_n_scores</span><span class="p">[:</span><span class="n">population</span><span class="p">]</span>
+
+        <span class="c1"># Create #population new elements from the crossover and mutation
+</span>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">population</span><span class="p">):</span>
+
+            <span class="c1"># Crossover -&gt; Select parents from the top individuals
+</span>            <span class="c1">#
+</span>            <span class="c1"># I tried this with random.choice or just picking a random position from the list and
+</span>            <span class="c1"># the next one. The result is the same for both but way faster
+</span>            <span class="c1"># with the latter option.
+</span>            <span class="c1"># The reason it still works might be either because of the randomization of the initial 
+</span>            <span class="c1"># population or maybe the implementation of argpartition? or both?
+</span>            
+            <span class="n">r</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">randrange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">top</span><span class="p">))</span>  
+            <span class="n">idx</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="p">(</span><span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="nb">len</span><span class="p">(</span><span class="n">top</span><span class="p">)]</span>
+            <span class="n">parents</span> <span class="o">=</span> <span class="p">[</span><span class="n">top</span><span class="p">[</span><span class="n">idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span><span class="n">top</span><span class="p">[</span><span class="n">idx</span><span class="p">[</span><span class="mi">1</span><span class="p">]]]</span>
+            
+            <span class="n">mem</span><span class="p">[</span><span class="n">bottom</span><span class="p">[</span><span class="n">j</span><span class="p">]][</span><span class="mi">0</span><span class="p">:</span><span class="n">mid</span><span class="p">]</span> <span class="o">=</span> <span class="n">mem</span><span class="p">[</span><span class="n">parents</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="mi">0</span><span class="p">:</span><span class="n">mid</span><span class="p">]</span>
+            <span class="n">mem</span><span class="p">[</span><span class="n">bottom</span><span class="p">[</span><span class="n">j</span><span class="p">]][</span><span class="o">-</span><span class="p">(</span><span class="n">mid</span><span class="p">):]</span> <span class="o">=</span> <span class="n">mem</span><span class="p">[</span><span class="n">parents</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="o">-</span><span class="p">(</span><span class="n">mid</span><span class="p">):]</span>
+
+            <span class="c1"># Mutation -&gt; Mutate the bits
+</span>            <span class="c1">#
+</span>            <span class="c1"># The random choice of the bits to mutate is the most costly of the implementation
+</span>            <span class="c1"># It seems there has to be some way to speed up this 
+</span>            <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="p">[(</span><span class="mi">1</span><span class="o">-</span><span class="n">mutations</span><span class="p">),</span> <span class="n">mutations</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span><span class="n">mutations</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span><span class="n">mutations</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span><span class="n">mutations</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span><span class="n">mutations</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span><span class="n">mutations</span><span class="o">/</span><span class="mi">6</span><span class="p">],</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">idx</span><span class="p">)):</span>
+                <span class="n">mem</span><span class="p">[</span><span class="n">bottom</span><span class="p">[</span><span class="n">j</span><span class="p">]][</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">mem</span><span class="p">[</span><span class="n">bottom</span><span class="p">[</span><span class="n">j</span><span class="p">]][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">idx</span><span class="p">[</span><span class="n">k</span><span class="p">])</span><span class="o">%</span><span class="mi">6</span>
+</code></pre></div></div>]]></content><author><name></name></author><category term="docs" /><category term="misc" /><summary type="html"><![CDATA[Edit: This post made it to the front page of Hacker News! You can find the discussion here.]]></summary></entry><entry><title type="html">I invented a board game and played against Chat GPT</title><link href="http://localhost:4000/docs/misc/2023/06/08/chat_gpt_board_game.html" rel="alternate" type="text/html" title="I invented a board game and played against Chat GPT" /><published>2023-06-08T17:20:43-06:00</published><updated>2023-06-08T17:20:43-06:00</updated><id>http://localhost:4000/docs/misc/2023/06/08/chat_gpt_board_game</id><content type="html" xml:base="http://localhost:4000/docs/misc/2023/06/08/chat_gpt_board_game.html"><![CDATA[<p>A few weeks ago in a HN thread about chat GPT and chess this happened:</p>
+
+<blockquote>
+  <p>HNer 1:<br /><br /> &gt; Most likely it has seen a similar sequence of moves in its training set.<br /><br />
+Is this a joke making fun of the common way people dismiss other ChatGPT successes? This makes no sense with respect to chess, because every game is unique, and playing a move from a different game in a new game is nonsensical.`</p>
+  <blockquote>
+    <p>Me:<br /><br /> <strong>If it is not memorizing, how do you think is doing it?</strong></p>
+    <blockquote>
+      <p>HNer 2:<br /><br /> by trying to learning the general rules that to explain the dataset and minimize its loss. That’s what machine learning is about, it’s not called machine memorizing.</p>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<p>Although I am not sure I completely understand what HNer 2 is saying I think the idea is that LLMs can play games if they know the rules. And not just play but for chess doing so at 1400 ELO level.</p>
+
+<p>To me LLM are indeed language models that put one token after the other based on what have seen before, and that includes chess moves and having seen games in the past. Only knowing the rules of chess and playing at 1400 ELO level is like LLMs have an embedded function to play chess that somehow have learned only with the rules and a bunch of other crap.</p>
+
+<p>Playing chess with Chat GPT had been the third or fourth thing I asked the model once I had access to it and my goal was to see how capable was to retrieve moves from all the data it had ingested. I tried it a couple of times and it returned me legal moves, I did not go further but only that seemed impressive to me. Later I saw that it could play at 1400 ELO level but was still inventing moves, its level surprised me, inventing moves not.</p>
+
+<p>To test the idea that an LLM can’t play a board game if it has not seen moves in the past I decided to create a new board game, give the rules to Chat GPT as a context and play against it.</p>
+
+<p>Now, it is worth noting that I am not sure this is what HNer 2 wanted to say as it is mentioning datasets and minimizing losses and I guess the proper thing to do would be to retrain the model exactly as it is now and only adding the rules.</p>
+
+<p>Obviously I can’t do that with Chat GPT and I thought on trying it with one of the open LLM so I did some deep research to see what internet has to say about it, this was googling “llm prompt vs fine tuning” and click on the first SO <a href="https://stackoverflow.com/questions/76048714/finetuning-a-lm-vs-prompt-engineering-an-llm">link</a>. This is what came up:</p>
+
+<blockquote>
+  <p>It appears prompting an LLM may outperform fine tuning a smaller model on domain-specific tasks if the training data is small and vice versa if otherwise.</p>
+</blockquote>
+
+<p>So I decided that my best approach was adding the rules to the prompt and try to see what it does with that context. Although it might not be what HNer 2 was saying for me it was still worth the time to see what Chat GPT is able to do.</p>
+
+<p>The game goes like below. This is also going to be the input to chat gpt (without the images):</p>
+
+<ul>
+  <li>
+    <p>The game is played using an 8x8 board</p>
+  </li>
+  <li>
+    <p>The cells of the board will be referred as python formatted tuples (row,column) for the 8x8 matrix with indices starting at 0</p>
+  </li>
+  <li>
+    <p>There are two players referred as black and white and each with its same set of pieces</p>
+  </li>
+  <li>
+    <p>The pieces for each player are: 8 pawns and 1 queen</p>
+  </li>
+  <li>
+    <p>Each turn one player moves one piece</p>
+  </li>
+  <li>
+    <p>White starts the game with first move</p>
+  </li>
+  <li>
+    <p>Each pawn position will be represented as a tuple (row,column) and all the pawns as a set of these tuples in python format</p>
+  </li>
+  <li>
+    <p>Queens positions will be represented as a tuple of (row, column)</p>
+  </li>
+  <li>
+    <p>A specific state of the board is represented as a tuple of 4 elements in this order (white queen position, white pawns, black queen position, black pawns)</p>
+  </li>
+  <li>
+    <p>When the game starts the board is ((7,0),{(5,0),(5,1),(5,2),(6,0),(6,1),(6,2),(7,1),(7,2)},(0,7),{(0,5),(0,6),(1,5),(1,6),(1,7),(2,5),(2,6),(2,7)})</p>
+  </li>
+</ul>
+
+<p><img src="/assets/board1.png" alt="image" /></p>
+
+<ul>
+  <li>
+    <p>The goal of the game is for each player to place the queen in its opponent queen cell and the first player that accomplishes the goal wins. This means that white has to place the queen in (0,7) and black in (7,0)</p>
+  </li>
+  <li>
+    <p>If none of the players has legal moves to make the game ends with a draw</p>
+  </li>
+  <li>
+    <p>White pawns can only move inside the board boundaries, can only move towards (0,7), one square at a time and only  horizontally or vertically, they can’t move diagonally. This means they can only decrease the row index by 1 or increase the column index by 1 per move</p>
+  </li>
+  <li>
+    <p>As an example, all the possible legal moves for white pawns to start the game generate these new pawn positions: {(7, 1), (6, 1), (5, 1), (5, 0), (7, 2), (6, 0), (6, 3), (5, 2)}, {(6, 2), (7, 1), (6, 1), (5, 0), (7, 2), (6, 0), (4, 1), (5, 2)}, {(6, 2), (4, 0), (7, 1), (6, 1), (5, 1), (7, 2), (6, 0), (5, 2)}, {(6, 2), (7, 1), (6, 1), (5, 1), (7, 3), (5, 0), (6, 0), (5, 2)}, {(6, 2), (7, 1), (6, 1), (5, 1), (4, 2), (5, 0), (7, 2), (6, 0)}, {(6, 2), (7, 1), (6, 1), (5, 1), (5, 0), (7, 2), (6, 0), (5, 3)}</p>
+  </li>
+</ul>
+
+<p><img src="/assets/board2.png" alt="image" />
+<img src="/assets/board3.png" alt="image" />
+<img src="/assets/board4.png" alt="image" />
+<img src="/assets/board5.png" alt="image" />
+<img src="/assets/board6.png" alt="image" />
+<img src="/assets/board7.png" alt="image" /></p>
+
+<ul>
+  <li>
+    <p>White queen can only move inside the board boundaries and towards (0,7) and only horizontally or vertically, it can’t move diagonally. This means it can only either decrease the row index or increase the column index per move.</p>
+  </li>
+  <li>
+    <p>The queen can only move one square at a time but can jump over contiguous white pawns that are next to it.</p>
+  </li>
+  <li>
+    <p>As an example, all the legal moves for white queen to start the game generate these new queen positions: (4, 0) and (7, 3)</p>
+  </li>
+</ul>
+
+<p><img src="/assets/queen1.png" alt="image" />
+<img src="/assets/queen2.png" alt="image" /></p>
+
+<ul>
+  <li>When a white pawn moves where a black pawn is, the black pawn is dead and is no longer part of the game. As an example, with board ((7, 0), {(7, 2)}, (0, 7), {(7, 3)}) and white’s turn this ((7, 0), {(7, 3)}, (0, 7), {}) is a valid board</li>
+</ul>
+
+<p><img src="/assets/board9.png" alt="image" />
+<img src="/assets/board10.png" alt="image" /></p>
+
+<ul>
+  <li>
+    <p>White pieces can’t be around black queen, so if black queen is in (3,3) none of the white pieces can be at (2,2), (2,3), (2,4), (3,2), (3,4), (4,2), (4,3) or (4,4)</p>
+  </li>
+  <li>
+    <p>Black pawns can only move inside the board boundaries, can only move towards (7,0), one square at a time and only  horizontally or vertically, they can’t move diagonally. This means they can only increase the row index by 1 or decrease the column index by 1 per move</p>
+  </li>
+  <li>
+    <p>As an example, all the possible new possible positions for black pawns for this board ((7, 0), {(7, 2), (6, 0), (6, 3), (5, 2)}, (0, 7), {(2, 7), (0, 6), (2, 5)}) are: {(3, 5), (2, 7), (0, 6)}, {(2, 4), (2, 7), (0, 6)}, {(3, 7), (2, 5), (0, 6)}, {(2, 5), (2, 6), (0, 6)}, {(1, 6), (2, 5), (2, 7)} and {(2, 5), (2, 7), (0, 5)}</p>
+  </li>
+</ul>
+
+<p><img src="/assets/board11.png" alt="image" /></p>
+
+<p><img src="/assets/board12.png" alt="image" />
+<img src="/assets/board13.png" alt="image" />
+<img src="/assets/board14.png" alt="image" />
+<img src="/assets/board15.png" alt="image" />
+<img src="/assets/board17.png" alt="image" />
+<img src="/assets/board18.png" alt="image" /></p>
+
+<ul>
+  <li>
+    <p>Black queen can only move inside the board boundaries and towards (7,0) and only horizontally or vertically, it can’t move diagonally. This means it can only either increase the row index or decrease the column index per move.</p>
+  </li>
+  <li>
+    <p>The queen can only move one square at a time but can jump over contiguous white pawns that are next to it.</p>
+  </li>
+  <li>
+    <p>As an example, all the new possible positions for black queen for this board ((7, 0), {(7, 2), (6, 0), (6, 3), (5, 2)}, (0, 7), {(2, 7), (0, 6), (2, 5)}) are: (1, 7) and (0, 5)</p>
+  </li>
+</ul>
+
+<p><img src="/assets/board11.png" alt="image" /></p>
+
+<p><img src="/assets/board19.png" alt="image" />
+<img src="/assets/board20.png" alt="image" /></p>
+
+<ul>
+  <li>When a black pawn moves where a white pawn is, the white pawn is dead and is no longer part of the game. As an example, with board ((7, 0), {(7, 2)}, (0, 7), {(7, 3)}) and black’s turn this ((7, 0), {}, (0, 7), {(7, 2)}) is a valid board</li>
+</ul>
+
+<p><img src="/assets/board9.png" alt="image" />
+<img src="/assets/board21.png" alt="image" /></p>
+
+<ul>
+  <li>Black pieces can’t be around white queen, so if white queen is in (3,3) none of the black pieces can be at (2,2), (2,3), (2,4), (3,2), (3,4), (4,2), (4,3) or (4,4)</li>
+</ul>
+
+<p>As I don’t want to learn how to play this game <a href="https://github.com/joseprupi/chatgptgame/blob/master/game.ipynb">I have created a simple Monte Carlo Tree Search engine</a> in case Chat GPT is able to play and I have to respond. I also used the engine to see what happens when the game is played with random moves, I found specially interesting to know the chances of draw and of white winning as it starts the game.</p>
+
+<p>And here are the results after 50000 games:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Black wins</th>
+      <th>White wins</th>
+      <th>Draws</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>17440</td>
+      <td>17820</td>
+      <td>14740</td>
+    </tr>
+    <tr>
+      <td>34.9%</td>
+      <td>35.6%</td>
+      <td>29.5%</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>It seems that with random moves white starting does not give a huge advantage and I found the chances of draw pretty high. This makes me think that with similarly rated players a draw would be probable. Surprisingly for me in chess the probability <a href="https://chance.amstat.org/2020/09/chess/">seems to be even higher</a> (I am quite ignorant in chess).</p>
+
+<p>This is the conversation (<a href="https://chat.openai.com/share/a2821a3d-7ece-4f23-b68a-6be8f4fe8ea5">link to the conversation</a>):</p>
+
+<blockquote>
+  <p><b style="color:#AAAAEE;">I will teach you a board game and then we will play</b></p>
+</blockquote>
+
+<blockquote>
+  <p>That sounds like a fun idea! I’m excited to learn and play a new board game with you. Please go ahead and teach me the rules of the game, and we can get started.</p>
+</blockquote>
+
+<blockquote>
+  <p><b style="color:#AAAAEE;">The game is played using an 8x8 board</b></p>
+
+  <p><b style="color:#AAAAEE;">The cells of the board will be referred as python formatted tuples (row,column) for the 8x8 matrix with indices starting at 0</b></p>
+
+  <p><b style="color:#AAAAEE;">There are two players referred as black and white and each with its same set of pieces</b></p>
+
+  <p><b style="color:#AAAAEE;">The pieces for each player are: 8 pawns and 1 queen</b></p>
+
+  <p><b style="color:#AAAAEE;">Each cell can only contain one piece</b></p>
+
+  <p><b style="color:#AAAAEE;">Each turn one player moves one piece</b></p>
+
+  <p><b style="color:#AAAAEE;">White starts the game with first move</b></p>
+
+  <p><b style="color:#AAAAEE;">Pawns positions will be represented as a set of tuples in python format</b></p>
+
+  <p><b style="color:#AAAAEE;">Queens positions will be represented as a tuple of (row, column)</b></p>
+
+  <p><b style="color:#AAAAEE;">A specific state of the board is represented as a tuple of 4 elements in this order (white queen position, white pawns, black queen position, black pawns)</b></p>
+
+  <p><b style="color:#AAAAEE;">When the game starts the board is ((7,0),{(5,0),(5,1),(5,2),(6,0),(6,1),(6,2),(7,1),(7,2)},(0,7),{(0,5),(0,6),(1,5),(1,6),(1,7),(2,5),(2,6),(2,7)})</b></p>
+
+  <p><b style="color:#AAAAEE;">The goal of the game is for each player to place the queen in its opponent queen cell and the first player that accomplishes the goal wins. This means that white has to place the queen in (0,7) and black in (7,0)</b></p>
+
+  <p><b style="color:#AAAAEE;">If none of the players has legal moves to make the game ends with a draw</b></p>
+
+  <p><b style="color:#AAAAEE;">White pawns can only move inside the board boundaries, can only move towards (0,7), one square at a time and only horizontally or vertically, they can’t move diagonally. This means they can only decrease the row index by 1 or increase the column index by 1 per move</b></p>
+
+  <p><b style="color:#AAAAEE;">As an example, all the possible legal moves for white pawns to start the game generate these new pawn positions: {(7, 1), (6, 1), (5, 1), (5, 0), (7, 2), (6, 0), (6, 3), (5, 2)}, {(6, 2), (7, 1), (6, 1), (5, 0), (7, 2), (6, 0), (4, 1), (5, 2)}, {(6, 2), (4, 0), (7, 1), (6, 1), (5, 1), (7, 2), (6, 0), (5, 2)}, {(6, 2), (7, 1), (6, 1), (5, 1), (7, 3), (5, 0), (6, 0), (5, 2)}, {(6, 2), (7, 1), (6, 1), (5, 1), (4, 2), (5, 0), (7, 2), (6, 0)}, {(6, 2), (7, 1), (6, 1), (5, 1), (5, 0), (7, 2), (6, 0), (5, 3)}</b></p>
+
+  <p><b style="color:#AAAAEE;">White queen can only move inside the board boundaries and towards (0,7) and only horizontally or vertically, it can’t move diagonally. This means it can only either decrease the row index or increase the column index per move.</b></p>
+
+  <p><b style="color:#AAAAEE;">The queen can only move one square at a time but can jump over contiguous white pawns that are next to it.</b></p>
+
+  <p><b style="color:#AAAAEE;">As an example, all the legal moves for white queen to start the game generate these new queen positions: (4, 0) and (7, 3)</b></p>
+
+  <p><b style="color:#AAAAEE;">When a white pawn moves where a black pawn is, the black pawn is dead and is no longer part of the game. As an example, with board ((7, 0), {(7, 2)}, (0, 7), {(7, 3)}) and white’s turn this ((7, 0), {(7, 3)}, (0, 7), {}) is a valid board</b></p>
+
+  <p><b style="color:#AAAAEE;">White pieces can’t be around black queen, so if black queen is in (3,3) none of the white pieces can be at (2,2), (2,3), (2,4), (3,2), (3,4), (4,2), (4,3) or (4,4)</b></p>
+
+  <p><b style="color:#AAAAEE;">Black pawns can only move inside the board boundaries, can only move towards (7,0), one square at a time and only horizontally or vertically, they can’t move diagonally. This means they can only increase the row index by 1 or decrease the column index by 1 per move</b></p>
+
+  <p><b style="color:#AAAAEE;">As an example, all the possible new possible positions for black pawns for this board ((7, 0), {(7, 2), (6, 0), (6, 3), (5, 2)}, (0, 7), {(2, 7), (0, 6), (2, 5)}) are: {(3, 5), (2, 7), (0, 6)}, {(2, 4), (2, 7), (0, 6)}, {(3, 7), (2, 5), (0, 6)}, {(2, 5), (2, 6), (0, 6)}, {(1, 6), (2, 5), (2, 7)} and {(2, 5), (2, 7), (0, 5)}</b></p>
+
+  <p><b style="color:#AAAAEE;">Black queen can only move inside the board boundaries and towards (7,0) and only horizontally or vertically, it can’t move diagonally. This means it can only either increase the row index or decrease the column index per move.</b></p>
+
+  <p><b style="color:#AAAAEE;">The queen can only move one square at a time but can jump over contiguous white pawns that are next to it.</b></p>
+
+  <p><b style="color:#AAAAEE;">As an example, all the new possible positions for black queen for this board ((7, 0), {(7, 2), (6, 0), (6, 3), (5, 2)}, (0, 7), {(2, 7), (0, 6), (2, 5)}) are: (1, 7) and (0, 5)</b></p>
+
+  <p><b style="color:#AAAAEE;">When a black pawn moves where a white pawn is, the white pawn is dead and is no longer part of the game. As an example, with board ((7, 0), {(7, 2)}, (0, 7), {(7, 3)}) and black’s turn this ((7, 0), {}, (0, 7), {(7, 2)}) is a valid board</b></p>
+
+  <p><b style="color:#AAAAEE;">Black pieces can’t be around white queen, so if white queen is in (3,3) none of the black pieces can be at (2,2), (2,3), (2,4), (3,2), (3,4), (4,2), (4,3) or (4,4)</b></p>
+</blockquote>
+
+<blockquote>
+  <p>Thank you for explaining the rules of the game. It seems like a strategic and intriguing board game. I understand that the goal of the game is for each player to place their queen in their opponent’s queen cell. The players take turns moving their pieces, with white starting first.</p>
+
+  <p>The board is an 8x8 grid, and each cell can only contain one piece. There are two players: black and white. Each player has 8 pawns and 1 queen. The positions of the pawns and queens are represented using tuples and sets in Python.</p>
+
+  <p>White pawns can move one square at a time, either horizontally or vertically, towards the cell (0,7). They cannot move diagonally. White pawns cannot be around the black queen.</p>
+
+  <p>White queen can also move one square at a time, either horizontally or vertically, towards the cell (0,7). The queen can jump over contiguous white pawns that are next to it.</p>
+
+  <p>Black pawns can move one square at a time, either horizontally or vertically, towards the cell (7,0). They cannot move diagonally. Black pawns cannot be around the white queen.</p>
+
+  <p>Black queen can also move one square at a time, either horizontally or vertically, towards the cell (7,0). The queen can jump over contiguous white pawns that are next to it.</p>
+
+  <p>When a pawn moves to a cell occupied by an opponent’s pawn, the opponent’s pawn is eliminated from the game.</p>
+
+  <p>The game ends in a draw if none of the players have legal moves.</p>
+
+  <p>Now that I have a good understanding of the rules, I’m ready to play the game with you. Shall we start with the initial board state you provided, and you can make the first move as white?</p>
+</blockquote>
+
+<blockquote>
+  <p><b style="color:#AAAAEE;">You are white, so you start the game</b></p>
+</blockquote>
+
+<blockquote>
+  <p>Alright, let’s begin the game with me playing as the white player. Here is the initial board state:</p>
+
+  <p>Board: ((7, 0), {(5, 0), (5, 1), (5, 2), (6, 0), (6, 1), (6, 2), (7, 1), (7, 2)}, (0, 7), {(0, 5), (0, 6), (1, 5), (1, 6), (1, 7), (2, 5), (2, 6), (2, 7)})</p>
+
+  <p>Your turn as black will come after I make my move. Please provide your move instructions in the format “piece to move: current position -&gt; new position”.</p>
+
+  <p>I’ll make my move as white. I’ll start by moving one of my pawns. Let’s say I choose to move the pawn at position (7, 1) to (6, 1):</p>
+
+  <p>White pawn move: (7, 1) -&gt; (6, 1)</p>
+
+  <p>Here’s the updated board state:</p>
+
+  <p>Board: ((7, 0), {(5, 0), (5, 1), (5, 2), (6, 0), (6, 2), (6, 1), (7, 1), (7, 2)}, (0, 7), {(0, 5), (0, 6), (1, 5), (1, 6), (1, 7), (2, 5), (2, 6), (2, 7)})</p>
+
+  <p>Now it’s your turn as black. Please provide your move instructions for the black pieces.</p>
+</blockquote>
+
+<blockquote>
+  <p><b style="color:#AAAAEE;">That is not a legal move, there already was one of your pawns in (6,1)</b></p>
+</blockquote>
+
+<blockquote>
+  <p>Apologies for the mistake. Thank you for pointing that out. Let me choose a different move.</p>
+
+  <p>I’ll move the white pawn at position (6, 2) to (5, 2):</p>
+
+  <p>White pawn move: (6, 2) -&gt; (5, 2)</p>
+
+  <p>Here’s the updated board state:</p>
+
+  <p>Board: ((7, 0), {(5, 0), (5, 1), (5, 2), (6, 0), (6, 1), (5, 2), (7, 1), (7, 2)}, (0, 7), {(0, 5), (0, 6), (1, 5), (1, 6), (1, 7), (2, 5), (2, 6), (2, 7)})</p>
+
+  <p>Now it’s your turn as black. Please provide your move instructions for the black pieces.</p>
+</blockquote>
+
+<blockquote>
+  <p><b style="color:#AAAAEE;">That is not a legal move either</b></p>
+</blockquote>
+
+<blockquote>
+  <p>Apologies again for the oversight. Let me correct my move.</p>
+
+  <p>I’ll move the white pawn at position (7, 2) to (6, 2):</p>
+
+  <p>White pawn move: (7, 2) -&gt; (6, 2)</p>
+
+  <p>Here’s the updated board state:</p>
+
+  <p>Board: ((7, 0), {(5, 0), (5, 1), (5, 2), (6, 0), (6, 1), (6, 2), (6, 2), (7, 1)}, (0, 7), {(0, 5), (0, 6), (1, 5), (1, 6), (1, 7), (2, 5), (2, 6), (2, 7)})</p>
+
+  <p>Now it’s your turn as black. Please provide your move instructions for the black pieces.</p>
+</blockquote>
+
+<blockquote>
+  <p><b style="color:#AAAAEE;">That is not a legal move either, you are moving pawns where you already have pieces</b></p>
+</blockquote>
+
+<blockquote>
+  <p>Apologies once again for the error. Let me rectify my move.</p>
+
+  <p>I’ll move the white pawn at position (6, 1) to (5, 1):</p>
+
+  <p>White pawn move: (6, 1) -&gt; (5, 1)</p>
+
+  <p>Here’s the updated board state:</p>
+
+  <p>Board: ((7, 0), {(5, 0), (5, 1), (5, 2), (6, 0), (5, 1), (6, 2), (7, 1), (7, 2)}, (0, 7), {(0, 5), (0, 6), (1, 5), (1, 6), (1, 7), (2, 5), (2, 6), (2, 7)})</p>
+
+  <p>Now it’s your turn as black. Please provide your move instructions for the black pieces.</p>
+</blockquote>
+
+<blockquote>
+  <p><b style="color:#AAAAEE;">That is not a legal move either</b></p>
+</blockquote>
+
+<blockquote>
+  <p>Apologies for the mistake once again. Thank you for your patience. Let me correct my move.</p>
+
+  <p>I’ll move the white pawn at position (7, 1) to (6, 1):</p>
+
+  <p>White pawn move: (7, 1) -&gt; (6, 1)</p>
+
+  <p>Here’s the updated board state:</p>
+
+  <p>Board: ((7, 0), {(5, 0), (5, 1), (5, 2), (6, 0), (6, 1), (6, 2), (7, 1), (7, 2)}, (0, 7), {(0, 5), (0, 6), (1, 5), (1, 6), (1, 7), (2, 5), (2, 6), (2, 7)})</p>
+
+  <p>Now it’s your turn as black. Please provide your move instructions for the black pieces.</p>
+</blockquote>
+
+<p>It is not been able to make the first move for white, not even having an example with all the possible moves white can do with its pawns to start the game in the rules.</p>
+
+<p>I am not sure this is that surprising from a model that gets confused when seeing someone counting numbers. <a href="https://twitter.com/SoC_trilogy/status/1623118034960322560?lang=en">Link</a></p>]]></content><author><name></name></author><category term="docs" /><category term="misc" /><summary type="html"><![CDATA[A few weeks ago in a HN thread about chat GPT and chess this happened:]]></summary></entry></feed>
