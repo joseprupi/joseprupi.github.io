@@ -476,7 +476,7 @@ In any case, let's try to use this information to get more Model Validation spec
     <div class="prompt">
 If you have the model described below, and also have the detail for the monte carlo simulations, could you please give me the code to execute some tests according to SR 11-7 and to validate the assumptions are correct?
 
-** *Pasted here the three outcomes above from Notebook LM for CreditMetrics* **
+**Pasted here the three outcomes above from Notebook LM for CreditMetrics**
 
 </div>
 <div class="response" markdown="1">
