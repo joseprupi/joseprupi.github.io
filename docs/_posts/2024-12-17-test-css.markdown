@@ -340,7 +340,7 @@ If the code and results are accurate, these outputs are quite impressive from a 
 
 While the report lacks deeper details such as what the feature importance scores are, it still offers valuable data like feature correlations, model performance across datasets, and temporal performance trends. 
 
-Some might consider these tests too simple, but the requirements for credit models in finance are entirely different from most of the Kaggle challenges I’ve seen. Kaggle emphasizes maximizing a competition score, e.g., building large ensembles of complicated models most of the times using as many features as possible. In contrast, credit modeling highly values simplicity and interpretability, largely due to regulatory demands and the need for business stakeholders to understand how models work. So these tests are truly valid.
+Some might see these tests as too simple, but the requirements for credit models in finance are highly specific. In other fields and industries, the focus is on boosting a performance metric—often by building complex ensembles that use every possible feature. In contrast, credit modeling strongly emphasizes simplicity and interpretability, largely due to regulatory obligations and the need for business stakeholders to clearly understand how the model works. So these tests are truly valid.
 
 For instance, seeing a correlation matrix reveal “dark islands” indicates an area needing further examination, exactly the kind of test that would be conducted in a real world validation setting. Likewise, the PSI-over-time plot, along with average score trends, suggests a potential behavior shift around week 60. Understanding what might have changed in the model or the data environment during that period is crucial.
 
