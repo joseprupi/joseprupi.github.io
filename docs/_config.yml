@@ -58,5 +58,3 @@ thumbsurl: "/assets/thumbs/"
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
-
-includes_dir: docs/_includes
