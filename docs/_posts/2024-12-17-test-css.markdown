@@ -181,7 +181,6 @@ Before we start, let’s see what ChatGPT has to say about model validation in t
     <div class="prompt">
         What does model validation mean in the US banking environment? Could you summarize it with few sentences?
     </div>
-    
     <details>
         <summary>Show Response</summary>
         <div class="response" markdown="1">
