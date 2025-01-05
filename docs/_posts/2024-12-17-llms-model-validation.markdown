@@ -6,12 +6,6 @@ categories: misc
 ---
 
 <style>
-/* Two-column layout styles */
-/* Two-column layout styles */
-/* Base post styles */
-/* Base post styles */
-/* Base post styles */
-/* Base post styles */
 /* Base post styles */
 .post {
     max-width: 100%;
@@ -96,9 +90,12 @@ h6 { font-size: 0.67em; }
 
 /* Code blocks in responses */
 .response code {
-    background-color: #f5f7fa;
+    background-color: ##eef;
+    color: #333; /* Ensure text is visible */
     padding: 0.2em 0.4em;
     border-radius: 3px;
+    white-space: pre-wrap; /* Preserve spaces and line breaks */
+    display: inline-block; /* Treat inline code as block to avoid space highlighting issues */
 }
 
 /* Spacing between containers */
@@ -114,19 +111,21 @@ h6 { font-size: 0.67em; }
     }
 }
 
-  /* Styles for collapsible sections */
+/* Collapsible sections styling */
 details {
-    margin: 0;  /* Remove margin */
-    padding: 0; /* Remove padding */
-    border: none; /* Remove border */
-    background: none; /* Remove background */
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
 }
 
 summary {
     font-weight: bold;
     cursor: pointer;
-    list-style: none; /* Removes default marker */
-    margin-bottom: 0.8rem; /* Match your existing spacing */
+    list-style: none;
+    margin-bottom: 0.8rem;
+    position: relative;
+    padding-right: 1.5em;
 }
 
 /* Remove default marker */
@@ -136,19 +135,39 @@ summary::-webkit-details-marker {
 
 /* Custom arrow indicators */
 summary::after {
-    content: " ▼";
-    float: right;
+    content: "▼";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8em;
+    color: #666;
+    transition: transform 0.2s ease;
 }
 
 details[open] summary::after {
-    content: " ▲";
+    content: "▲";
 }
 
-/* Response content should have no extra styling from details */
+/* Response content within details */
 details .response {
     padding: 0;
     margin: 0;
     background: none;
+}
+
+/* Ensure markdown content is properly styled within details */
+details .response[markdown="1"] {
+    overflow: hidden;  /* Prevents margin collapse */
+}
+
+/* Additional styling for nested content */
+details .response > :first-child {
+    margin-top: 0;
+}
+
+details .response > :last-child {
+    margin-bottom: 0;
 }
 
 
@@ -157,7 +176,7 @@ details .response {
 *The views and opinions expressed in this post are solely my own and do not necessarily reflect those of my employer. This content is for general informational purposes only and does not constitute professional advice.*
 
 <div style="border: 1px solid #ccc; background-color: #f9f9f9; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
-  <strong>TL;DR:</strong> This post walks through the steps of a banking Model Validation assisted by LLMs. There's already tons of LLM-related material and the results might seem obvious to some readers but I wanted to show how they can be leveraged specifically for model validation. I found the results both time saving and high quality, so I created an app (yes, another LLM wrapper :( ) to make things easier. Feel free to skip directly to it.
+  <strong>TL;DR:</strong> This post walks through the steps of a banking Model Validation assisted by LLMs. There's already tons of LLM-related material and the results might seem obvious to some readers but I wanted to show how they can be leveraged specifically for model validation. I found the results both time saving and high quality, so I created an app (yes, another LLM wrapper :( ) to make things easier.  <a href="#an-app-for-model-validation-with-llms">Feel free to skip directly to it</a>.
 </div>
 
 * TOC
@@ -183,28 +202,36 @@ Before we start, let’s see what ChatGPT has to say about model validation in t
     </div>
     <details>
         <summary>Response</summary>
-        <div class="response" markdown="1">
+        <div class="response">
             In the U.S. banking environment, model validation refers to the rigorous process of evaluating financial models to ensure they are reliable, accurate, and compliant with regulatory standards. It involves assessing the model's performance, assumptions, limitations, and potential risks. This practice is essential for managing model risk and adhering to regulatory guidelines such as SR 11-7, which requires banks to maintain robust model risk management frameworks to prevent financial and operational issues.
         </div>
     </details>
 </div>
 
-### Key Components of SR 11-7
+### SR 11-7
 
 Alright, we have a base now. We understand that validating models is a regulated process guided by SR 11-7 so let's gather some more detail on what this should be:
 <div class="llm-container">
     <div class="prompt">
-What should a model validation contain according to SR 11-7?
+        What should a model validation contain according to SR 11-7?
     </div>
-    <div class="response" markdown="1">
+    <details>
+        <summary>Response</summary>
+        <div class="response">
+{% capture markdown_response %}
 According to SR 11-7, a comprehensive model validation should include the following key components:
+
 * **Evaluation of Conceptual Soundness:** An in-depth assessment of the model's design, theory, and logic, including underlying assumptions and methodology. This ensures that the model is appropriate for its intended purpose.
 * **Ongoing Monitoring:** Regular checks to confirm that the model's performance aligns with expectations over time. This includes tracking key performance metrics and reviewing outcomes to identify any significant deviations.
 * **Outcomes Analysis:** A quantitative comparison of the model's predictions against actual outcomes. This step helps assess the accuracy and reliability of the model in real-world conditions.
 * **Benchmarking and Back-Testing:** Comparing the model's results with alternative models and validating performance through back-testing with historical data.
 * **Assessment of Limitations and Uncertainty:** Identifying potential limitations in the model's framework and quantifying any associated uncertainties or risks.
+
 These elements ensure a robust validation process, enabling institutions to identify and mitigate model risks effectively, maintaining compliance with regulatory requirements.
-</div>
+{% endcapture %}
+{{ markdown_response | markdownify }}
+        </div>
+    </details>
 </div>
 
 
@@ -212,32 +239,40 @@ And what form and structure does a model validation take?
 
 <div class="llm-container">
     <div class="prompt">
-How should these results be presented?
+        How should these results be presented?
     </div>
-<div class="response" markdown="1">
+    <details>
+        <summary>Response</summary>
+        <div class="response">
+{% capture markdown_response %}
 Model validation results, in line with SR 11-7, should be presented in a structured, transparent, and comprehensive report, typically covering the following sections:
-* **Executive Summary**: A concise overview of the validation's key findings, model strengths and weaknesses, and an overall assessment of the model’s risk level and validation outcome (e.g., approved, approved with conditions, or not approved).
-* **Scope and Objectives**: A clear outline of the validation’s purpose, including the model’s intended use, its assumptions, and limitations. It should specify the validation scope, such as whether it's a full-scope or targeted validation.
+
+* **Executive Summary**: A concise overview of the validation's key findings, model strengths and weaknesses, and an overall assessment of the model's risk level and validation outcome (e.g., approved, approved with conditions, or not approved).
+* **Scope and Objectives**: A clear outline of the validation's purpose, including the model's intended use, its assumptions, and limitations. It should specify the validation scope, such as whether it's a full-scope or targeted validation.
 * **Methodology and Approach**: A description of the validation process, including the methods, tools, and benchmarks used. This part should clarify how the validation aligns with regulatory requirements and internal policies.
-* **Evaluation of Conceptual Soundness**: Findings on the model’s design, methodology, assumptions, and overall soundness. This section often includes a detailed review of data sources, model components, and theoretical foundations.
-* **Ongoing Monitoring and Performance Review**: Insights into the model’s stability, accuracy, and predictive power over time, along with performance metrics and any monitoring results that highlight trends or areas of concern.
+* **Evaluation of Conceptual Soundness**: Findings on the model's design, methodology, assumptions, and overall soundness. This section often includes a detailed review of data sources, model components, and theoretical foundations.
+* **Ongoing Monitoring and Performance Review**: Insights into the model's stability, accuracy, and predictive power over time, along with performance metrics and any monitoring results that highlight trends or areas of concern.
 * **Outcomes Analysis and Back-Testing Results**: Results of outcome analysis, including back-testing findings that compare predicted versus actual results. This section should provide quantitative and qualitative analyses, highlighting any discrepancies and their implications.
 * **Issues and Recommendations**: Identification of any issues, weaknesses, or limitations, along with prioritized recommendations for improvements. This can include both short-term remediation actions and longer-term improvements to address identified risks.
-* **Conclusion and Sign-Off**: A summary of key points and the final opinion on the model’s viability, along with sign-offs from validation team members and relevant stakeholders.
+* **Conclusion and Sign-Off**: A summary of key points and the final opinion on the model's viability, along with sign-offs from validation team members and relevant stakeholders.
 * **Supporting Documentation**: Additional materials such as data sources, code, validation testing details, and other relevant documents to ensure transparency and reproducibility.
+
 Effective presentation should ensure clarity for stakeholders, including management and regulators, with visual aids like charts and tables where helpful.
-</div>
+{% endcapture %}
+{{ markdown_response | markdownify }}
+        </div>
+    </details>
 </div>
 
-In short, validating models in banking requires assessing whether they work properly and creating detailed, regulator-friendly reports. And while the process may seem simple and even obvious —and in many ways it is— it also is extremely valuable and not commonly adopted outside of banking. I believe other industries could benefit from a similar, standardized approach to ensure models are reliable and used appropriately through clear, consistent reporting.
+In short, validating models in banking requires assessing whether they work properly and creating detailed, regulator-friendly reports. And while the process may seem simple and even obvious —and in many ways it is— it also is extremely valuable and as far as I know, not commonly adopted outside of banking. I believe other industries could benefit from a similar, standardized approach to ensure models are reliable and used appropriately through clear, consistent reporting.
 
 Importantly, the goal of this process isn’t just to produce reports, but to improve the quality of models. And from my experience, it works. Development teams build better products when they know their work will be audited, requiring them to justify decisions and document their processes in ways that business stakeholders can easily understand.
 
-### Choosing a Sample Model to Validate
+### A Sample Model to Validate
 
 To illustrate, I’ll try to show how to validate a model and demonstrate how LLMs can help with an example.
 
-So for his demonstration, I needed a model that resembles a real financial case. And I found this Kaggle challenge:
+So for this demonstration, I needed a model that resembles a real financial case. And I found this Kaggle challenge:
 
 > [Home Credit - Credit Risk Model Stability](https://www.kaggle.com/competitions/home-credit-credit-risk-model-stability). 
 > 
@@ -247,22 +282,25 @@ I also discovered a working example notebook of what seems to be an example for 
 
 ### Reviewing the Code with an LLM
 
-One initial step in model validation is a high-level code review, and LLMs can help with this. Below is an example of what Claude said when I asked it to summarize the code after pasting it into the interface:
+One initial step in model validation is a high-level code review, and LLMs can help by providing summaries, identifying issues, and offering recommendations for improvement. Below is an example of what Claude said when I asked it to summarize the code after pasting it into the interface:
 
 
 <div class="llm-container">
     <div class="prompt">
-What is this code doing?
-</div>
-<div class="response" markdown="1">
+        What is this code doing?
+    </div>
+    <details>
+        <summary>Response</summary>
+        <div class="response">
+{% capture markdown_response %}
 Let me break down this code - it appears to be implementing a credit risk or default prediction model with a focus on stability across time. Here are the key components:
 
-1 Data Loading and Preprocessing:
+1. Data Loading and Preprocessing:
 * Loads several CSV files containing different types of data (base tables, static data, credit bureau data, person data)
 * Uses Polars (a fast DataFrame library) for initial data processing
 * The data appears to be related to loan applications, with different tables containing various attributes about applicants
 
-2 Feature Engineering:
+2. Feature Engineering:
 * Creates aggregated features from person-related data:
   * Maximum occupation income
   * Whether any applicant is self-employed
@@ -271,14 +309,13 @@ Let me break down this code - it appears to be implementing a credit risk or def
   * Maximum payments overdue
   * Whether payments were overdue by more than 31 days
 
-3 Model Training:
+3. Model Training:
 * Uses LightGBM, a gradient boosting framework
 * Splits data into train (60%), validation (20%), and test (20%) sets
 * Trains a binary classification model with AUC (Area Under Curve) as the metric
 * Uses early stopping to prevent overfitting
 
-4 Model Evaluation:
- 
+4. Model Evaluation:
 * Calculates AUC scores for train, validation, and test sets
 * Implements a custom stability metric called gini_stability that:
   * Tracks model performance (Gini coefficient) across different time periods (WEEK_NUM)
@@ -287,13 +324,16 @@ Let me break down this code - it appears to be implementing a credit risk or def
     * High variance in performance (standard deviation of residuals)
   * This suggests the model is being used in a production setting where stable predictions over time are important
 
-5 The hyperparameters used suggest a relatively conservative model:
+5. The hyperparameters used suggest a relatively conservative model:
 * Max depth of 3
 * Learning rate of 0.05
 * Feature and bagging fractions < 1 for regularization
 
 This code appears to be part of a production system where model stability over time is as important as raw predictive performance. The stability metric is particularly interesting as it penalizes both declining performance over time and high variance in performance, which are important considerations for deployed models.
-</div>
+{% endcapture %}
+{{ markdown_response | markdownify }}
+        </div>
+    </details>
 </div>
 
 It explains the code, touches on model parametrization, and highlights existing time-based performance tests. All are crucial details in a banking Model Validation.
@@ -302,64 +342,76 @@ Next, I asked for enhancements:
 
 <div class="llm-container">
     <div class="prompt">
-Given this code, are there errors or would you recommend enhancements to it?
-</div>
-<div class="response" markdown="1">
+        Given this code, are there errors or would you recommend enhancements to it?
+    </div>
+    <details>
+        <summary>Response</summary>
+        <div class="response">
+{% capture markdown_response %}
 Here are the key issues and recommended enhancements:
+
 1. Type Conversion Issues:
-``` Python
+```python
 for df in [X_train, X_valid, X_test]:
         df = convert_strings(df)
 ```
 This reassignment doesn't modify the original dataframes. Should be:
-``` Python
+```python
 X_train = convert_strings(X_train)
 X_valid = convert_strings(X_valid)
 X_test = convert_strings(X_test)
 ```
 
-2.Missing Error Handling:
+2. Missing Error Handling:
 * Add error handling for file loading
 * Validate data before model training
 * Check for missing values
 
-3.Performance Improvements:
-
+3. Performance Improvements:
 * Consider using pl.LazyFrame for memory efficiency
 * Move categorical conversion to set_table_dtypes function
 * Use parallel processing for data aggregation
  
-4.Model Enhancements:
-
+4. Model Enhancements:
 * Add feature importance analysis
 * Implement cross-validation
 * Consider hyperparameter tuning
 * Add model serialization
 
-5.Output Enhancement:
-
+5. Output Enhancement:
 * Add confidence intervals for predictions
 * Include feature importance plots
 * Add model performance metrics beyond AUC
-</div>
+{% endcapture %}
+{{ markdown_response | markdownify }}
+        </div>
+    </details>
 </div>
 
 While some suggestions are more software-engineering focused, they also included important validation aspects. 
 
-For example, having evidence to support model parameterization is essential for a validation. Unlike Kaggle, where the primary objective is to achieve the highest score by any means, banking places a strong emphasis on justifying the decisions made in the model design.
+For example, having evidence to support model parameterization is essential for a validation. Unlike let's say Kaggle, where the primary objective is to achieve the highest score by any means, banking places a strong emphasis on justifying the decisions made in the model design.
 
-### Conducting Validation Tests (SR 11-7) with LLMs
+This might seem trivial but is also highly valuable for a Model Validation analyst, where you could be given models with thousands of lines of code and somehow find problems with it, programmatic or functional, which is hard.
+
+### Validation Tests with LLMs
 
 With this approach and just a few minutes, I have good insights into this model’s implementation. I think we can now start implementing tests.
 
 Let's ask the LLM for help.
 <div class="llm-container">
     <div class="prompt">
-Given this code to train a credit model, could you create and give me the tests that should be performed according to SR 11-7? The tests should have visualization when possible, the scope should be as broad as possible and the results compiled into a tex file, including the images. Could you make it in a way that all outputs (tex and images) are in the same folder?
-</div>
-<div class="response" markdown="1">
-Lots of Python code.
-</div>
+        Given this code to train a credit model, could you create and give me the tests that should be performed according to SR 11-7? The tests should have visualization when possible, the scope should be as broad as possible and the results compiled into a tex file, including the images. Could you make it in a way that all outputs (tex and images) are in the same folder?
+    </div>
+    <details>
+        <summary>Response</summary>
+        <div class="response">
+{% capture markdown_response %}
+Lots of Python code I will not add but that runs and generates correct latex code straight away.
+{% endcapture %}
+{{ markdown_response | markdownify }}
+        </div>
+    </details>
 </div>
 
 The result from this request is some code that I execute in a cell right after the last one from the Notebook I have downloaded, and it works straight away generating tex content that also compiles into pdf without errors.
@@ -412,14 +464,18 @@ We can start asking some questions to the LLM about this documentation:
 
 <div class="llm-container">
     <div class="prompt">
-What is CreditMetrics?
-</div>
-<div class="response" markdown="1">
+        What is CreditMetrics?
+    </div>
+    <details>
+        <summary>Response</summary>
+        <div class="response">
+{% capture markdown_response %}
 CreditMetrics: A Comprehensive Framework for Measuring Portfolio Credit Risk
 
 CreditMetrics is a tool for assessing portfolio risk that arises from changes in the value of debt due to changes in the credit quality of obligors. This approach considers changes in value caused by potential defaults, upgrades, and downgrades in credit quality. CreditMetrics focuses on calculating the volatility of value (Value at Risk or VaR), not just the expected losses, within the context of a portfolio. It accounts for the correlation of credit quality movements across obligors, enabling the direct calculation of diversification benefits or potential over-concentrations across the portfolio.
 
 CreditMetrics' constructive approach focuses on modeling the mechanisms of value changes stemming from credit events rather than directly observing value changes, which is unlike market risk models that typically rely on readily available market data.
+
 Here's a breakdown of CreditMetrics' key features:
 
 * Types of Risks Modeled: CreditMetrics primarily focuses on credit risk arising from credit events such as upgrades, downgrades, or defaults. It can also incorporate certain market risk components like market-driven volatility of credit exposures in instruments like swaps, forwards, and bonds.
@@ -446,7 +502,10 @@ Here's a breakdown of CreditMetrics' key features:
    - Percentile Level: Represents a specific point in the distribution of portfolio values, indicating the lowest value the portfolio is expected to reach with a given probability (e.g., the 1st percentile).
 
 CreditMetrics, by incorporating these features and methodologies, provides a robust and comprehensive framework for measuring and managing credit risk within a portfolio context. It allows institutions to make informed decisions regarding risk mitigation, limit setting, and economic capital allocation, ultimately leading to more efficient utilization of risk-taking capacity.
-</div>
+{% endcapture %}
+{{ markdown_response | markdownify }}
+        </div>
+    </details>
 </div>
 
 We now have a good summary of this model documentation of 200 pages (although I would say this is not exactly what I would call a model documentation as it mostly focuses on the theory and not the implementation details).
@@ -456,10 +515,14 @@ It is already giving good insights for a validation like the different approache
 Let's ask for some more detail about the model.
 <div class="llm-container">
     <div class="prompt">
-How does the model address the non-normality of credit returns for better results?
-</div>
-<div class="response" markdown="1">
+        How does the model address the non-normality of credit returns for better results?
+    </div>
+    <details>
+        <summary>Response</summary>
+        <div class="response">
+{% capture markdown_response %}
 The sources highlight that credit returns deviate significantly from a normal distribution, primarily due to the possibility of defaults, which creates a long downside tail. This characteristic makes relying solely on standard deviation, a measure designed for symmetrical distributions, inadequate for accurately assessing credit risk.
+
 CreditMetrics tackles this challenge by constructing a model that does not rely on the assumption of normally distributed returns. Instead, it estimates the full distribution of potential value changes through the following steps:
 
 * Modeling Credit Quality Migrations: CreditMetrics utilizes a transition matrix that captures the probabilities of obligors migrating between different credit ratings or defaulting over a specific time horizon. These probabilities are derived from historical rating data and incorporate the likelihood of both upgrades and downgrades, capturing the full spectrum of potential credit quality changes.
@@ -475,9 +538,11 @@ CreditMetrics tackles this challenge by constructing a model that does not rely 
   * Expected shortfall, capturing the average loss beyond a chosen confidence level, offering a more conservative risk estimate.
 
 Instead of relying on the normality assumption, CreditMetrics constructs a distribution of possible outcomes based on a model that captures the complexities of credit risk. This approach enables a more accurate and comprehensive assessment of the potential for losses due to credit events, leading to better risk management decisions.
+{% endcapture %}
+{{ markdown_response | markdownify }}
+        </div>
+    </details>
 </div>
-</div>
-
 
 
 And some even more specific questions I know the model should take into account somehow.
@@ -486,7 +551,10 @@ And some even more specific questions I know the model should take into account 
     <div class="prompt">
 How does it model the correlation of a portfolio that could have thousands of obligors?
 </div>
-<div class="response" markdown="1">
+<details>
+        <summary>Response</summary>
+        <div class="response">
+        {% capture markdown_response %}
 Modeling Correlation in Large Portfolios: CreditMetrics' Approach
 
 CreditMetrics recognizes the importance of capturing correlation, particularly in large portfolios with thousands of obligors, to accurately assess portfolio credit risk and diversification benefits. Directly estimating correlations from historical data for each pair of obligors in such a large portfolio is practically impossible due to data limitations and computational complexity.
@@ -507,7 +575,10 @@ Here's how CreditMetrics models correlation using the asset value model:
 5. Generating Joint Rating Scenarios: Once asset correlations are estimated, CreditMetrics uses these correlations, along with individual obligor transition probabilities, to generate scenarios of joint credit rating migrations. These scenarios reflect the likelihood of different combinations of credit events, capturing the possibility of multiple obligors experiencing upgrades, downgrades, or defaults simultaneously.
 
 By integrating the asset value model into its framework, CreditMetrics provides a robust and efficient way to model correlation in large credit portfolios. It leverages readily available data sources like equity returns and industry indices, allowing for the estimation of a vast number of pairwise correlations without resorting to computationally expensive calculations. This approach enables a more accurate assessment of portfolio diversification benefits and facilitates better risk management decisions.
-</div>
+{% endcapture %}
+{{ markdown_response | markdownify }}
+        </div>
+    </details>
 </div>
 
 And we could keep digging with technical details and probably combine it with other LLMs such as Chat GPT which in my experience is really good for technical explanations.
@@ -515,13 +586,16 @@ And we could keep digging with technical details and probably combine it with ot
 In any case, let's try to use this information to get more Model Validation specifics. I will assume I have access to the Monte Carlo simulations detail and ask now Sonnet to give me some code to validate it:
 
 <div class="llm-container">
-    <div class="prompt">
+    <div class="prompt" markdown="1">
 If you have the model described below, and also have the detail for the monte carlo simulations, could you please give me the code to execute some tests according to SR 11-7 and to validate the assumptions are correct?
 
-**Pasted here the three outcomes above from Notebook LM for CreditMetrics**
+***Pasted here the three outcomes above from Notebook LM for CreditMetrics***
 
 </div>
-<div class="response" markdown="1">
+<details>
+        <summary>Response</summary>
+        <div class="response">
+{% capture markdown_response %}
 
 I've created a comprehensive validation framework for the CreditMetrics model that addresses the key aspects mentioned in your description and follows SR 11-7 guidelines. Here's what the code does:
 
@@ -562,14 +636,6 @@ To use this framework, you would:
 * Provide your actual data (returns, recovery rates, etc.)
 * Run the validation tests
 * Generate a validation report
-
-</div>
-</div>
-
-I will post the code the LLM gave me. I have not executed it mostly because I don't have access to the Monte Carlo details, but with my previous tests and how it looks, seems to be a good starting point.
-
-<details markdown="1">
-  <summary>Click to expand the Python code</summary>
 
 ```python
 import numpy as np
@@ -865,5 +931,40 @@ if __name__ == "__main__":
     example_usage()
 ```
 
-</details>
-  
+{% endcapture %}
+{{ markdown_response | markdownify }}
+        </div>
+    </details>
+</div>
+
+I have not executed this code mostly because I don't have access to the Monte Carlo details, but with my previous tests and how it looks, seems to be a really really good starting point. The tests are on point, or at least are tests I have exactly performed to a model with a similar funcionality than Credit Metrics.
+
+Again, significant time savings.
+
+### An App for Model Validation with LLMs
+
+Seeing these results I could not stop myself to try to create something that wraps all this into an application that interacts with LLMs specifically for Model VAlidation. 
+
+[See the code in this GitHub repository.](https://github.com/joseprupi/valyq?tab=readme-ov-file)
+
+Basically:
+
+* You provide the model's code and documentation, along with a training and testing dataset.
+* Request specific validation tests, such as evaluating the model's performance over time.
+* The application processes your input and generates a detailed report.
+
+![image](/assets/app2.png)
+
+The GitHub repository includes a showcase video that illustrates how the application operates but in summary, the app performs the following:
+
+* Extracts Python code from LLM responses.
+* Executes the code securely within a Docker container.
+* Compiles the results into a DOCX document.
+
+While this is yet another LLM wrapper—like the hundreds that probably already exist—I still see significant potential for tools like this in the Model Validation space. Additional potential applications, for example, include automating the validation of model changes. Since any modification to a model requires validation, integrating such tools with repositories and deployment systems (e.g., GitHub) could automate reviews and generate tests for each update.
+
+### Conclusions
+
+Ok, overall, I found LLMs to be an incredibly powerful tool for Model Validation. After this I would say almost indispensable.
+
+I have to admit that I was not a true believer in their capabilities beyond text-related tasks and coding assistance, until I started using them heavily for this specific purpose. I am not sure where all this is going, but it seems likely to reshape most jobs that require a monitor and a keyboard.
