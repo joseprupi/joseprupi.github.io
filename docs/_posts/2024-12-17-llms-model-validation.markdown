@@ -90,7 +90,7 @@ h6 { font-size: 0.67em; }
 
 /* Code blocks in responses */
 .response code {
-    background-color: ##eef;
+    background-color: #eef;
     color: #333; /* Ensure text is visible */
     padding: 0.2em 0.4em;
     border-radius: 3px;
@@ -184,15 +184,7 @@ details .response > :last-child {
 
 ### Model Validation in banking
 
-This post is mostly me following the steps of a Model Validation in Banking assisted by LLMs. The result is impressive to me in terms of quality and the time saving this could represent. At the end there is an app, front to back, for Model Validation if you want to see that.
-
 Let’s begin by clarifying what model validation means in this post. Yes, it involves ensuring that models function correctly, a broad topic in itself, but here we’ll focus on the US banking environment, where model validation also requires adhering to regulatory standards such as SR 11-7.
-
-In this post you'll find:
-- What Model Validation in banking entails
-- How LLMs (OpenAI’s ChatGPT, Claude’s Sonnet, and Google’s Notebook LM) can assist in various aspects of model validation
-- How these tools can help streamline code reviews, validation tests, and the handling of large model documentation
-- An LLM-based, front-to-back application (yes, another LLM wrapper) to generate tests and Validation Reports only using natural language
 
 Before we start, let’s see what ChatGPT has to say about model validation in this context.
 
@@ -937,7 +929,7 @@ if __name__ == "__main__":
     </details>
 </div>
 
-I have not executed this code mostly because I don't have access to the Monte Carlo details, but with my previous tests and how it looks, seems to be a really really good starting point. The tests are on point, or at least are tests I have exactly performed to a model with a similar funcionality than Credit Metrics.
+I have not executed this code mostly because I don't have access to the Monte Carlo details, but with my previous tests and how it looks, seems to be a really really good starting point. The tests are on point, or at least are tests I have exactly performed to a model with a similar functionality than Credit Metrics.
 
 Again, significant time savings.
 
