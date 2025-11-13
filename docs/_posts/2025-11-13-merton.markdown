@@ -143,7 +143,7 @@ But does the model work? The most important test of a default model is simple: d
 
 The answer is yes. The results clearly show a trend of increasing PDs leading up to their default. For example, a company like ContraFect Corporation (CFRX) filed a petition for liquidation on December of 2023 (see [here](https://finance.yahoo.com/quote/CFRXQ/profile/)), and see how its Merton PD looks like below.
 
-![image](static/CFRX.png)
+![image](/assets/CFRX.png)
 
 Is the goal of this project to predict defaults with Merton scores? Absolutely not, this is just to showcase that with, almost, all public data, we can create a pretty solid base for a commercial credit risk framework. For example, these scores or PDs can be used as part of a bigger framework, where these are used to maybe estimate PDs using other financial information (we could use other financial statements from EDGAR) and then create a "real" PD estimator that we can later use with our portfolio of commercial loans. We can add macro economic information, make it TTC, ... All sort of things.
 
