@@ -1,0 +1,149 @@
+---
+layout: post_custom
+title: "My development setup using LXC Containers"
+date: 2025-11-13 00:00:00 -0000
+categories: misc
+---
+
+<style>
+/* --- 1. Base Post Styles --- */
+.post {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #222;
+}
+
+/* --- 2. Typography --- */
+.post p, .post ul, .post ol {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+.post ul, .post ol {
+    padding-left: 2rem;
+    margin: 1.5rem 0;
+}
+
+.post li {
+    margin-bottom: 0.75rem;
+}
+
+.post h1, .post h2, .post h3, .post h4, .post h5, .post h6 {
+    margin-top: 1.8rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+    font-weight: 600;
+}
+.post h1 { font-size: 2.5em; border-bottom: 2px solid #e0e0e0; padding-bottom: 1rem; }
+.post h2 { font-size: 2em; border-bottom: 1px solid #e0e0e0; padding-bottom: 0.5rem; }
+.post h3 { font-size: 1.5em; }
+.post h4 { font-size: 1.17em; }
+
+.post strong {
+    font-weight: 600;
+    color: #111;
+}
+
+/* --- 3. Table Styling --- */
+.post table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    overflow: hidden; /* This makes the corners look good */
+    font-size: 0.95em;
+}
+
+.post table th {
+    background-color: #007aff;
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    text-align: left;
+}
+
+.post table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e0e0e0;
+    color: #333;
+}
+
+.post table tr:last-child td {
+    border-bottom: none;
+}
+
+.post table tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* --- 4. Code Block Styling (CHANGED FOR LIGHT THEME) --- */
+/* This styles inline `code` */
+.post code {
+    background-color: #f4f4f4;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+    color: #d63384;
+}
+
+/* This styles a full <pre> code block */
+.post pre {
+    background-color: #f8f8f8; /* Light background */
+    color: #333; /* Dark text */
+    padding: 1rem;
+    border-radius: 5px;
+    overflow-x: auto;
+    border: 1px solid #e0e0e0;
+    /* The prism-coy.css theme will add shadows and line numbers */
+}
+
+/* This styles the code *inside* the <pre> block */
+.post pre code {
+    background-color: transparent;
+    color: inherit; /* Inherit dark text color */
+    padding: 0;
+    font-size: 0.9em;
+    white-space: pre; /* Keeps whitespace */
+}
+
+/* --- 5. Image Styling --- */
+.post img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border: 1px solid #e0e0e0;
+}
+
+/* --- 6. MathJax Styling --- */
+.post .MathJax {
+    font-size: 1.1em !important;
+}
+.post mjx-container {
+    margin: 0.5rem 0;
+}
+</style>
+
+I work on side projects almost all the time. Not like *all* the time, but I mean I always have some side thing going on.
+
+I have tried different things during all these years, but what ended up working for me after trying half a dozen setups is basically a laptop as my frontend and a server as the engine. Specifically:
+
+ * **Laptop with IDE on the frontend.** Currently, I use a 16'' MacBook Pro. I tried a super light laptop such as the Google Pixelbook. Not enough. I feel something more powerful gives me a more pleasant experience. But still, I don't need the biggest one. IDE: VS Code.
+ * **A Debian workstation.** Currently an AMD Ryzen 9 3900X with 64 GB of RAM, a Radeon RX GPU, 2 1TB NVMe, and 1 magnetic 1 TB disk.
+
+The server is probably 4 years old. It works like a charm. My only problem is the GPU; I can't use it as I want to for modeling (or not easily as an NVIDIA), but in 2025 I think I am good, I won't train my LLMs anyway.
+
+Now, my next thing is how I compartmentalize my server for my projects. I have also tried different things here, but what works better for me is LXC containers: persistent and low level. This is exactly what I need. I want something I can abuse as much as I want; when they stop working throw them away and start with a fresh new one. As if I was buying new laptops every 3 or 4 months. That is my way of working. I don't want to think what system libraries I am installing, just do it. I usually have one that I use as my main development environment and then I throw in some specific ones for some projects such as a DB server or whatever I need.
+
+For this last step, I have created this:
+
+[A UI to manage LXC containers](https://github.com/joseprupi/lxc_manager).
+
+Basically, it handles everything in my host machine to create, backup, and network setup. This is all.
