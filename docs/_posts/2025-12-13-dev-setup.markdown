@@ -1,7 +1,7 @@
 ---
 layout: post_custom
 title: "My development setup using LXC Containers"
-date: 2025-11-13 00:00:00 -0000
+date: 2025-12-27 00:00:00 -0000
 categories: misc
 ---
 
